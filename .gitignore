@@ -1,0 +1,32 @@
+# Logs
+logs/
+*.log
+
+# Allure
+allure-results/
+allure-api-results/
+allure-ui-results/
+reports/
+
+# Virtual environment
+venv/
+.env/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# states, videos and tracing
+/tracing
+/videos
+browser_state.json
