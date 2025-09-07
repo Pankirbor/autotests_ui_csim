@@ -5,7 +5,7 @@ import allure
 from playwright.sync_api import Page, Locator, expect
 from ui_coverage_tool import ActionType, SelectorType
 
-from elements.ui_coverage import tracker
+from src.ui.elements.ui_coverage import tracker
 from src.core.exceptions import LocatorNotFoundError
 from src.utils.logger import get_logger
 
@@ -61,7 +61,7 @@ class BaseElement:
         Returns:
             Self: Экземпляр созданного элемента.
         """
-        return cls(page=page, selector=test_id, name=name, use_xpath=False)
+        return cls(page=page, locator_path=test_id, name=name, use_xpath=False)
 
     @classmethod
     def by_xpath(cls, page: Page, xpath: str, name: str) -> Self:
@@ -76,7 +76,7 @@ class BaseElement:
         Returns:
             Self: Экземпляр созданного элемента.
         """
-        return cls(page=page, selector=xpath, name=name, use_xpath=True)
+        return cls(page=page, locator_path=xpath, name=name, use_xpath=True)
 
     def type_of(self) -> str:
         """
@@ -188,7 +188,7 @@ class BaseElement:
         self.track_coverage(ActionType.VISIBLE, nth, **kwargs)
         return self
 
-    def check_have_text(self, text: str, nth: int = 0, **kwargs) -> None:
+    def check_contain_text(self, text: str, nth: int = 0, **kwargs) -> None:
         """
         Проверяет, что элемент содержит указанный текст.
 
@@ -198,6 +198,6 @@ class BaseElement:
         step = f"Checking that {self.type_of} '{self.name}' has text '{text}'"
         with allure.step(step):
             logger.info(step)
-            expect(self.get_locator(nth, **kwargs)).to_have_text(text)
+            expect(self.get_locator(nth, **kwargs)).to_contain_text(text)
 
         self.track_coverage(ActionType.TEXT, nth, **kwargs)
