@@ -180,7 +180,7 @@ class FrameworkSettings(BaseSettings):
         Returns:
             str: Базовый URL для UI.
         """
-        return f"{self.ui.app_url}/"
+        return f"{self.ui.app_url}"
 
     def get_api_base_url(self) -> str:
         """
@@ -217,4 +217,4 @@ class FrameworkSettings(BaseSettings):
 
 # Глобальный экземпляр настроек
 settings = FrameworkSettings.initialize()
-settings.print_settings()
+# settings.print_settings()

@@ -30,3 +30,5 @@ __pycache__/
 /tracing
 /videos
 browser_state.json
+
+test_script.py

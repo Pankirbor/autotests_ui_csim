@@ -1,0 +1,7 @@
+apps:
+  - key: "cism-ms"
+    url: "https://cism-ms.ru"
+    name: "ЦИСМ"
+    tags: ["UI", "VACANCIES"]
+
+html_report_file: "./coverage.html"
