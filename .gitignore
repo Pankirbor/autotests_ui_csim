@@ -31,4 +31,6 @@ __pycache__/
 /videos
 browser_state.json
 
+#coverage
+/coverage-results
 test_script.py

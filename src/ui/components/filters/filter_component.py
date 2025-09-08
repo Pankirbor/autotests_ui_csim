@@ -1,29 +1,31 @@
+from typing import Self
 from playwright.sync_api import Page
 
 from src.ui.components.base_component import BaseComponent
 from src.ui.elements.button import Button
+from src.ui.elements.container import Container
 from src.ui.elements.tab import Tab
 from src.ui.locators import FilterVacanciesLocators
 
 
-class FilteVacanciesComponent(BaseComponent):
+class FilterVacanciesComponent(BaseComponent):
     def __init__(self, page: Page):
         super().__init__(page)
 
         self.tabs = self._get_filters_tabs()
-        self.sort_btn = Button.by_xpath(
-            self.page, FilterVacanciesLocators.SORT, "Кнопка сортировки"
-        )
-        self.filter_menu = Button.by_xpath(
-            self.page, FilterVacanciesLocators.FILTER_BTN, "Кнопка Фильтр"
-        )
+        self.container = Container.by_xpath(page, *FilterVacanciesLocators.CONTAINER)
+        self.sort_btn = Button.by_xpath(page, *FilterVacanciesLocators.SORT)
+        self.filter_menu = Button.by_xpath(page, *FilterVacanciesLocators.FILTER_BTN)
 
-    def _get_filters_tabs(self):
+    def should_be_visible(self) -> Self:
+        self.container.check_visible()
+        return self
+
+    def _get_filters_tabs(self) -> list[Tab]:
+        xpath, name = FilterVacanciesLocators.TAB
         return [
-            Tab(
-                self.page, f"//div[@class='q-tab'][{i + 1}]", f"Tab {item.inner_text()}"
-            )
+            Tab(self.page, xpath.format(index=i), name.format(title=item.inner_text()))
             for i, item in enumerate(
-                self.page.locator(FilterVacanciesLocators.TAB).all()
+                self.page.locator(FilterVacanciesLocators.ALL_TABS).all()
             )
         ]

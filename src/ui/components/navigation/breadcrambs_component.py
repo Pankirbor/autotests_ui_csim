@@ -2,6 +2,7 @@ import allure
 from playwright.sync_api import Page, expect
 
 from src.ui.components.base_component import BaseComponent
+from src.ui.elements.container import Container
 from src.ui.elements.text import Text
 from src.ui.elements.link import Link
 from src.ui.locators import BreadcrumbsLocators
@@ -9,39 +10,27 @@ from src.ui.locators import BreadcrumbsLocators
 
 class BreadcrumbsComponent(BaseComponent):
 
-    def __init__(self, page: Page, count_of_elements: int, page_name: str):
+    def __init__(self, page: Page, count_of_elements: int):
         super().__init__(page)
 
-        self.count_of_elements = (count_of_elements,)
-        self.page_name = page_name
-        self.container = page.locator(BreadcrumbsLocators.CONTAINER)
+        self.count_of_elements = count_of_elements
         self.items = page.locator(BreadcrumbsLocators.ITEMS)
-
-        # Основные элементы
-        self.home_link = Link.by_xpath(
-            page=page,
-            xpath=BreadcrumbsLocators.HOME_LINK,
-            name="Ссылка на главную",
-        )
-
-        self.current_page = Text.by_xpath(
-            page=page,
-            xpath=BreadcrumbsLocators.CURRENT_PAGE,
-            name="Текущая страница",
-        )
+        self.container = Container.by_xpath(page, *BreadcrumbsLocators.CONTAINER)
+        self.home_link = Link.by_xpath(page, *BreadcrumbsLocators.HOME_LINK)
+        self.current_page = Text.by_xpath(page, *BreadcrumbsLocators.CURRENT_PAGE)
 
     #! проверка гипотезы
-    @allure.step("Проверка наличия всех элементов хлебных крошек {self.page_name}")
-    def check_visible(self):
+    @allure.step("Проверка наличия всех элементов хлебных крошек {page_name}")
+    def check_visible(self, page_name: str):
         (
             self.should_be_visible()
             .should_contain_home_link()
             .should_have_items_count(self.count_of_elements)
-            .should_contain_current_page(self.page_name)
+            .should_contain_current_page(page_name)
         )
 
     def should_be_visible(self):
-        expect(self.container).to_be_visible()
+        self.container.check_visible()
         return self
 
     def get_all_items(self):

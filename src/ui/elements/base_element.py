@@ -78,6 +78,7 @@ class BaseElement:
         """
         return cls(page=page, locator_path=xpath, name=name, use_xpath=True)
 
+    @property
     def type_of(self) -> str:
         """
         Возвращает тип элемента в нижнем регистре.

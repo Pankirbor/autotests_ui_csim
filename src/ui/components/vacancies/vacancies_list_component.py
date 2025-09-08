@@ -3,8 +3,11 @@ from typing import List, Dict
 from playwright.sync_api import Page, expect
 
 from src.ui.components.base_component import BaseComponent
+from src.ui.elements.container import Container
+from src.ui.elements.icon import Icon
 from src.ui.elements.link import Link
 from src.ui.elements.text import Text
+from src.ui.locators import VacanciesListLocators
 
 
 class VacanciesListComponent(BaseComponent):
@@ -12,24 +15,20 @@ class VacanciesListComponent(BaseComponent):
         super().__init__(page)
 
         # Контейнер списка
-        self.container = page.locator(".row")
+        self.container = Container.by_xpath(self.page, *VacanciesListLocators.CONTAINER)
 
         # Карточки вакансий
-        self.vacancy_cards = page.locator("article.vacancy_card")
+        self.vacancy_cards = page.locator(VacanciesListLocators.VACANCY_CARDS[0])
 
         # Элементы карточки
-        self.card_title = Text.by_xpath(
-            self.page, "h3.vacancy_card__title", name="Название вакансии"
-        )
-        self.card_date = page.locator("time")
-        self.card_link = Link.by_xpath(
-            self.page, "a.vacancy_card__link", name="Ссылка на вакансию"
-        )
-        self.card_icon = page.locator(".vacancy_card__icon")
+        self.card_title = Text.by_xpath(self.page, *VacanciesListLocators.CARD_TITLE)
+        self.card_date = Text.by_xpath(self.page, *VacanciesListLocators.CARD_DATE)
+        self.card_link = Link.by_xpath(self.page, *VacanciesListLocators.CARD_LINK)
+        self.card_icon = Icon.by_xpath(self.page, *VacanciesListLocators.CARD_ICON)
 
     # Базовые проверки
     def should_be_visible(self):
-        expect(self.container).to_be_visible()
+        self.container.check_visible()
         return self
 
     def should_have_vacancies(self, min_count=1):
@@ -60,10 +59,10 @@ class VacanciesListComponent(BaseComponent):
         vacancy = self.get_vacancy_by_index(index)
 
         return {
-            "title": vacancy.locator("h3.vacancy_card__title").inner_text().strip(),
-            "date": vacancy.locator("time").get_attribute("datetime")
-            or vacancy.locator("time").inner_text().strip(),
-            "link": vacancy.locator("a.vacancy_card__link").get_attribute("href"),
+            "title": self.card_title.get_locator(nth=index).inner_text().strip(),
+            "date": self.card_date.get_locator(nth=index).get_attribute("datetime")
+            or self.card_date.get_locator(nth=index).inner_text().strip(),
+            "link": self.card_link.get_locator(nth=index).get_attribute("href"),
             "element": vacancy,
         }
 
@@ -77,6 +76,6 @@ class VacanciesListComponent(BaseComponent):
     def get_vacancies_titles(self) -> List[str]:
         """Возвращает список названий вакансий"""
         return [
-            card.locator("h3.vacancy_card__title").inner_text().strip()
-            for card in self.get_all_vacancies()
+            self.card_title.get_locator(nth=ind).inner_text().strip()
+            for ind in range(self.get_vacancies_count())
         ]

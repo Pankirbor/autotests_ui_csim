@@ -19,10 +19,16 @@ class HeaderPageLocators:
 
 
 class BreadcrumbsLocators:
-    CONTAINER = ".q-breadcrumbs.breadcrumbs"
+    CONTAINER = ("//div[@class, 'q-breadcrumbs']", "Контейнер хлебных крошек")
     ITEMS = ".q-breadcrumbs__el"
-    HOME_LINK = "//div[contains(@class, 'q-breadcrumbs')]//a[@href='/']"
-    CURRENT_PAGE = "//div[contains(@class, 'q-breadcrumbs')]//span[contains(@class, 'q-breadcrumbs__el')]"
+    HOME_LINK = (
+        "//div[contains(@class, 'q-breadcrumbs')]//a[@href='/']",
+        "Ссылка на главную",
+    )
+    CURRENT_PAGE = (
+        "//div[contains(@class, 'q-breadcrumbs')]//span[contains(@class, 'q-breadcrumbs__el')]",
+        "Текущая страница",
+    )
 
 
 class FilterLocators:
@@ -95,13 +101,33 @@ class FilterLocators:
 class FilterVacanciesLocators:
     """Локаторы для элементов фильтрации на странице вакансий"""
 
-    FILTER_CONTAINER = ".post__bar"
+    FILTER_CONTAINER = ("//div[contains(@class,'post__bar')]", "Контейнер фильтров")
     FILTERS_TABS = ".q-tabs"
-    TAB = ".q-tab"
-    SORT = "//div[contains(@class, 'btn_sort')]//button"
-    FILTER_BTN = "//div[contains(@class, 'btn_filters')]//button"
+    ALL_TABS = ".q-tab"
+    SORT = ("//div[contains(@class, 'btn_sort')]//button", "Кнопка сортировки")
+    FILTER_BTN = ("//div[contains(@class, 'btn_filters')]//button", "Кнопка 'Фильтр'")
+    TAB = ("//div[contains(@class, 'q-tab')][{index}]", "Вкладка {title}")
 
-    # Контейнер вкладок
+
+class VacanciesListLocators:
+    CONTAINER = ("//div[contains(@class, 'row')]", "Блок со списком вакансий")
+    VACANCY_CARDS = ("//article[contains(@class, 'vacancy_card')]", "Список вакансий")
+    CARD_TITLE = ("//h3[contains(@class, 'vacancy_card__title')]", "Название вакансии")
+    CARD_DATE = ("//time", "Дата публикации")
+    CARD_LINK = ("//a[contains(@class, 'vacancy_card__link')]", "Ссылка на вакансию")
+    CARD_ICON = (
+        "//i[contains(@class, 'vacancy_card__icon')]",
+        "Иконка ссылки на вакансию",
+    )
+    EMPTY_VIEW_CONTAINER = (
+        "//div[contains(@class, 'not_found')]",
+        "Контейнер пустого состояния",
+    )
+    EMPTY_VIEW_TITLE = ("//div[@class='not_found']//h3", "Заголовок пустого состояния")
+    EMPTY_VIEW_DESCRIPTION = (
+        "//div[@class='not_found']//p",
+        "Описание пустого состояния",
+    )
 
 
 class FooterLocators:
