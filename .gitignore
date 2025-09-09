@@ -33,4 +33,6 @@ browser_state.json
 
 #coverage
 /coverage-results
-test_script.py
+testing_script.py
+testing_script_api.py
+request_api.http
