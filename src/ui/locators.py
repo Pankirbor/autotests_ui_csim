@@ -4,22 +4,22 @@ class NavBarLocators:
     NEWS_TAB = "//a[@role='tab' and @href='/novosti']"
     VACANCIES_TAB = "//a[@role='tab' and @href='/vakansii']"
     CONTACT_TAB = "//a[@role='tab' and @href='/#feedback']"
-    SEARCH_TAB = "//header//div[@class='input_search__wrapp'"
+    SEARCH_TAB = "//header//div[@class='input_search__wrapp']"
     SEARCH_ICON = ".input_search__icon_search"
-    SEARCH_INPUT = ".input_search__wrapp.q-placeholder"
+    SEARCH_INPUT = "//div[contains(@class, 'input_search__wrapp')]//input"
     SEARCH_ENTER_ICON = (
         "i[role='presentation']"  # q-icon icon-move-right cursor-pointer
     )
-    LOGO = "//header//a[contains(@href, '/') and @aria-current='page']"
+    LOGO = "//div[contains(@class, 'q-avatar')]//img"
 
 
 class HeaderPageLocators:
     TITLE = "//h1[contains(@class, 'post__title')] | //h1"
-    SUBTITLE = "//h3[contains(@class, 'post__subtitle')] | //section[contains(@class, 'header__inner')//p]"
+    SUBTITLE = "//h3[contains(@class, 'post__subtitle')] | //section[contains(@class, 'header__inner')]//p"
 
 
 class BreadcrumbsLocators:
-    CONTAINER = ("//div[@class, 'q-breadcrumbs']", "Контейнер хлебных крошек")
+    CONTAINER = ("//div[contains(@class, 'q-breadcrumbs')]", "Контейнер хлебных крошек")
     ITEMS = ".q-breadcrumbs__el"
     HOME_LINK = (
         "//div[contains(@class, 'q-breadcrumbs')]//a[@href='/']",

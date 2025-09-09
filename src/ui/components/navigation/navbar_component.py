@@ -21,3 +21,15 @@ class NavbarComponent(BaseComponent):
         )
         self.contacts_tab = Link.by_xpath(page, NavBarLocators.CONTACT_TAB, "Контакты")
         self.search = SearchComponent(page)
+
+    def check_visible(self):
+        for component in [
+            self.logo,
+            self.about_tab,
+            self.materials_tab,
+            self.news_tab,
+            self.vacancies_tab,
+            self.contacts_tab,
+            self.search,
+        ]:
+            component.check_visible()

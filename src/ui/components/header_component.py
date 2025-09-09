@@ -20,3 +20,7 @@ class HeaderComponent(BaseComponent):
             xpath=HeaderPageLocators.SUBTITLE,
             name=f"Подзаголовок страницы {location}",
         )
+
+    def check_visible(self):
+        self.title.check_visible()
+        self.subtitle.check_visible()

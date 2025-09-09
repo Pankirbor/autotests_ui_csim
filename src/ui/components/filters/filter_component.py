@@ -13,7 +13,9 @@ class FilterVacanciesComponent(BaseComponent):
         super().__init__(page)
 
         self.tabs = self._get_filters_tabs()
-        self.container = Container.by_xpath(page, *FilterVacanciesLocators.CONTAINER)
+        self.container = Container.by_xpath(
+            page, *FilterVacanciesLocators.FILTER_CONTAINER
+        )
         self.sort_btn = Button.by_xpath(page, *FilterVacanciesLocators.SORT)
         self.filter_menu = Button.by_xpath(page, *FilterVacanciesLocators.FILTER_BTN)
 

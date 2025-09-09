@@ -12,9 +12,13 @@ class SearchComponent(BaseComponent):
 
         self.search_tab = Label.by_xpath(page, NavBarLocators.SEARCH_TAB, "Поиск")
         self.icon = Icon.by_xpath(page, NavBarLocators.SEARCH_ICON, "Иконка поиска")
-        self.input_areea = Input.by_xpath(
+        self.input = Input.by_xpath(
             page, NavBarLocators.SEARCH_INPUT, "Поле ввода поиска"
         )
         self.inter_icon = Icon.by_xpath(
             page, NavBarLocators.SEARCH_ENTER_ICON, "Иконка стрелки вправо"
         )
+
+    def check_visible(self):
+        self.search_tab.check_visible()
+        self.icon.check_visible()
