@@ -17,5 +17,7 @@ def create_allure_environment():
     )
     properties_content = "\n".join([f"{key}={value}" for key, value in properties_data])
 
-    properties_path: Path = settings.ALLURE_RESULTS_DIR / "environment.properties"
+    properties_path: Path = (
+        settings.reporting.allure_ui_results_dir / "environment.properties"
+    )
     properties_path.write_text(properties_content, encoding="utf-8")
