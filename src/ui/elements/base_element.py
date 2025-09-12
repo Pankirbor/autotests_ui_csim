@@ -202,3 +202,19 @@ class BaseElement:
             expect(self.get_locator(nth, **kwargs)).to_contain_text(text)
 
         self.track_coverage(ActionType.TEXT, nth, **kwargs)
+
+    def check_contains_class(self, class_name: str, nth: int = 0, **kwargs) -> None:
+        """
+        Проверяет, что элемент содержит указанный класс.
+
+        Args:
+            class_name (str): Имя класса, который должен присутствовать в элементе.
+        """
+        step = (
+            f"Проверка, что {self.type_of} '{self.name}' содкржит класс '{class_name}'"
+        )
+        with allure.step(step):
+            logger.info(step)
+            expect(self.get_locator(nth, **kwargs)).to_have_class(class_name)
+
+        self.track_coverage(ActionType.VISIBLE, nth, **kwargs)
