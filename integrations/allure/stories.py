@@ -13,6 +13,9 @@ class AllureStoryApi(str, Enum):
 
 
 class AllureStoryUi(str, Enum):
+    PAGE_LOADS_CORRECTLY = (
+        "Страница загружается корректно и отображает все ключевые элементы"
+    )
     # Глобальная Навигация (шапка)
     CLICK_HEADER_LOGO = "Клик по логотипу в шапке ведет на главную"
     NAVIGATE_TO_PAGES = "Переход на страницы  через навигацию"
@@ -38,3 +41,4 @@ class AllureStoryUi(str, Enum):
     # Футер
     CLICK_FOOTER_AGREEMENT = "Клик по ссылке 'Пользовательское соглашение' в футере"
     CLICK_FOOTER_PRIVACY = "Клик по ссылке 'Политика конфиденциальности' в футере"
+    BREADCRUMBS = "Функционал навигации по страницам (хлебные крошки)"
