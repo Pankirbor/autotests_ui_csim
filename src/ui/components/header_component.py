@@ -6,7 +6,6 @@ from src.ui.locators import HeaderPageLocators
 
 
 class HeaderComponent(BaseComponent):
-
     def __init__(self, page: Page, location: str):
         super().__init__(page)
 

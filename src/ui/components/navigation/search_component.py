@@ -6,7 +6,6 @@ from src.ui.locators import NavBarLocators
 
 
 class SearchComponent(BaseComponent):
-
     def __init__(self, page):
         super().__init__(page)
 

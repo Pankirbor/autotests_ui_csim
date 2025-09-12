@@ -23,9 +23,9 @@ def assert_status_code(actual: int, expected: int) -> None:
 
     logger.info(f"Проверяем, что статус код ответа сервера соответствует {expected}")
 
-    assert (
-        actual == expected
-    ), f"Incorrect response staus code. Expected: '{expected}', resived: '{actual}'"
+    assert actual == expected, (
+        f"Incorrect response staus code. Expected: '{expected}', resived: '{actual}'"
+    )
 
 
 @allure.step("Проверяем, что значение {name} соответствует ожидаемому {expected}")
@@ -44,9 +44,9 @@ def assert_equal(actual: Any, expected: Any, name: str) -> None:
 
     logger.info(f"Проверяем, что значение {name} соответствует ожидаемому {expected}")
 
-    assert (
-        actual == expected
-    ), f"Incorrect '{name}'. Expected: '{expected}', resived: '{actual}'"
+    assert actual == expected, (
+        f"Incorrect '{name}'. Expected: '{expected}', resived: '{actual}'"
+    )
 
 
 @allure.step("Проверяем, что значение {name} является истинным")
@@ -81,6 +81,6 @@ def assert_length(actual: Sized, expected: Sized, name: str) -> None:
     with allure.step(f"Проверяем, что длина {name} соответствует ожидаемой {expected}"):
         logger.info(f"Проверяем, что длина {name} соответствует ожидаемой {expected}")
 
-        assert len(actual) == len(
-            expected
-        ), f"Incorrect '{name}' length. Expected: '{len(expected)}', resived: '{len(actual)}'"
+        assert len(actual) == len(expected), (
+            f"Incorrect '{name}' length. Expected: '{len(expected)}', resived: '{len(actual)}'"
+        )
