@@ -10,7 +10,7 @@ from src.ui.elements.icon import Icon
 from src.ui.elements.link import Link
 from src.ui.elements.text import Text
 from src.ui.locators import VacanciesListLocators
-from src.utils.logger import get_logger, console
+from src.utils.logger import get_logger
 
 logger = get_logger(__name__.upper())
 
@@ -21,9 +21,6 @@ class VacanciesListComponent(BaseComponent):
 
         # Контейнер списка
         self.container = Container.by_xpath(self.page, *VacanciesListLocators.CONTAINER)
-
-        # Карточки вакансий
-        # self.vacancy_cards = page.locator(VacanciesListLocators.VACANCY_CARDS[0])
 
         # Элементы карточки
         self.card_title = Text.by_xpath(self.page, *VacanciesListLocators.CARD_TITLE)
@@ -113,7 +110,7 @@ class VacanciesListComponent(BaseComponent):
         ), f"Цвет текста карточки вакансии не изменился. {color_before} == {color_after}"
 
     @allure.step("Проверяем, что вакансии отсортированы по дате публикации: {order}")
-    def check_vacansies_sorted_by_date(self, order: str = "desc"):
+    def check_vacancies_sorted_by_date(self, order: str = "desc"):
         self.container.check_visible()
         vacancies_data = self.get_all_vacancies_data()
         dates = [
@@ -131,4 +128,13 @@ class VacanciesListComponent(BaseComponent):
         logger.info(
             f"Проверяем, что вакансии отсортированы по дате публикации: '{order}'"
         )
-        assert is_sorted, f"Вакансии не отсортированы в соответствии с порядком {order}"
+        try:
+            assert (
+                is_sorted
+            ), f"Вакансии не отсортированы в соответствии с порядком {order}"
+        except AssertionError as e:
+            current_order = [
+                f'{vcancy["title"]} - {vcancy["date"]}' for vcancy in vacancies_data
+            ]
+            logger.error(f"Ошибка сортировки вакансий: {e}\n {current_order}")
+            raise e
