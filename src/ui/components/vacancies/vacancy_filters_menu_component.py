@@ -151,6 +151,7 @@ class VacancyFiltersMenuComponent(BaseComponent):
             state="visible", timeout=10000
         )
         self.container.check_visible()
+        self.check_expected_checkboxes()
         return self
 
     def check_not_visible(self):
