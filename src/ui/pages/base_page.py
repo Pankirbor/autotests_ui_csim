@@ -34,6 +34,19 @@ class BasePage:
         """
         self.page = page
 
+    # todo убрать локаторы в файл locators.py
+    def accept_cookies_if_present(self) -> None:
+        """Принимает куки, если диалог виден."""
+        cookies_dialog = self.page.locator(".cookie-dialog")
+        accept_button = self.page.locator(".cookie-dialog button:has-text('Принять')")
+
+        cookies_dialog.wait_for(state="visible", timeout=10000)
+        if cookies_dialog.is_visible():
+            if accept_button.is_visible():
+                accept_button.click()
+                logger.info("Куки приняты")
+                self.page.wait_for_timeout(1000)
+
     def visit(self, url: str) -> None:
         """
         Открывает указанную URL-страницу и ждет завершения загрузки.
@@ -44,7 +57,8 @@ class BasePage:
         step = f"Opening the url: '{url}'"
         with allure.step(step):
             logger.info(step)
-            self.page.goto(url, wait_until="networkidle")
+            self.page.goto(url, wait_until="networkidle", timeout=50000)
+            self.accept_cookies_if_present()
 
     def reload(self) -> None:
         """

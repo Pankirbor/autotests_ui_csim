@@ -7,8 +7,6 @@ from playwright.sync_api import Playwright, Page
 from config import settings
 from integrations.playwright.page_builder import playwright_page_builder
 
-# from src.ui.routes import AppRoute
-
 
 @pytest.fixture(params=settings.ui.browsers)
 def chromium_page(
@@ -46,8 +44,8 @@ def initialize_browser_state(playwright: Playwright) -> None:
     Фикстура для инициализации браузера и сохранения состояния после регистрации.
 
     Эта фикстура запускается один раз за сессию тестирования. Она открывает браузер,
-    регистрирует нового пользователя на странице регистрации и сохраняет состояние контекста
-    в файл `browser-state.json`, чтобы использовать его в последующих тестах.
+    сохраняет состояние контекста в файл `browser-state.json`,
+    чтобы использовать его в последующих тестах.
 
     Аргументы:
         playwright (Playwright): Объект Playwright для управления браузером.
@@ -57,12 +55,6 @@ def initialize_browser_state(playwright: Playwright) -> None:
     """
     browser = playwright.chromium.launch(headless=settings.ui.headless)
     context = browser.new_context(base_url=settings.get_ui_base_url())
-    # page = context.new_page()
-
-    # registration_page = RegistrationPage(page)
-    # registration_page.visit(AppRoute.REGISTRATION)
-    # registration_page.form.fill(**settings.test_user.model_dump())
-    # registration_page.click_registration_btn()
     context.storage_state(path=settings.ui.browser_state_file)
     browser.close()
 

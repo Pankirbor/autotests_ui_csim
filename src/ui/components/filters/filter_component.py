@@ -3,6 +3,9 @@ import allure
 from playwright.sync_api import Page, expect
 
 from src.ui.components.base_component import BaseComponent
+from src.ui.components.vacancies.vacancy_filters_menu_component import (
+    VacancyFiltersMenuComponent,
+)
 from src.ui.elements.button import Button
 from src.ui.elements.container import Container
 from src.ui.elements.icon import Icon
@@ -24,7 +27,10 @@ class FilterVacanciesComponent(BaseComponent):
         self.sort_btn = Button.by_xpath(page, *FilterVacanciesLocators.SORT)
         self.up_icon = Icon.by_xpath(page, *FilterVacanciesLocators.ICON_SORTING_UP)
         self.down_icon = Icon.by_xpath(page, *FilterVacanciesLocators.ICON_SORTING_DOWN)
-        self.filter_menu = Button.by_xpath(page, *FilterVacanciesLocators.FILTER_BTN)
+        self.filter_menu_btn = Button.by_xpath(
+            page, *FilterVacanciesLocators.FILTER_BTN
+        )
+        self.filter_menu = VacancyFiltersMenuComponent(page)
 
     @property
     def tabs(self) -> list[Tab]:
