@@ -4,7 +4,6 @@ import pytest
 
 from allure_commons.types import Severity
 
-from src.ui.locators import VacanciesListLocators
 from src.ui.pages.vacancies.vacancies_page import VacanciesPage
 from integrations.allure import AllureEpic, AllureFeature, AllureStoryUi, AllureTagUi
 from src.ui.pages.vacancies.vacancy_page import VacancyDetailPage
