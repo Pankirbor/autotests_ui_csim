@@ -2,6 +2,7 @@ import typing
 
 import allure
 from playwright.sync_api import Playwright, Page
+from playwright_stealth import stealth
 
 from config import settings, Browser
 from integrations.playwright.mocks import mock_static_resources
@@ -44,6 +45,9 @@ def playwright_page_builder(
     )
     page = context.new_page()
     mock_static_resources(page)
+    stealth(page)
+    page.mouse.move(10, 10)
+    page.wait_for_timeout(1000)
 
     yield page
 

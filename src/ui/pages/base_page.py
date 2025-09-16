@@ -63,16 +63,16 @@ class BasePage:
             self.page.goto(url, wait_until="networkidle", timeout=50000)
 
             # Проверяем CAPTCHA
-            captcha_type = self.debug_captcha_type()
+            # captcha_type = self.debug_captcha_type()
 
-            # Если это сложная CAPTCHA — пропускаем тест
-            if captcha_type in [
-                "yandex_smart_captcha",
-                "recaptcha",
-                "hcaptcha",
-                "unknown",
-            ]:
-                pytest.skip(f"CAPTCHA detected ({captcha_type}) — skipping test in CI")
+            # # Если это сложная CAPTCHA — пропускаем тест
+            # if captcha_type in [
+            #     "yandex_smart_captcha",
+            #     "recaptcha",
+            #     "hcaptcha",
+            #     "unknown",
+            # ]:
+            #     pytest.skip(f"CAPTCHA detected ({captcha_type}) — skipping test in CI")
             self.accept_cookies_if_present()
 
     def reload(self) -> None:
