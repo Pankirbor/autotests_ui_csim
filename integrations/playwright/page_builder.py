@@ -2,7 +2,7 @@ import typing
 
 import allure
 from playwright.sync_api import Playwright, Page
-from playwright_stealth import Stealth, ALL_EVASIONS_DISABLED_KWARGS
+from playwright_stealth import Stealth
 
 from config import settings, Browser
 from integrations.playwright.mocks import mock_static_resources

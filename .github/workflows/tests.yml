@@ -69,7 +69,7 @@ jobs:
           pytest -m UI \
             --alluredir=${{ env.ALLURE_RESULTS_DIR }} \
             --numprocesses=2 \
-            --tb=short
+
 
       # 8. Архивация результатов (даже если тесты упали)
       - name: 📤 Upload Allure results artifact
@@ -78,14 +78,6 @@ jobs:
         with:
           name: allure-ui-results
           path: ${{ env.ALLURE_RESULTS_DIR }}
-
-      - name: 📤 Upload CAPTCHA artifacts on skip/failure
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: captcha-artifacts
-          path: artifacts/captcha/
-          retention-days: 7
 
   # 📊 Публикация Allure-отчёта на GitHub Pages
   publish-report:
@@ -141,11 +133,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: ${{ env.ALLURE_REPORT_DIR }}
-          commit_message: "chore: update allure report [skip ci]"
-          # Опционально: можно указать юзера коммита
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
+          publish_dir: ${{ env.ALLURE_HISTORY_DIR }}
 
       # 7. (Опционально) Вывод ссылки на отчёт
       - name: 🔗 Print report URL
