@@ -116,16 +116,16 @@ jobs:
           allure_report: ${{ env.ALLURE_REPORT_DIR }}
           allure_history: ${{ env.ALLURE_HISTORY_DIR }}
 
-      # 5. Копируем историю из предыдущего отчёта (если есть)
-      - name: 🔄 Copy previous history into report
-        run: |
-          mkdir -p ${{ env.ALLURE_HISTORY_DIR }}
-          if [ -d "gh-pages/history" ]; then
-            cp -r gh-pages/history/* ${{ env.ALLURE_HISTORY_DIR }}/ 2>/dev/null || echo "⚠️ No files to copy from previous history"
-            echo "✅ Copied previous history for trends"
-          else
-            echo "ℹ️ No previous history found — starting fresh"
-          fi
+      # # 5. Копируем историю из предыдущего отчёта (если есть)
+      # - name: 🔄 Copy previous history into report
+      #   run: |
+      #     mkdir -p ${{ env.ALLURE_HISTORY_DIR }}
+      #     if [ -d "gh-pages/history" ]; then
+      #       cp -r gh-pages/history/* ${{ env.ALLURE_HISTORY_DIR }}/ 2>/dev/null || echo "⚠️ No files to copy from previous history"
+      #       echo "✅ Copied previous history for trends"
+      #     else
+      #       echo "ℹ️ No previous history found — starting fresh"
+      #     fi
 
       # 6. Публикация отчёта в ветку gh-pages
       - name: 🚀 Deploy Allure Report to GitHub Pages
