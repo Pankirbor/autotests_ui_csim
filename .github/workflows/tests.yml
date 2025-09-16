@@ -1,267 +1,146 @@
-# name: Tests workflow
+name: UI Tests & Allure Report
 
-# on:
-#     push:
-#         branches:
-#             - main
+# Триггеры: push и PR в main
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
-#     pull_request:
-#         branches:
-#             - main
-# env:
-#   PYTHON_VERSION: "3.11"
+# Глобальные переменные
+env:
+  PYTHON_VERSION: "3.11"
+  ALLURE_RESULTS_DIR: "./allure-ui-results"
+  ALLURE_REPORT_DIR: "./allure-ui-report"
+  ALLURE_HISTORY_DIR: "./allure-ui-report/history"
 
-# jobs:
-#   # UI Tests with Playwright
-#     ui-tests:
-#         runs-on: ubuntu-latest
+jobs:
 
-#         steps:
-#             - name: Check out repository
-#               uses: actions/checkout@v4
+  # 🧪 Запуск UI-тестов через Playwright
+  ui-tests:
+    runs-on: ubuntu-latest
+    steps:
 
-#             - name: Set up Python ${{ env.PYTHON_VERSION }}
-#               uses: actions/setup-python@v4
-#               with:
-#                 python-version: ${{ env.PYTHON_VERSION }}
+      # 1. Checkout репозитория
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
 
-#             - name: Install dependencies
-#               run: |
-#                 python -m pip install --upgrade pip
-#                 pip install -r requirements.txt
-#                 playwright install --with-deps
+      # 2. Кэширование pip-зависимостей (ускоряет повторные запуски)
+      - name: 💾 Cache pip dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
 
-#             - name: Run tests with pytest and generate Allure results
-#               run: |
-#                 pytest -m regression_ui --alluredir=allure-results --numprocesses 2
+      # 3. Кэширование браузеров Playwright (опционально, но полезно)
+      - name: 💾 Cache Playwright browsers
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-browsers
 
-#             - name: Restore (UI) Coverage history
-#               uses: actions/cache/restore@v4
-#               with:
-#                 path: ui-coverage-history.json
-#                 key: ui-coverage-history-${{ github.run_id }}
-#                 restore-keys: |
-#                   ui-coverage-history-
+      # 4. Установка Python
+      - name: 🐍 Set up Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
 
-#             - name: Generate Coverage report
-#             # --output-dir ${{ env.COVERAGE_DIR }}/ui
-#               run: |
-#                 ui-coverage-tool save-report
+      # 5. Создание необходимых директорий (логи, видео, отчёты и т.д.)
+      - name: 🗂️ Create required directories
+        run: |
+          mkdir -p ${{ env.ALLURE_RESULTS_DIR }} videos tracing logs
+          touch browser_state.json
+          echo "✅ Directories and files created"
 
-#             - name: Cache (UI) Coverage history
-#               if: always()
-#               uses: actions/cache/save@v4
-#               with:
-#                 path: ui-coverage-history.json
-#                 key: ui-coverage-history-${{ github.run_id }}
+      # 6. Установка зависимостей + Playwright
+      - name: 📦 Install dependencies and Playwright
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          playwright install --with-deps
 
-#             - name: Upload (UI) Coverage report
-#               if: always()
-#               uses: actions/upload-artifact@v4
-#               with:
-#                 name: ui-coverage-report
-#                 path: ui-coverage.html
+      # 7. Запуск тестов с генерацией Allure-результатов
+      - name: 🧪 Run UI tests with pytest
+        run: |
+          pytest -m UI \
+            --alluredir=${{ env.ALLURE_RESULTS_DIR }} \
+            --numprocesses=2 \
+            --tb=short
 
+      # 8. Архивация результатов (даже если тесты упали)
+      - name: 📤 Upload Allure results artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-ui-results
+          path: ${{ env.ALLURE_RESULTS_DIR }}
 
-#             - name: Upload Allure Report (UI)
-#               if: always()
-#               uses: actions/upload-artifact@v4
-#               with:
-#                 name: allure-results-ui
-#                 path: allure-results-ui
+  # 📊 Публикация Allure-отчёта на GitHub Pages
+  publish-report:
+    name: 📈 Publish Allure Report to GitHub Pages
+    needs: ui-tests
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
 
-#   # API Tests
-#     api-tests:
-#         name: API Tests
-#         runs-on: ubuntu-latest
+      # 1. Checkout репозитория (основная ветка)
+      - name: 📥 Checkout main branch
+        uses: actions/checkout@v4
 
-#         steps:
-#             - name: Check out repository
-#               uses: actions/checkout@v4
+      # 2. Скачиваем артефакт с результатами тестов
+      - name: 📥 Download Allure results from ui-tests job
+        uses: actions/download-artifact@v4
+        with:
+          name: allure-ui-results
+          path: ${{ env.ALLURE_RESULTS_DIR }}
 
-#             - name: Set up Python ${{ env.PYTHON_VERSION }}
-#               uses: actions/setup-python@v5
-#               with:
-#                 python-version: ${{ env.PYTHON_VERSION }}
+      # 3. Checkout ветки gh-pages (если есть) для получения истории
+      #    continue-on-error: true — если ветки нет, не падаем
+      - name: 📥 Checkout gh-pages branch for history
+        uses: actions/checkout@v4
+        if: always()
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
 
-#             - name: Install dependencies
-#               run: |
-#                     python -m pip install --upgrade pip
-#                     pip install -r requirements.txt
+      # 4. Генерация Allure-отчёта из результатов
+      - name: 📊 Generate Allure Report with history support
+        uses: simple-elf/allure-report-action@v1.7
+        with:
+          allure_results: ${{ env.ALLURE_RESULTS_DIR }}
+          allure_report: ${{ env.ALLURE_REPORT_DIR }}
+          allure_history: ${{ env.ALLURE_HISTORY_DIR }}
 
-#             - name: Run API tests with pytest and generate Allure results
-#               run: |
-#                 pytest -m regression_api --alluredir=allure-results --numprocesses 2
+      # 5. Копируем историю из предыдущего отчёта (если есть)
+      - name: 🔄 Copy previous history into report
+        run: |
+          mkdir -p ${{ env.ALLURE_HISTORY_DIR }}
+          if [ -d "gh-pages/history" ]; then
+            cp -r gh-pages/history/* ${{ env.ALLURE_HISTORY_DIR }}/ 2>/dev/null || echo "⚠️ No files to copy from previous history"
+            echo "✅ Copied previous history for trends"
+          else
+            echo "ℹ️ No previous history found — starting fresh"
+          fi
 
-#         # Восстанавливаем историю покрытия из кеша
-#             - name: Restore Coverage history
-#               uses: actions/cache/restore@v4
-#               with:
-#                 path: api-coverage-history.json
-#                 key: api-coverage-history-${{github.run_id}}
-#                 restore-keys: |
-#                   api-coverage-history-
+      # 6. Публикация отчёта в ветку gh-pages
+      - name: 🚀 Deploy Allure Report to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ${{ env.ALLURE_REPORT_DIR }}
+          commit_message: "chore: update allure report [skip ci]"
+          # Опционально: можно указать юзера коммита
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
 
-#             - name: Generate Coverage report
-#               run: |
-#                 swagger-coverage-tool save-report
-
-#             - name: Cache Coverage history
-#               if: always()
-#               uses: actions/cache/save@v4
-#               with:
-#                 path: api-coverage-history.json
-#                 key: api-coverage-history-${{github.run_id}}
-
-#             - name: Upload Coverage report
-#               if: always()
-#               uses: actions/upload-artifact@v4
-#               with:
-#                 name: api-coverage-report
-#                 path: api-coverage.html
-
-#             - name: Upload Allure Report
-#               uses: actions/upload-artifact@v4
-#               with:
-#                 name: allure-results-api
-#                 path: allure-results-api
-
-# # Combined Allure reporting
-#     generate-allure-report:
-#         name: Generate Unified Allure Report
-#         needs: [ui-tests, api-tests]
-#         if: always()
-#         runs-on: ubuntu-latest
-
-#         steps:
-#             - name: Check out repository
-#               uses: actions/checkout@v4
-
-#             - name: Download UI Allure results
-#               uses: actions/download-artifact@v4
-#               with:
-#                 name: allure-results-ui
-#                 path: allure-results-ui #${{ env.ALLURE_RESULTS_DIR }}-ui
-
-#             - name: Download API Allure results
-#               uses: actions/download-artifact@v4
-#               with:
-#                 name: allure-results-api
-#                 path: allure-results-api #${{ env.ALLURE_RESULTS_DIR }}-api
-
-#             - name: Merge Allure results
-#               run: |
-#                 # Создаем общую директорию для результатов
-#                 mkdir -p allure-results-combined
-
-#                 # Копируем результаты UI тестов
-#                 cp -r allure-results-ui/* allure-results-combined/ 2>/dev/null || true
-
-#                 # Копируем результаты API тестов
-#                 cp -r allure-results-api/* allure-results-combined/ 2>/dev/null || true
-
-#                 echo "Merged $(find allure-results-combined -name '*.json' | wc -l) test results"
-
-#             - name: Install Allure CLI
-#               run: |
-#                 # Устанавливаем Allure CLI
-#                 sudo apt-get update
-#                 sudo apt-get install openjdk-11-jre
-#                 wget https://github.com/allure-framework/allure2/releases/download/2.24.0/allure-2.24.0.tgz
-#                 tar -zxvf allure-2.24.0.tgz
-#                 sudo mv allure-2.24.0 /opt/allure
-#                 sudo ln -s /opt/allure/bin/allure /usr/bin/allure
-
-#             - name: Generate Unified Allure Report
-#               run: |
-#                 allure generate allure-results-combined \
-#                 --clean \
-#                 --output allure-report
-
-#             - name: Upload Unified Allure Report
-#               uses: actions/upload-artifact@v4
-#               with:
-#                 name: unified-allure-report
-#                 path: allure-report
-#                 retention-days: 7
-
-#     # Publish to GitHub Pages
-#     publish-allure-report:
-#         name: Publish Unified Allure Report
-#         needs: generate-allure-report
-#         if: always()
-#         runs-on: ubuntu-latest
-
-#         steps:
-#             - name: Download Unified Allure Report
-#               uses: actions/download-artifact@v4
-#               with:
-#                 name: unified-allure-report
-#                 path: allure-report
-
-#             - name: Checkout gh-pages for history
-#               uses: actions/checkout@v4
-#               if: always()
-#               continue-on-error: true
-#               with:
-#                 ref: gh-pages
-#                 path: gh-pages
-
-#             - name: Prepare Allure history
-#               run: |
-#                 # Создаем директорию для истории если её нет
-#                 mkdir -p allure-history
-
-#                 # Если есть предыдущая история, копируем её
-#                 if [ -d "gh-pages/allure-history" ]; then
-#                 cp -r gh-pages/allure-history/* allure-history/
-#                 fi
-
-#                 # Добавляем новый отчет в историю
-#                 mkdir -p allure-history/${{ github.run_id }}
-#                 cp -r allure-report/* allure-history/${{ github.run_id }}/
-
-#                 # Создаем индекс для навигации по историям
-#                 echo "# Allure Reports History" > allure-history/INDEX.md
-#                 echo "## Run ${{ github.run_id }} - $(date)" >> allure-history/INDEX.md
-#                 echo "- [Report ${{ github.run_id }}](${{ github.run_id }}/index.html)" >> allure-history/INDEX.md
-
-#             - name: Deploy Unified Allure Report to GitHub Pages
-#               uses: peaceiris/actions-gh-pages@v4
-#               with:
-#                 github_token: ${{ secrets.GITHUB_TOKEN }}
-#                 publish_branch: gh-pages
-#                 publish_dir: allure-history
-#                 destination_dir: allure-reports
-
-#             - name: Create GitHub Pages deployment notification
-#               run: |
-#                 echo "Allure Report deployed to:"
-#                 echo "https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/allure-reports/${{ github.run_id }}/index.html"
-
-#     # Coverage reports (optional)
-#     coverage-reports:
-#         name: Coverage Reports
-#         needs: [ui-tests, api-tests]
-#         if: always()
-#         runs-on: ubuntu-latest
-
-#         steps:
-#             - name: Download UI Coverage report
-#               uses: actions/download-artifact@v4
-#               with:
-#                 name: ui-coverage-report
-#                 path: coverage/ui
-
-#             - name: Download API Coverage report
-#               uses: actions/download-artifact@v4
-#               with:
-#                 name: api-coverage-report
-#                 path: coverage/api
-
-#             - name: Upload Combined Coverage reports
-#               uses: actions/upload-artifact@v4
-#               with:
-#                 name: combined-coverage-reports
-#                 path: coverage
-#                 retention-days: 30
+      # 7. (Опционально) Вывод ссылки на отчёт
+      - name: 🔗 Print report URL
+        run: |
+          echo "✅ Allure Report published!"
+          echo "👉 View report at: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
