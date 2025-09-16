@@ -14,7 +14,7 @@ env:
   PYTHON_VERSION: "3.11"
   ALLURE_RESULTS_DIR: "./allure-ui-results"
   ALLURE_REPORT_DIR: "./allure-ui-report"
-  ALLURE_HISTORY_DIR: "./allure-ui-report/history"
+  ALLURE_HISTORY_DIR: "./allure-ui-history"
 
 jobs:
 
