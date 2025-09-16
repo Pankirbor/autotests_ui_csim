@@ -10,14 +10,12 @@ class HeaderComponent(BaseComponent):
         super().__init__(page)
 
         self.title = Text.by_xpath(
-            page=page,
-            xpath=HeaderPageLocators.TITLE,
-            name=f"Заголовок страницы {location}",
+            page,
+            *HeaderPageLocators.TITLE.format(location=location),
         )
         self.subtitle = Text.by_xpath(
-            page=page,
-            xpath=HeaderPageLocators.SUBTITLE,
-            name=f"Подзаголовок страницы {location}",
+            page,
+            *HeaderPageLocators.SUBTITLE.format(location=location),
         )
 
     def check_visible(self):

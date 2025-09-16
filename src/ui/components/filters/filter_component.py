@@ -44,7 +44,9 @@ class FilterVacanciesComponent(BaseComponent):
 
     def _get_filters_tabs(self) -> list[Tab]:
         xpath, name = FilterVacanciesLocators.TAB
-        tab_elements = self.page.locator(FilterVacanciesLocators.ALL_TABS).all()
+        tab_elements = self.page.locator(
+            FilterVacanciesLocators.ALL_TABS.selector
+        ).all()
         # tab_elements = tabs.all()
 
         result = []
@@ -53,7 +55,8 @@ class FilterVacanciesComponent(BaseComponent):
             if tab_text != "Все":
                 result.append(
                     Tab.by_xpath(
-                        self.page, xpath.format(index=i), name.format(title=tab_text)
+                        self.page,  # xpath.format(index=i), name.format(title=tab_text)
+                        *FilterVacanciesLocators.TAB.format(index=i, title=tab_text)
                     )
                 )
         return result

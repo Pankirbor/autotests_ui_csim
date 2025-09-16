@@ -25,25 +25,15 @@ class FooterComponent(BaseComponent):
     def __init__(self, page: Page):
         super().__init__(page)
 
-        self.info = Text.by_xpath(
-            page=page, xpath=FooterLocators.INFO, name="Информация о компании"
-        )
+        self.info = Text.by_xpath(page, *FooterLocators.INFO)
         self.user_agreement_link = Link.by_xpath(
-            page=page,
-            xpath=FooterLocators.USER_AGREEMENT_LINK,
-            name="Пользовательское соглашение",
+            page, *FooterLocators.USER_AGREEMENT_LINK
         )
         self.privacy_policy_link = Link.by_xpath(
-            page=page,
-            xpath=FooterLocators.PRIVACY_POLICY_LINK,
-            name="Политика конфиденциальности",
+            page, *FooterLocators.PRIVACY_POLICY_LINK
         )
-        self.main_page_link = Link.by_xpath(
-            page=page, xpath=FooterLocators.MAIN_PAGE_LINK, name="Главная страница"
-        )
-        self.footer_icon = Icon.by_xpath(
-            page=page, xpath=FooterLocators.ICON, name="Иконка футера"
-        )
+        self.main_page_link = Link.by_xpath(page, *FooterLocators.MAIN_PAGE_LINK)
+        self.footer_icon = Icon.by_xpath(page, *FooterLocators.ICON)
 
     def should_contain_copyright(self, years="2018 - 2025") -> Self:
         """Проверяет наличие копирайта"""

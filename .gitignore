@@ -36,3 +36,4 @@ browser_state.json
 testing_script.py
 testing_script_api.py
 request_api.http
+locators_old.py

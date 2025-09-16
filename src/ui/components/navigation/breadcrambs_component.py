@@ -16,7 +16,7 @@ class BreadcrumbsComponent(BaseComponent):
         super().__init__(page)
 
         self.count_of_elements = count_of_elements
-        self.items = page.locator(BreadcrumbsLocators.ITEMS)
+        self.items = page.locator(BreadcrumbsLocators.ITEMS.selector)
         self.container = Container.by_xpath(page, *BreadcrumbsLocators.CONTAINER)
         self.home_link = Link.by_xpath(page, *BreadcrumbsLocators.HOME_LINK)
         self.current_page = Text.by_xpath(page, *BreadcrumbsLocators.CURRENT_PAGE)

@@ -30,7 +30,7 @@ class VacanciesListComponent(BaseComponent):
 
     @property
     def vacancy_cards(self):
-        return self.page.locator(VacanciesListLocators.VACANCY_CARDS[0])
+        return self.page.locator(VacanciesListLocators.VACANCY_CARDS.selector)
 
     # Базовые проверки
     def check_visible(self):

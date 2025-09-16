@@ -12,16 +12,12 @@ class NavbarComponent(BaseComponent):
     def __init__(self, page):
         super().__init__(page)
 
-        self.logo = Icon.by_xpath(page, NavBarLocators.LOGO, "Логотип сайта")
-        self.about_tab = Tab.by_xpath(page, NavBarLocators.ABOUT_US_TAB, "О нас")
-        self.materials_tab = Tab.by_xpath(
-            page, NavBarLocators.MATERIALS_TAB, "Материалы"
-        )
-        self.news_tab = Tab.by_xpath(page, NavBarLocators.NEWS_TAB, "Новости")
-        self.vacancies_tab = Tab.by_xpath(
-            page, NavBarLocators.VACANCIES_TAB, "Вакансии"
-        )
-        self.contacts_tab = Tab.by_xpath(page, NavBarLocators.CONTACT_TAB, "Контакты")
+        self.logo = Icon.by_xpath(page, *NavBarLocators.LOGO)
+        self.about_tab = Tab.by_xpath(page, *NavBarLocators.ABOUT_US_TAB)
+        self.materials_tab = Tab.by_xpath(page, *NavBarLocators.MATERIALS_TAB)
+        self.news_tab = Tab.by_xpath(page, *NavBarLocators.NEWS_TAB)
+        self.vacancies_tab = Tab.by_xpath(page, *NavBarLocators.VACANCIES_TAB)
+        self.contacts_tab = Tab.by_xpath(page, *NavBarLocators.CONTACT_TAB)
         self.search = SearchComponent(page)
 
     def check_visible(self):

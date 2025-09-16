@@ -96,12 +96,12 @@ class VacancyFiltersMenuComponent(BaseComponent):
         if group_title not in self._checkboxes_cache:
 
             filter_group = self.page.locator(
-                VacancyFiltersMenuLocators.CHECKBOX_GROUP_BY_TITLE[0].format(
+                VacancyFiltersMenuLocators.CHECKBOX_GROUP_BY_TITLE.selector.format(
                     group_title=group_title
                 )
             )
             checkbox_elements = filter_group.locator(
-                VacancyFiltersMenuLocators.CHECKBOX_ITEMS
+                VacancyFiltersMenuLocators.CHECKBOX_ITEMS.selector
             ).all()
             checkbox_path, checkbox_name = VacancyFiltersMenuLocators.CHECKBOX_ITEM
             checkboxes = []
