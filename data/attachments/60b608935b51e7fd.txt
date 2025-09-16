@@ -1,1 +1,0 @@
-INFO     SRC.UI.PAGES.BASE_PAGE:base_page.py:59 Opening the url: 'AppRoute.VACANCIES'
