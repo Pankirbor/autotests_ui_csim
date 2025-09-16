@@ -1,0 +1,22 @@
+INFO     SRC.UI.PAGES.BASE_PAGE:base_page.py:62 Opening the url: 'AppRoute.VACANCIES'
+INFO     SRC.UI.PAGES.BASE_PAGE:base_page.py:50 Куки приняты
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:186 Checking that Icon 'Логотип в навбаре' is visible
+INFO     UI_COVERAGE_TRACKER_STORAGE:storage.py:34 Results directory does not exist, creating: /home/runner/work/autotests_ui_csim/autotests_ui_csim/coverage-results
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:186 Checking that Tab 'Вкладка 'О нас' в навбаре' is visible
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:186 Checking that Tab 'Вкладка 'Полезные материалы' в навбаре' is visible
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:186 Checking that Tab 'Вкладка 'Новости' в навбаре' is visible
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:186 Checking that Tab 'Вкладка 'Вакансии' в навбаре' is visible
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:186 Checking that Tab 'Вкладка 'Контакты' в навбаре' is visible
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:186 Checking that Label 'Контейнер поиска в навбаре' is visible
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:186 Checking that Icon 'Иконка поиска' is visible
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:186 Checking that Container 'Контейнер хлебных крошек' is visible
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:186 Checking that Link 'Ссылка на главную' is visible
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:201 Checking that Link 'Ссылка на главную' has text 'Главная'
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:186 Checking that Text 'Текущая страница' is visible
+INFO     SRC.UI.COMPONENTS.NAVIGATION.BREADCRAMBS_COMPONENT:breadcrambs_component.py:61 Проверка текста названия текущей страницы все вакансии c все вакансии
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:186 Checking that Text 'Заголовок страницы Вакансии' is visible
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:186 Checking that Text 'Подзаголовок страницы Вакансии' is visible
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:201 Checking that Text 'Заголовок страницы Вакансии' has text 'Присоединяйся к команде Центра'
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:201 Checking that Text 'Подзаголовок страницы Вакансии' has text 'Развивайся вместе с нами, создавай нейросети и двигай технологические процессы'
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:186 Checking that Container 'Контейнер фильтров' is visible
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:186 Checking that Container 'Блок со списком вакансий' is visible
