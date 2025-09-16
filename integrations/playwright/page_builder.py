@@ -2,7 +2,7 @@ import typing
 
 import allure
 from playwright.sync_api import Playwright, Page
-from playwright_stealth import stealth
+from playwright_stealth import Stealth, ALL_EVASIONS_DISABLED_KWARGS
 
 from config import settings, Browser
 from integrations.playwright.mocks import mock_static_resources
@@ -34,6 +34,7 @@ def playwright_page_builder(
     Returns:
         None: Ресурсы управляются внутри генератора.
     """
+    stealth = Stealth()
     browser = playwright[browser_type].launch(headless=settings.ui.headless)
     context = browser.new_context(
         storage_state=state,
@@ -43,9 +44,9 @@ def playwright_page_builder(
     context.tracing.start(
         name=test_name, screenshots=True, snapshots=True, sources=True
     )
+    stealth.apply_stealth_sync(context)
     page = context.new_page()
     mock_static_resources(page)
-    stealth(page)
     page.mouse.move(10, 10)
     page.wait_for_timeout(1000)
 
