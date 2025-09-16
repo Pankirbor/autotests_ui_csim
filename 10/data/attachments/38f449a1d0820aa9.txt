@@ -1,0 +1,15 @@
+INFO     SRC.UI.PAGES.BASE_PAGE:base_page.py:62 Opening the url: 'AppRoute.VACANCIES'
+INFO     SRC.UI.PAGES.BASE_PAGE:base_page.py:50 Куки приняты
+INFO     SRC.UI.ELEMENTS.TAB:tab.py:37 Проверка: таб 'Вкладка 'Вакансии' в навбаре' активен (имеет класс 'q-tab--active').
+INFO     UI_COVERAGE_TRACKER_STORAGE:storage.py:34 Results directory does not exist, creating: /home/runner/work/autotests_ui_csim/autotests_ui_csim/coverage-results
+INFO     SRC.UI.COMPONENTS.NAVIGATION.BREADCRAMBS_COMPONENT:breadcrambs_component.py:79 Проверка, атрибут 'href' елемента текущей хлебной крошки
+INFO     SRC.UI.COMPONENTS.NAVIGATION.BREADCRAMBS_COMPONENT:breadcrambs_component.py:85 Проверка, что элемент текущей хлебной крошки не является ссылкой
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:186 Checking that Container 'Контейнер хлебных крошек' is visible
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:186 Checking that Link 'Ссылка на главную' is visible
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:201 Checking that Link 'Ссылка на главную' has text 'Главная'
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:186 Checking that Text 'Текущая страница' is visible
+INFO     SRC.UI.COMPONENTS.NAVIGATION.BREADCRAMBS_COMPONENT:breadcrambs_component.py:61 Проверка текста названия текущей страницы все вакансии c все вакансии
+INFO     SRC.UI.ELEMENTS.LINK:link.py:29 Проверка, что Link 'Ссылка на главную' активна
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:172 Clicking Link 'Ссылка на главную'
+INFO     SRC.UI.PAGES.BASE_PAGE:base_page.py:96 Checking that current url matches pattern '.*/'
+INFO     SRC.UI.ELEMENTS.TAB:tab.py:37 Проверка: таб 'Вкладка 'О нас' в навбаре' активен (имеет класс 'q-tab--active').
