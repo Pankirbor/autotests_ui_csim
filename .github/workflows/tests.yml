@@ -79,6 +79,14 @@ jobs:
           name: allure-ui-results
           path: ${{ env.ALLURE_RESULTS_DIR }}
 
+      - name: 📤 Upload CAPTCHA artifacts on skip/failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: captcha-artifacts
+          path: artifacts/captcha/
+          retention-days: 7
+
   # 📊 Публикация Allure-отчёта на GitHub Pages
   publish-report:
     name: 📈 Publish Allure Report to GitHub Pages
