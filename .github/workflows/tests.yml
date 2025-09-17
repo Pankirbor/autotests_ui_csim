@@ -12,9 +12,9 @@ on:
 # Глобальные переменные
 env:
   PYTHON_VERSION: "3.11"
-  ALLURE_RESULTS_DIR: "./allure-ui-results"
-  ALLURE_REPORT_DIR: "./allure-ui-report"
-  ALLURE_HISTORY_DIR: "./allure-ui-history"
+  ALLURE_RESULTS_DIR: "./allure-results"
+  ALLURE_REPORT_DIR: "./allure-report"
+  ALLURE_HISTORY_DIR: "./allure-history"
 
 jobs:
 
@@ -54,14 +54,18 @@ jobs:
         run: |
           mkdir -p ${{ env.ALLURE_RESULTS_DIR }} videos tracing logs
           touch browser_state.json
-          echo "✅ Directories and files created"
+          echo -e "\033[32m✅ Directories and files created\033[0m"
 
       # 6. Установка зависимостей + Playwright
       - name: 📦 Install dependencies and Playwright
         run: |
+          echo "🔧 Upgrading pip..."
           python -m pip install --upgrade pip
+          echo "📦 Installing requirements..."
           pip install -r requirements.txt
+          echo "🤖 Installing Playwright browsers..."
           playwright install --with-deps
+          echo -e "\033[32m✅ Dependencies installed\033[0m"
 
       # 7. Запуск тестов с генерацией Allure-результатов
       - name: 🧪 Run UI tests with pytest
@@ -69,14 +73,48 @@ jobs:
           pytest -m UI \
             --alluredir=${{ env.ALLURE_RESULTS_DIR }} \
             --numprocesses=2 \
+            --tb=short
+          echo -e "\033[32m✅ UI tests completed\033[0m"
 
+      # 🔄 8. Восстановление истории coverage
+      - name: 🔄 Restore Coverage history
+        uses: actions/cache/restore@v4
+        with:
+          path: coverage-history.json
+          key: coverage-history-${{ github.run_id }}
+          restore-keys: |
+            coverage-history-
 
-      # 8. Архивация результатов (даже если тесты упали)
+      # 📊 9. Генерация coverage-отчёта
+      - name: 📊 Generate Coverage report
+        run: |
+          echo "📊 Generating UI Coverage report..."
+          ui-coverage-tool save-report
+          echo "✅ Coverage report saved to coverage.html"
+          echo -e "\033[32m📈 Coverage history saved to coverage-history.json\033[0m"
+
+      # 💾 10. Кэширование истории coverage
+      - name: 💾 Cache Coverage history
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: coverage-history.json
+          key: coverage-history-${{ github.run_id }}
+
+      # 📤 11. Загрузка coverage-отчёта как артефакта
+      - name: 📤 Upload Coverage report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage.html
+
+      # 📤 12. Архивация результатов Allure
       - name: 📤 Upload Allure results artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: allure-ui-results
+          name: allure-results
           path: ${{ env.ALLURE_RESULTS_DIR }}
 
   # 📊 Публикация Allure-отчёта на GitHub Pages
@@ -95,11 +133,10 @@ jobs:
       - name: 📥 Download Allure results from ui-tests job
         uses: actions/download-artifact@v4
         with:
-          name: allure-ui-results
+          name: allure-results
           path: ${{ env.ALLURE_RESULTS_DIR }}
 
-      # 3. Checkout ветки gh-pages (если есть) для получения истории
-      #    continue-on-error: true — если ветки нет, не падаем
+      # 📥 3. Checkout gh-pages для истории
       - name: 📥 Checkout gh-pages branch for history
         uses: actions/checkout@v4
         if: always()
@@ -108,7 +145,7 @@ jobs:
           ref: gh-pages
           path: gh-pages
 
-      # 4. Генерация Allure-отчёта из результатов
+      # 📊 4. Генерация Allure-отчёта
       - name: 📊 Generate Allure Report with history support
         uses: simple-elf/allure-report-action@v1.7
         with:
@@ -116,18 +153,7 @@ jobs:
           allure_report: ${{ env.ALLURE_REPORT_DIR }}
           allure_history: ${{ env.ALLURE_HISTORY_DIR }}
 
-      # # 5. Копируем историю из предыдущего отчёта (если есть)
-      # - name: 🔄 Copy previous history into report
-      #   run: |
-      #     mkdir -p ${{ env.ALLURE_HISTORY_DIR }}
-      #     if [ -d "gh-pages/history" ]; then
-      #       cp -r gh-pages/history/* ${{ env.ALLURE_HISTORY_DIR }}/ 2>/dev/null || echo "⚠️ No files to copy from previous history"
-      #       echo "✅ Copied previous history for trends"
-      #     else
-      #       echo "ℹ️ No previous history found — starting fresh"
-      #     fi
-
-      # 6. Публикация отчёта в ветку gh-pages
+      # 5. Деплой отчёта на GitHub Pages
       - name: 🚀 Deploy Allure Report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
@@ -135,8 +161,9 @@ jobs:
           publish_branch: gh-pages
           publish_dir: ${{ env.ALLURE_HISTORY_DIR }}
 
-      # 7. (Опционально) Вывод ссылки на отчёт
+      # 🔗 6. Вывод ссылки на отчёт
       - name: 🔗 Print report URL
         run: |
-          echo "✅ Allure Report published!"
-          echo "👉 View report at: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
+          echo -e "\033[32m✅ Allure отчет опубликован!\033[0m"
+          echo -e "\033[34m👉 Отчет доступен по ссылке: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/\033[0m"
+          echo "📌 Coverage отчет сохранен в артефактах 'coverage-report'"
