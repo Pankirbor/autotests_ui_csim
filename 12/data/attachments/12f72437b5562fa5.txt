@@ -1,0 +1,14 @@
+INFO     SRC.UI.PAGES.BASE_PAGE:base_page.py:57 Переход на страницу: 'AppRoute.VACANCIES'
+INFO     SRC.UI.PAGES.BASE_PAGE:base_page.py:46 Куки приняты
+INFO     SRC.UI.ELEMENTS.TAB:tab.py:32 Проверка: таб 'Вкладка 'Вакансии' в навбаре' активен (имеет класс 'q-tab--active').
+INFO     SRC.UI.COMPONENTS.NAVIGATION.BREADCRAMBS_COMPONENT:breadcrambs_component.py:78 Проверка, атрибут 'href' елемента текущей хлебной крошки
+INFO     SRC.UI.COMPONENTS.NAVIGATION.BREADCRAMBS_COMPONENT:breadcrambs_component.py:84 Проверка, что элемент текущей хлебной крошки не является ссылкой
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Container 'Контейнер хлебных крошек' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Link 'Ссылка на главную' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:207 Проверка, что Link 'Ссылка на главную' имеет текст 'Главная'
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Text 'Текущая страница' видим
+INFO     SRC.UI.COMPONENTS.NAVIGATION.BREADCRAMBS_COMPONENT:breadcrambs_component.py:63 Проверка текста названия текущей страницы все вакансии c все вакансии
+INFO     SRC.UI.ELEMENTS.LINK:link.py:26 Проверка, что Link 'Ссылка на главную' активна
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:178 Клик по Link 'Ссылка на главную'
+INFO     SRC.UI.PAGES.BASE_PAGE:base_page.py:88 Checking that current url matches pattern '.*/'
+INFO     SRC.UI.ELEMENTS.TAB:tab.py:32 Проверка: таб 'Вкладка 'О нас' в навбаре' активен (имеет класс 'q-tab--active').

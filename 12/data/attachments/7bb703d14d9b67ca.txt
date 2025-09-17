@@ -1,0 +1,32 @@
+INFO     SRC.UI.PAGES.BASE_PAGE:base_page.py:57 Переход на страницу: 'AppRoute.VACANCIES'
+INFO     SRC.UI.PAGES.BASE_PAGE:base_page.py:46 Куки приняты
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Container 'Блок со списком вакансий' видим
+INFO     SRC.UI.COMPONENTS.VACANCIES.VACANCIES_LIST_COMPONENT:vacancies_list_component.py:98 Проверяем, что цвет текста и фон карточки вакансии меняется при наведении
+INFO     SRC.UI.PAGES.BASE_PAGE:base_page.py:88 Checking that current url matches pattern '.*/vakansii/aqa-inzener-python'
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Icon 'Логотип в навбаре' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Tab 'Вкладка 'О нас' в навбаре' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Tab 'Вкладка 'Полезные материалы' в навбаре' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Tab 'Вкладка 'Новости' в навбаре' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Tab 'Вкладка 'Вакансии' в навбаре' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Tab 'Вкладка 'Контакты' в навбаре' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Label 'Контейнер поиска в навбаре' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Icon 'Иконка поиска' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Container 'Контейнер хлебных крошек' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Link 'Ссылка на главную' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:207 Проверка, что Link 'Ссылка на главную' имеет текст 'Главная'
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Text 'Текущая страница' видим
+INFO     SRC.UI.COMPONENTS.NAVIGATION.BREADCRAMBS_COMPONENT:breadcrambs_component.py:63 Проверка текста названия текущей страницы aqa инженер (python) c aqa инженер (python)
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:207 Проверка, что Text 'Блок информации в футере' имеет текст '© 2018 - 2025'
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:207 Проверка, что Text 'Блок информации в футере' имеет текст 'ИНН: 9709037529'
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Link 'Ссылка на Пользовательское соглашение' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Link 'Ссылка на Политику конфиденциальности' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Link 'Ссылка на главную страницу' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Icon 'Логотип в футере' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Icon 'Логотип в футере' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Container 'Контейнер детальной страницы вакансии' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Input 'Поле ввода 'Имя'' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Input 'Поле ввода 'Телефон'' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Input 'Поле ввода 'Email'' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Input 'Поле ввода 'Ссылка на резюме'' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Button 'Кнопка 'Отправить'' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:207 Проверка, что Text 'Название вакансии' имеет текст 'AQA инженер (Python)'

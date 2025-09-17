@@ -1,0 +1,7 @@
+INFO     SRC.UI.PAGES.BASE_PAGE:base_page.py:57 Переход на страницу: 'AppRoute.VACANCIES'
+INFO     SRC.UI.PAGES.BASE_PAGE:base_page.py:46 Куки приняты
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:207 Проверка, что Button 'Кнопка сортировки' имеет текст 'Сначала новые'
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Container 'Блок со списком вакансий' видим
+INFO     SRC.UI.COMPONENTS.VACANCIES.VACANCIES_LIST_COMPONENT:vacancies_list_component.py:122 Проверяем, что вакансии отсортированы по дате публикации: 'desc'
+ERROR    SRC.UI.COMPONENTS.VACANCIES.VACANCIES_LIST_COMPONENT:vacancies_list_component.py:127 Ошибка сортировки вакансий: Вакансии не отсортированы в соответствии с порядком desc
+ ['Frontend разработчик (Vue.js) - 17.09.2025', 'AQA инженер (Python) - 17.09.2025', 'Бизнес-системный аналитик - 17.09.2025', 'Тестировщик ПО - 17.09.2025', 'Специалист по мониторингу и медиааналитике - 17.09.2025', 'Системный администратор Linux - 17.09.2025', 'Руководитель IT-проектов - 16.09.2025', 'Аналитик OSINT (г. Владивосток) - 17.09.2025', 'Аналитик OSINT (г. Нижний Новгород) - 17.09.2025', 'Аналитик OSINT (г. Новосибирск) - 17.09.2025', 'Аналитик OSINT (г. Санкт-Петербург) - 17.09.2025', 'Аналитик OSINT (г. Екатеринбург) - 17.09.2025', 'ML разработчик - 17.09.2025', 'Системный администратор - 17.09.2025', 'Cистемный аналитик DWH - 16.09.2025', 'Инженер данных - 16.09.2025', 'PHP разработчик (Middle+) - 16.09.2025']
