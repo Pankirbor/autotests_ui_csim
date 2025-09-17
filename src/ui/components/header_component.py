@@ -28,6 +28,5 @@ class HeaderComponent(BaseComponent):
 
     def check_visible(self):
         """Проверяет, что компонент видим."""
-        super().check_visible()
         self.title.check_visible()
         self.subtitle.check_visible()

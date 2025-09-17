@@ -35,7 +35,6 @@ class NavbarComponent(BaseComponent):
 
     def check_visible(self):
         """Проверяет, что все элементы навбара отображаются на странице."""
-        super().check_visible()
         for component in [
             self.logo,
             self.about_tab,

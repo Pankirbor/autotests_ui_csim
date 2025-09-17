@@ -68,10 +68,10 @@ class BreadcrumbsComponent(BaseComponent):
     def should_contain_current_page(self, page_name):
         """Проверяет текущую страницу."""
         self.current_page.check_visible()
-        current_page_text = self.current_page.get_locator().inner_text().strip().lower()
+        current_page_text = self.current_page.get_locator().inner_text().strip()
         step = (
-            f"Проверка текста названия текущей страницы {current_page_text}"
-            f"c {page_name.lower()}"
+            f"Проверка текста названия текущей страницы {current_page_text} "
+            f"c {page_name}"
         )
         with allure.step(step):
             logger.info(step)
@@ -79,7 +79,7 @@ class BreadcrumbsComponent(BaseComponent):
                 f"Название текущей страницы ({current_page_text})"
                 f"не соответсвует ожидаемому: {page_name}"
             )
-            assert current_page_text == page_name.lower(), assert_message
+            assert current_page_text.lower() == page_name.lower(), assert_message
         return self
 
     @allure.step(
