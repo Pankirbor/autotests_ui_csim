@@ -2,8 +2,7 @@ from playwright.sync_api import Page
 
 
 def mock_static_resources(page: Page):
-    """
-    Отключает загрузку статических ресурсов (изображения, аудио, видео и т.д.) на странице.
+    """Отключает загрузку статических ресурсов (изображения, аудио, видео и т.д.) на странице.
 
     Эта функция используется для ускорения тестирования, блокируя загрузку ненужных статических файлов,
     таких как изображения, шрифты и медиафайлы. Это позволяет сократить время выполнения тестов
@@ -12,6 +11,4 @@ def mock_static_resources(page: Page):
     Args:
         page (Page): Объект страницы Playwright, на котором будут отключены статические ресурсы.
     """
-    page.route(
-        "**/*.{ico,png,jpg,webp,mp3,mp4,woff,woff2}", lambda route: route.abort()
-    )
+    page.route("**/*.{ico,png,jpg,webp,mp3,mp4,woff,woff2}", lambda route: route.abort())

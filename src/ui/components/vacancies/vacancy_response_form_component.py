@@ -1,14 +1,14 @@
 from typing import Self
+
 import allure
 from playwright.sync_api import Page, expect
 
 from src.ui.components.base_component import BaseComponent
-from src.ui.elements.input import Input
 from src.ui.elements.button import Button
+from src.ui.elements.input import Input
 from src.ui.elements.text import Text
 from src.ui.locators import VacancyResponseFormLocators
 from src.utils.logger import get_logger
-
 
 logger = get_logger(__name__.upper())
 
@@ -17,21 +17,13 @@ class VacancyResponseFormComponent(BaseComponent):
     def __init__(self, page: Page):
         super().__init__(page)
 
-        self.name_input = Input.by_xpath(
-            page, *VacancyResponseFormLocators.FULL_NAME_INPUT
-        )
-        self.email_input = Input.by_xpath(
-            page, *VacancyResponseFormLocators.EMAIL_INPUT
-        )
-        self.phone_input = Input.by_xpath(
-            page, *VacancyResponseFormLocators.PHONE_INPUT
-        )
+        self.name_input = Input.by_xpath(page, *VacancyResponseFormLocators.FULL_NAME_INPUT)
+        self.email_input = Input.by_xpath(page, *VacancyResponseFormLocators.EMAIL_INPUT)
+        self.phone_input = Input.by_xpath(page, *VacancyResponseFormLocators.PHONE_INPUT)
         self.resume_link_input = Input.by_xpath(
             page, *VacancyResponseFormLocators.RESUME_LINK_INPUT
         )
-        self.submit_button = Button.by_xpath(
-            page, *VacancyResponseFormLocators.SUBMIT_BUTTON
-        )
+        self.submit_button = Button.by_xpath(page, *VacancyResponseFormLocators.SUBMIT_BUTTON)
         self.fill_name_error_message = Text.by_xpath(
             page, *VacancyResponseFormLocators.FULL_NAME_ERROR
         )
@@ -81,11 +73,8 @@ class VacancyResponseFormComponent(BaseComponent):
         self.email_input.check_have_value("")
         self.resume_link_input.check_have_value("")
 
-    def fill_form(
-        self, full_name: str, phone: str, email: str, resume_link: str = ""
-    ) -> Self:
-        """
-        Заполняет форму отклика на вакансию.
+    def fill_form(self, full_name: str, phone: str, email: str, resume_link: str = "") -> Self:
+        """Заполняет форму отклика на вакансию.
 
         Args:
             full_name (str): Имя кандидата.
@@ -107,16 +96,12 @@ class VacancyResponseFormComponent(BaseComponent):
         return self
 
     def wait_for_captcha_iframe(self, timeout: float = 10000) -> None:
-        """
-        Ожидает появления iframe капчи (если используется в тестах с обходом капчи).
-        """
+        """Ожидает появления iframe капчи (если используется в тестах с обходом капчи)."""
         step = "Waiting for Yandex SmartCaptcha iframe to load"
         with allure.step(step):
             logger.info(step)
             expect(
-                self.page.frame_locator(
-                    VacancyResponseFormLocators.SMART_CAPTCHA_IFRAME
-                )
+                self.page.frame_locator(VacancyResponseFormLocators.SMART_CAPTCHA_IFRAME)
             ).to_be_visible(timeout=timeout)
 
     def check_full_name_error_message(self, expected_text: str) -> None:
@@ -124,18 +109,20 @@ class VacancyResponseFormComponent(BaseComponent):
         step = f"Проверка сообщения об ошибке под полем '{self.full_name_input.name}': '{expected_text}'"
         with allure.step(step):
             logger.info(step)
-            self.check_full_name_error_message.check_visible().check_have_text(
-                expected_text
-            )
+            self.check_full_name_error_message.check_visible().check_have_text(expected_text)
 
     def check_email_error_message(self, expected_text: str) -> None:
-        step = f"Проверка сообщения об ошибке под полем '{self.email_input.name}': '{expected_text}'"
+        step = (
+            f"Проверка сообщения об ошибке под полем '{self.email_input.name}': '{expected_text}'"
+        )
         with allure.step(step):
             logger.info(step)
             self.fill_email_error_message.check_visible().check_have_text(expected_text)
 
     def check_phone_error_message(self, expected_text: str) -> None:
-        step = f"Проверка сообщения об ошибке под полем '{self.phone_input.name}': '{expected_text}'"
+        step = (
+            f"Проверка сообщения об ошибке под полем '{self.phone_input.name}': '{expected_text}'"
+        )
         with allure.step(step):
             logger.info(step)
             self.fill_phone_error_message.check_visible().check_have_text(expected_text)

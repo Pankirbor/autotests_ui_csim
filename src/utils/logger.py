@@ -4,7 +4,6 @@ from rich.console import Console
 from rich.logging import RichHandler
 from rich.theme import Theme
 
-
 # Опционально: кастомная цветовая тема
 custom_theme = Theme(
     {
@@ -19,8 +18,7 @@ console = Console(theme=custom_theme)
 
 
 def get_logger(name: str) -> logging.Logger:
-    """
-    Создает и настраивает логгер с выводом в консоль.
+    """Создает и настраивает логгер с выводом в консоль.
 
     Формат логов включает дату и время, имя логгера, уровень лога и само сообщение.
     Логгер выводит сообщения уровня DEBUG и выше. Используется для отладки и мониторинга работы приложения.
@@ -35,9 +33,7 @@ def get_logger(name: str) -> logging.Logger:
         markup=True,
         console=console,
     )
-    formatter = logging.Formatter(
-        "%(asctime)s | %(name)s | [plum1]%(funcName)s[/] | %(message)s"
-    )
+    formatter = logging.Formatter("%(asctime)s | %(name)s | [plum1]%(funcName)s[/] | %(message)s")
     console_handler.setFormatter(formatter)
     logger.setLevel(logging.DEBUG)
     logger.addHandler(console_handler)

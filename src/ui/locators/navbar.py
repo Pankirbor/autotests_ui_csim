@@ -2,6 +2,8 @@ from src.ui.locators.base import UILocator
 
 
 class NavBarLocators:
+    """Локаторы для элементов навбара."""
+
     ABOUT_US_TAB = UILocator(
         selector="//a[@role='tab' and @href='/']",
         description="Вкладка 'О нас' в навбаре",

@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import List, Dict
+from typing import Dict, List
 
 import allure
 from playwright.sync_api import Page, expect
@@ -85,29 +85,23 @@ class VacanciesListComponent(BaseComponent):
             for ind in range(self.get_vacancies_count())
         ]
 
-    @allure.step(
-        "Проверяем, что при наведении на карточку вакансии меняется цвет фона и текста"
-    )
+    @allure.step("Проверяем, что при наведении на карточку вакансии меняется цвет фона и текста")
     def check_hover_on_vacancy(self, index: int = 1):
         vacancy = self.get_vacancy_by_index(index)
-        bg_before = vacancy.evaluate(
-            "el => window.getComputedStyle(el).backgroundColor"
-        )
+        bg_before = vacancy.evaluate("el => window.getComputedStyle(el).backgroundColor")
         color_before = vacancy.evaluate("el => window.getComputedStyle(el).color")
 
         vacancy.hover()
         self.page.wait_for_timeout(1000)
         bg_after = vacancy.evaluate("el => window.getComputedStyle(el).backgroundColor")
         color_after = vacancy.evaluate("el => window.getComputedStyle(el).color")
-        logger.info(
-            "Проверяем, что цвет текста и фон карточки вакансии меняется при наведении"
+        logger.info("Проверяем, что цвет текста и фон карточки вакансии меняется при наведении")
+        assert bg_before != bg_after, (
+            f"Цвет фона карточки вакансии не изменился. {bg_before} == {bg_after}"
         )
-        assert (
-            bg_before != bg_after
-        ), f"Цвет фона карточки вакансии не изменился. {bg_before} == {bg_after}"
-        assert (
-            color_before != color_after
-        ), f"Цвет текста карточки вакансии не изменился. {color_before} == {color_after}"
+        assert color_before != color_after, (
+            f"Цвет текста карточки вакансии не изменился. {color_before} == {color_after}"
+        )
 
     @allure.step("Проверяем, что вакансии отсортированы по дате публикации: {order}")
     def check_vacancies_sorted_by_date(self, order: str = "desc"):
@@ -125,16 +119,10 @@ class VacanciesListComponent(BaseComponent):
         else:
             ValueError("order должен быть 'desc' или 'asc'")
 
-        logger.info(
-            f"Проверяем, что вакансии отсортированы по дате публикации: '{order}'"
-        )
+        logger.info(f"Проверяем, что вакансии отсортированы по дате публикации: '{order}'")
         try:
-            assert (
-                is_sorted
-            ), f"Вакансии не отсортированы в соответствии с порядком {order}"
+            assert is_sorted, f"Вакансии не отсортированы в соответствии с порядком {order}"
         except AssertionError as e:
-            current_order = [
-                f'{vcancy["title"]} - {vcancy["date"]}' for vcancy in vacancies_data
-            ]
+            current_order = [f"{vcancy['title']} - {vcancy['date']}" for vcancy in vacancies_data]
             logger.error(f"Ошибка сортировки вакансий: {e}\n {current_order}")
             raise e

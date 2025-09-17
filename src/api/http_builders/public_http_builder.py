@@ -1,20 +1,13 @@
-from functools import lru_cache
+from functools import cache
 
 from httpx import AsyncClient, Client
 
-from api.event_hooks import (
-    curl_event_hook,
-    log_request_event_hook,
-    log_response_event_hook,
-)
-from config import settings
 from src.api.schemas.authentication import AuthenticationUserSchema
 
 
-@lru_cache(maxsize=None)
+@cache
 def get_private_http_client(user: AuthenticationUserSchema) -> Client:
-    """
-    Функция создаёт экземпляр httpx.Client с аутентификацией пользователя.
+    """Функция создаёт экземпляр httpx.Client с аутентификацией пользователя.
 
     Args:
         user (AuthenticationUserSchema): Данные пользователя для входа.
@@ -24,10 +17,9 @@ def get_private_http_client(user: AuthenticationUserSchema) -> Client:
     """
 
 
-@lru_cache(maxsize=None)
+@cache
 def get_private_async_http_client(user: AuthenticationUserSchema) -> AsyncClient:
-    """
-    Функция создаёт экземпляр httpx.AsyncClient с аутентификацией пользователя.
+    """Функция создаёт экземпляр httpx.AsyncClient с аутентификацией пользователя.
 
     Args:
         user (AuthenticationUserSchema): Данные пользователя для входа.

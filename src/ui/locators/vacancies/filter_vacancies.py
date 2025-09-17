@@ -2,9 +2,7 @@ from src.ui.locators.base import UILocator
 
 
 class FilterVacanciesLocators:
-    """
-    Локаторы для элементов фильтрации на странице вакансий.
-    """
+    """Локаторы для элементов фильтрации на странице вакансий."""
 
     FILTER_CONTAINER = UILocator(
         selector="//div[contains(@class,'post__bar')]", description="Контейнер фильтров"

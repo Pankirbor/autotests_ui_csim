@@ -1,20 +1,17 @@
 from typing import Self
 
 import allure
-
-from playwright.sync_api import expect, Locator
+from playwright.sync_api import expect
 from ui_coverage_tool import ActionType
 
 from src.ui.elements.base_element import BaseElement
 from src.utils.logger import get_logger
 
-
 logger = get_logger(__name__.upper())
 
 
 class Input(BaseElement):
-    """
-    Класс, представляющий поле ввода на веб-странице.
+    """Класс, представляющий поле ввода на веб-странице.
 
     Этот класс расширяет BaseElement и предоставляет методы для взаимодействия с полями ввода:
     заполнение, очистка, проверка значения и ввод текста с задержкой.
@@ -27,8 +24,7 @@ class Input(BaseElement):
     """
 
     def fill(self, value: str, nth: int = 0, **kwargs) -> Self:
-        """
-        Заполняет поле ввода указанным значением.
+        """Заполняет поле ввода указанным значением.
 
         Аргументы:
             value (str): Значение, которое будет введено.
@@ -47,8 +43,7 @@ class Input(BaseElement):
         return self
 
     def check_have_value(self, value: str, nth: int = 0, **kwargs):
-        """
-        Проверяет, что поле ввода содержит указанное значение.
+        """Проверяет, что поле ввода содержит указанное значение.
 
         Аргументы:
             value (str): Ожидаемое значение в поле ввода.
@@ -64,8 +59,7 @@ class Input(BaseElement):
         self.track_coverage(ActionType.VALUE, nth, **kwargs)
 
     def clear(self, nth: int = 0, **kwargs) -> Self:
-        """
-        Очищает поле ввода.
+        """Очищает поле ввода.
 
         Аргументы:
             nth (int): Индекс элемента, если на странице несколько одинаковых полей.
@@ -91,8 +85,7 @@ class Input(BaseElement):
         no_wait_after: bool | None = None,
         **kwargs,
     ) -> Self:
-        """
-        Вводит текст в поле ввода с возможностью задания параметров.
+        """Вводит текст в поле ввода с возможностью задания параметров.
 
         Аргументы:
             text (str): Текст, который будет введен.

@@ -1,11 +1,11 @@
-from .breadcrumbs import BreadcrumbsLocators
-from .cookies import CookiesLocators
-from .filter import FilterPageLocators
-from .footer import FooterLocators
-from .header import HeaderPageLocators
-from .navbar import NavBarLocators
-from .vacancies.filter_menu import VacancyFiltersMenuLocators
-from .vacancies.filter_vacancies import FilterVacanciesLocators
-from .vacancies.list import VacanciesListLocators
-from .vacancies.response_form import VacancyResponseFormLocators
-from .vacancies.vacancy import VacancyItemLocators
+from .breadcrumbs import BreadcrumbsLocators  # noqa
+from .cookies import CookiesLocators  # noqa
+from .filter import FilterPageLocators  # noqa
+from .footer import FooterLocators  # noqa
+from .header import HeaderPageLocators  # noqa
+from .navbar import NavBarLocators  # noqa
+from .vacancies.filter_menu import VacancyFiltersMenuLocators  # noqa
+from .vacancies.filter_vacancies import FilterVacanciesLocators  # noqa
+from .vacancies.list import VacanciesListLocators  # noqa
+from .vacancies.response_form import VacancyResponseFormLocators  # noqa
+from .vacancies.vacancy import VacancyItemLocators  # noqa

@@ -1,17 +1,16 @@
-from typing import Any, Sized
+from collections.abc import Sized
+from typing import Any
 
 import allure
 
 from src.utils.logger import get_logger
-
 
 logger = get_logger("BASE_ASSERTIONS")
 
 
 @allure.step("Проверяем, что статус код ответа сервера соответствует {expected}")
 def assert_status_code(actual: int, expected: int) -> None:
-    """
-    Проверяет статус код ответа.
+    """Проверяет статус код ответа.
 
     Args:
         actual (int): Ожидаемый статус код.
@@ -20,7 +19,6 @@ def assert_status_code(actual: int, expected: int) -> None:
     Raises:
         AssertionError: Если статус код не соответствует ожидаемому.
     """
-
     logger.info(f"Проверяем, что статус код ответа сервера соответствует {expected}")
 
     assert actual == expected, (
@@ -30,8 +28,7 @@ def assert_status_code(actual: int, expected: int) -> None:
 
 @allure.step("Проверяем, что значение {name} соответствует ожидаемому {expected}")
 def assert_equal(actual: Any, expected: Any, name: str) -> None:
-    """
-    Проверяет равенство двух значений.
+    """Проверяет равенство двух значений.
 
     Args:
         actual (Any): Текущее значение.
@@ -41,18 +38,14 @@ def assert_equal(actual: Any, expected: Any, name: str) -> None:
     Raises:
         AssertionError: Если значения не равны.
     """
-
     logger.info(f"Проверяем, что значение {name} соответствует ожидаемому {expected}")
 
-    assert actual == expected, (
-        f"Incorrect '{name}'. Expected: '{expected}', resived: '{actual}'"
-    )
+    assert actual == expected, f"Incorrect '{name}'. Expected: '{expected}', resived: '{actual}'"
 
 
 @allure.step("Проверяем, что значение {name} является истинным")
 def assert_is_true(actual: Any, name: str) -> None:
-    """
-    Проверяет, что значение является истинным.
+    """Проверяет, что значение является истинным.
 
     Args:
         actual (Any): Текущее значение.
@@ -67,8 +60,7 @@ def assert_is_true(actual: Any, name: str) -> None:
 
 
 def assert_length(actual: Sized, expected: Sized, name: str) -> None:
-    """
-    Проверяет соответствие длин коллекций.
+    """Проверяет соответствие длин коллекций.
 
     Args:
         actual (Sized): Текущая длина коллекции.

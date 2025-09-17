@@ -2,9 +2,7 @@ from src.ui.locators.base import UILocator
 
 
 class FooterLocators:
-    """
-    Локаторы для элементов футера.
-    """
+    """Локаторы для элементов футера."""
 
     FOOTER_CONTAINER = UILocator(
         selector="footer.container", description="Контейнер футера"

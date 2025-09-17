@@ -1,11 +1,12 @@
 from typing import Self
+
 import allure
 from playwright.sync_api import Page, expect
 
 from src.ui.components.base_component import BaseComponent
-from src.ui.elements.container import Container
 from src.ui.elements.button import Button
 from src.ui.elements.checkbox import Checkbox
+from src.ui.elements.container import Container
 from src.ui.locators import VacancyFiltersMenuLocators
 from src.utils.logger import get_logger
 
@@ -13,16 +14,14 @@ logger = get_logger(__name__.upper())
 
 
 class VacancyFiltersMenuComponent(BaseComponent):
-    """
-    Компонент меню фильтров вакансий.
+    """Компонент меню фильтров вакансий.
 
     Предоставляет методы для взаимодействия с чекбоксами фильтров, кнопками "Сбросить" и "Применить",
     а также для проверки состояния и содержимого меню.
     """
 
     def __init__(self, page: Page):
-        """
-        Инициализирует компонент меню фильтров.
+        """Инициализирует компонент меню фильтров.
 
         Args:
             page (Page): Экземпляр страницы Playwright.
@@ -36,8 +35,7 @@ class VacancyFiltersMenuComponent(BaseComponent):
 
     @property
     def experience_checkboxes(self) -> list[Checkbox]:
-        """
-        Возвращает список чекбоксов из группы "Опыт работы".
+        """Возвращает список чекбоксов из группы "Опыт работы".
 
         Returns:
             list[Checkbox]: Список чекбоксов.
@@ -46,8 +44,7 @@ class VacancyFiltersMenuComponent(BaseComponent):
 
     @property
     def employment_checkboxes(self) -> list[Checkbox]:
-        """
-        Возвращает список чекбоксов из группы "Занятость".
+        """Возвращает список чекбоксов из группы "Занятость".
 
         Returns:
             list[Checkbox]: Список чекбоксов.
@@ -56,8 +53,7 @@ class VacancyFiltersMenuComponent(BaseComponent):
 
     @property
     def schedule_checkboxes(self) -> list[Checkbox]:
-        """
-        Возвращает список чекбоксов из группы "График работы".
+        """Возвращает список чекбоксов из группы "График работы".
 
         Returns:
             list[Checkbox]: Список чекбоксов.
@@ -66,8 +62,7 @@ class VacancyFiltersMenuComponent(BaseComponent):
 
     @property
     def all_checkboxes_by_label(self) -> dict[str, Checkbox]:
-        """
-        Возвращает словарь всех чекбоксов, где ключ — текст метки (aria-label).
+        """Возвращает словарь всех чекбоксов, где ключ — текст метки (aria-label).
 
         Returns:
             dict[str, Checkbox]: Словарь чекбоксов.
@@ -84,8 +79,7 @@ class VacancyFiltersMenuComponent(BaseComponent):
         return self._all_checkboxes_by_label
 
     def _create_checkboxes_by_group(self, group_title: str) -> list[Checkbox]:
-        """
-        Создаёт список чекбоксов для указанной группы.
+        """Создаёт список чекбоксов для указанной группы.
 
         Args:
             group_title (str): Название группы (например, "Опыт работы").
@@ -94,7 +88,6 @@ class VacancyFiltersMenuComponent(BaseComponent):
             list[Checkbox]: Список чекбоксов в группе.
         """
         if group_title not in self._checkboxes_cache:
-
             filter_group = self.page.locator(
                 VacancyFiltersMenuLocators.CHECKBOX_GROUP_BY_TITLE.selector.format(
                     group_title=group_title
@@ -122,8 +115,7 @@ class VacancyFiltersMenuComponent(BaseComponent):
         return self._checkboxes_cache[group_title]
 
     def get_checkbox_by_label(self, label: str) -> Checkbox:
-        """
-        Возвращает чекбокс по тексту его метки (aria-label).
+        """Возвращает чекбокс по тексту его метки (aria-label).
 
         Args:
             label (str): Текст метки чекбокса (например, "От 1 года до 3 лет").
@@ -144,20 +136,14 @@ class VacancyFiltersMenuComponent(BaseComponent):
 
     @allure.step("Проверка отображения меню фильтров")
     def check_visible(self, nth: int = 0, **kwargs):
-        """
-        Проверяет, что меню фильтров отображается.
-        """
-        self.container.get_locator(nth, **kwargs).wait_for(
-            state="visible", timeout=10000
-        )
+        """Проверяет, что меню фильтров отображается."""
+        self.container.get_locator(nth, **kwargs).wait_for(state="visible", timeout=10000)
         self.container.check_visible()
         self.check_expected_checkboxes()
         return self
 
     def check_not_visible(self):
-        """
-        Проверяет, что меню фильтров не отображается.
-        """
+        """Проверяет, что меню фильтров не отображается."""
         logger.info("Проверка, что меню фильтров не отображается")
         expect(self.container.get_locator()).not_to_be_visible()
 
@@ -190,8 +176,8 @@ class VacancyFiltersMenuComponent(BaseComponent):
 
     @allure.step("Проверка, что выбраны фильтры: {filters}")
     def are_filters_selected(self, filters: list[str]) -> Self:
-        """
-        Проверяет, что указанные чекбоксы отмечены.
+        """Проверяет, что указанные чекбоксы отмечены.
+
         Args:
             filters (list[str]): Список меток чекбоксов (например, ["Полная", "От 1 года до 3 лет"]).
 
@@ -206,8 +192,7 @@ class VacancyFiltersMenuComponent(BaseComponent):
 
     @allure.step("Проверка отмены фильтров кнопкой 'Сбросить'")
     def check_filter_reset(self) -> Self:
-        """
-        Сбрасывает все чекбоксы и проверяет, что они сняты.
+        """Сбрасывает все чекбоксы и проверяет, что они сняты.
 
         Returns:
             Self: Экземпляр текущего объекта для цепочки вызовов.

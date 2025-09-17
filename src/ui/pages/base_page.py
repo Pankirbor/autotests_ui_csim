@@ -1,20 +1,17 @@
-import os
 from datetime import datetime
-from typing import Pattern
+import os
+from re import Pattern
 
 import allure
-
 from playwright.sync_api import Page, expect
-import pytest
-from src.utils.logger import get_logger
 
+from src.utils.logger import get_logger
 
 logger = get_logger(__name__.upper())
 
 
 class BasePage:
-    """
-    Базовый класс для всех страниц веб-приложения.
+    """Базовый класс для всех страниц веб-приложения.
 
     Этот класс содержит общие методы, такие как переход на страницу,
     перезагрузка страницы и проверки видимости элементов и их содержимого.
@@ -29,8 +26,7 @@ class BasePage:
     """
 
     def __init__(self, page: Page) -> None:
-        """
-        Инициализирует базовый класс страницы.
+        """Инициализирует базовый класс страницы.
 
         Args:
             page (Page): Экземпляр страницы браузера.
@@ -51,8 +47,7 @@ class BasePage:
                 self.page.wait_for_timeout(1000)
 
     def visit(self, url: str) -> None:
-        """
-        Открывает указанную URL-страницу и ждет завершения загрузки.
+        """Открывает указанную URL-страницу и ждет завершения загрузки.
 
         Args:
             url (str): Адрес страницы, на которую нужно перейти.
@@ -76,17 +71,14 @@ class BasePage:
             self.accept_cookies_if_present()
 
     def reload(self) -> None:
-        """
-        Перезагружает текущую страницу и ждет загрузки контента DOM.
-        """
+        """Перезагружает текущую страницу и ждет загрузки контента DOM."""
         step = f"Обновление страницы: '{self.page.url}'"
         with allure.step(step):
             logger.info(step)
             self.page.reload(wait_until="domcontentloaded")
 
     def check_current_url(self, expected_url: Pattern[str]) -> None:
-        """
-        Проверяет, что текущий URL совпадает с ожидаемым.
+        """Проверяет, что текущий URL совпадает с ожидаемым.
 
         Args:
             expected_url (Pattern[str]): Регулярное выражение или строка ожидаемого URL.
@@ -97,8 +89,7 @@ class BasePage:
             expect(self.page).to_have_url(expected_url)
 
     def debug_captcha_type(self):
-        """
-        Определяет тип CAPTCHA на странице и пытается обработать простые случаи.
+        """Определяет тип CAPTCHA на странице и пытается обработать простые случаи.
         Для сложных CAPTCHA — логирует и сохраняет артефакты для дебага.
         """
         page = self.page
@@ -152,8 +143,7 @@ class BasePage:
         return "unknown"
 
     def _save_captcha_artifacts(self, captcha_type: str):
-        """
-        Сохраняет скриншот, HTML и логи при обнаружении CAPTCHA.
+        """Сохраняет скриншот, HTML и логи при обнаружении CAPTCHA.
         Артефакты можно скачать из GitHub Actions.
         """
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")

@@ -1,4 +1,5 @@
 from playwright.sync_api import Page, expect
+
 from src.ui.components.base_component import BaseComponent
 from src.ui.elements.container import Container
 from src.ui.elements.text import Text
@@ -11,9 +12,7 @@ class EmptyViewComponent(BaseComponent):
 
         self.container = Container.by_xpath(page, *VacanciesListLocators.CONTAINER)
         self.title = Text.by_xpath(page, *VacanciesListLocators.EMPTY_VIEW_TITLE)
-        self.description = Text.by_xpath(
-            page, *VacanciesListLocators.EMPTY_VIEW_DESCRIPTION
-        )
+        self.description = Text.by_xpath(page, *VacanciesListLocators.EMPTY_VIEW_DESCRIPTION)
 
     # Базовые проверки
     def should_be_visible(self):
@@ -49,11 +48,7 @@ class EmptyViewComponent(BaseComponent):
     # Получение данных
     def get_title_text(self) -> str:
         """Возвращает текст заголовка"""
-        return (
-            self.title.get_locator().get_text()
-            if self.title.get_locator().count() > 0
-            else ""
-        )
+        return self.title.get_locator().get_text() if self.title.get_locator().count() > 0 else ""
 
     def get_description_text(self) -> str:
         """Возвращает текст описания"""

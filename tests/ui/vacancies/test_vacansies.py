@@ -1,12 +1,11 @@
 import re
+
 import allure
+from allure_commons.types import Severity
 import pytest
 
-from allure_commons.types import Severity
-
-from integrations.playwright.ui_coverage_script import inject_coverage_after_load
-from src.ui.pages.vacancies.vacancies_page import VacanciesPage
 from integrations.allure import AllureEpic, AllureFeature, AllureStoryUi, AllureTagUi
+from src.ui.pages.vacancies.vacancies_page import VacanciesPage
 from src.ui.pages.vacancies.vacancy_page import VacancyDetailPage
 from src.ui.routes import AppRoute
 
@@ -15,7 +14,6 @@ from src.ui.routes import AppRoute
 @allure.epic(AllureEpic.VACANCIES)
 @allure.feature(AllureFeature.VACANCY_LIST)
 class TestVacancyList:
-
     @allure.title("Проверка, что страница вакансий загружается корректно")
     @allure.story(AllureStoryUi.PAGE_LOADS_CORRECTLY)
     @allure.severity(Severity.CRITICAL)
@@ -23,8 +21,8 @@ class TestVacancyList:
     def test_vacancies_page_loads_and_displays_all_critical_elements(
         self, vacancies_page: VacanciesPage
     ):
-        """
-        Тест: Проверка, что страница вакансий загружается корректно и отображает все ключевые элементы интерфейса.
+        """Тест: Проверка, что страница вакансий загружается корректно.
+
         Что тестируется:
             - После перехода на страницу '/vakansii' должны быть видимы:
                 1. Глобальная навигационная панель (шапка).
@@ -46,27 +44,29 @@ class TestVacancyList:
         vacancies_page.vacancies_list.check_visible()
 
     @allure.title(
-        "Проверка корректного отображения, состояний и функциональности хлебных крошек на странице вакансий"
+        "Проверка корректного отображения, состояний и функциональности хлебных крошек"
+        " на странице вакансий"
     )
     @allure.story(AllureStoryUi.BREADCRUMBS)
     @allure.severity(Severity.NORMAL)
     @allure.tag(AllureTagUi.UI, AllureTagUi.POSITIVE)
     def test_vacancies_page_breadcrumbs(self, vacancies_page: VacanciesPage):
-        """
-        Тест: Проверка корректного отображения, состояний и функциональности хлебных крошек на странице вакансий.
+        """Тест: Проверка корректной работы хлебных крошек на странице вакансий.
+
         Предусловия:
             - Страница вакансий загружена.
         Шаги:
             1. Проверить, что блок хлебных крошек отображается на странице.
             2. Проверить текстовое содержимое крошек:
                 - Первая крошка (родительская): "Главная" (является кликабельной ссылкой).
-                - Вторая крошка (текущая): "Все вакансии" (не является ссылкой, это статичный текст).
+                - Вторая крошка (текущая): "Все вакансии" (не является ссылкой).
             3. Проверить состояние ссылки "Главная":
                 b. Ссылка должна быть активной (иметь атрибут `href="/"`, не быть disabled).
             4. Проверить функциональность:
                 a. Кликнуть по ссылке "Главная".
                 b. Убедиться, что произошел переход на главную страницу (URL заканчивается на '/').
-                c. Убедиться, что главная страница загрузилась корректно (например, отображается герой-секция или навигация).
+                c. Убедиться, что главная страница загрузилась корректно
+                   (например, отображается герой-секция или навигация).
         Ожидаемый результат:
             - Блок хлебных крошек отображается корректно.
             - Текст крошек: "Главная | Все вакансии".
@@ -79,7 +79,7 @@ class TestVacancyList:
         vacancies_page.breadcrumbs.check_visible("Все вакансии")
         vacancies_page.breadcrumbs.home_link.check_enabled()
         vacancies_page.breadcrumbs.home_link.click()
-        vacancies_page.check_current_url(re.compile(rf".*/"))
+        vacancies_page.check_current_url(re.compile(r".*/"))
         vacancies_page.nav_bar.about_tab.is_active()
 
     @allure.title(
@@ -91,8 +91,8 @@ class TestVacancyList:
     def test_click_on_vacancy_card(
         self, vacancies_page: VacanciesPage, vacancy_detail_page: VacancyDetailPage
     ):
-        """
-        Тест: Проверка, что клик по карточке вакансии открывает детальную страницу с корректным содержимым.
+        """Тест: Проверка, что клик по карточке вакансии открывает детальную страницу.
+
         Предусловия:
             - Пользователь находится на странице '/vakansii'.
             - Список вакансий содержит как минимум одну карточку.
@@ -109,7 +109,9 @@ class TestVacancyList:
                 - Блок "Требования".
                 - Блок "Условия".
                 - Кнопка "Откликнуться" (или аналогичная).
-            7. Проверить, что хлебные крошки на детальной странице содержат путь: "Главная | Все вакансии | [Название вакансии]".
+            7. Проверить, что хлебные крошки на детальной странице содержат путь:
+                "Главная | Все вакансии | [Название вакансии]".
+
         Ожидаемый результат:
             - Пользователь успешно переходит на детальную страницу выбранной вакансии.
             - Все ключевые элементы интерфейса и контент отображаются корректно.
@@ -134,14 +136,14 @@ class TestVacancyList:
 @allure.severity(Severity.NORMAL)
 @allure.tag(AllureTagUi.UI, AllureTagUi.POSITIVE)
 class TestVacancyFilters:
-
     @allure.title(
-        "Проверка, что при клике на вкладку категории в фильтре, список карточек вакансий обновляется"
+        "Проверка, что при клике на вкладку категории в фильтре, "
+        "список карточек вакансий обновляется"
     )
     @allure.story(AllureStoryUi.CLICK_CATEGORY_TAB)
     def test_click_category_tab(self, vacancies_page: VacanciesPage):
-        """
-        Тест: Проверка, что при клике на вкладку категории в фильтре, список карточек вакансий обновляется.
+        """Тест: Проверка, что при клике на вкладку категории в фильтре,список вакансий обновляется.
+
         Предусловия:
             - Страница вакансий загружена.
         Шаги:
@@ -159,8 +161,8 @@ class TestVacancyFilters:
     def test_filter_menu_reset_and_apply_functionality(
         self, vacancies_page: VacanciesPage
     ):
-        """
-        Тест: Проверка функциональности кнопки "Фильтры".
+        """Тест: Проверка функциональности кнопки "Фильтры".
+
         Предусловия:
             - Страница вакансий загружена.
             - Меню фильтров не отображается.
@@ -172,12 +174,14 @@ class TestVacancyFilters:
             5. Проверить, что выбранные чекбоксы были сброшены.
             6. Выбрать один чекбокс (например, "Удаленная работа").
             7. Нажать на кнопку "Применить".
-            8. Убедиться, что меню фильтров закрылось и список карточек вакансий обновился с учетом выбранных фильтров.
+            8. Убедиться, что меню фильтров закрылось и список карточек вакансий обновился
+              с учетом выбранных фильтров.
         Ожидаемый результат:
             - Меню фильтров открылось и содержит все ожидаемые чекбоксы.
             - Выбранные чекбоксы отображаются в меню фильтров.
             - При сбросе фильтров выбранные чекбоксы должны быть сняты.
-            - При применении фильтров список карточек вакансий должен обновиться с учетом выбранных фильтров.
+            - При применении фильтров список карточек вакансий должен обновиться
+            с учетом выбранных фильтров.
         """
         vacancies_page.visit(AppRoute.VACANCIES)
         vacancies_page.verify_filter_reset_functionality(
@@ -188,8 +192,8 @@ class TestVacancyFilters:
     @allure.title("Проверка начальной сортировки вакансий: 'Сначала новые'")
     @allure.story(AllureStoryUi.INITIAL_SORT)
     def test_initial_sort_order_is_newest_first(self, vacancies_page: VacanciesPage):
-        """
-        Проверяет, что при загрузке страницы вакансии отсортированы по убыванию даты (новые сверху).
+        """Проверяет, что вакансии отсортированы по убыванию даты.
+
         Предусловия:
             - Страница вакансий загружена.
             - Отображены вакансии по категории "Все".
@@ -208,8 +212,8 @@ class TestVacancyFilters:
     @allure.title("Проверка переключения сортировки на 'Сначала старые'")
     @allure.story(AllureStoryUi.CLICK_SORT_BUTTON)
     def test_switch_sort_order_to_oldest_first(self, vacancies_page: VacanciesPage):
-        """
-        Проверяет, что при клике на кнопку сортировки список вакансий пересортируется по возрастанию даты.
+        """Проверяет пересортировку вакансий по возрастанию даты.
+
         Предусловия:
             - Страница вакансий загружена.
             - Отображены вакансии по категории "Все".
@@ -220,7 +224,8 @@ class TestVacancyFilters:
             6. Проверить, что вакансии отсортированы по дате публикации от старых к новым.
 
         Ожидаемый результат:
-            - Нажатие на таб "Сначала новые" обновляет список вакансий и сортирует их по дате публикации от старых к новым.
+            - Нажатие на таб "Сначала новые" обновляет список вакансий и сортирует их
+            по дате публикации от старых к новым.
             - Иконка стрелочка вниз активна и отображает текст "Сначала старые".
         """
         vacancies_page.visit(AppRoute.VACANCIES)

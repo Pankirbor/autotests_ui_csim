@@ -1,6 +1,7 @@
 from typing import Self
+
 import allure
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page
 
 from src.ui.components.base_component import BaseComponent
 from src.ui.components.vacancies.vacancy_filters_menu_component import (
@@ -20,16 +21,12 @@ class FilterVacanciesComponent(BaseComponent):
     def __init__(self, page: Page):
         super().__init__(page)
 
-        self.container = Container.by_xpath(
-            page, *FilterVacanciesLocators.FILTER_CONTAINER
-        )
+        self.container = Container.by_xpath(page, *FilterVacanciesLocators.FILTER_CONTAINER)
         self.tab_all = Tab(page, *FilterVacanciesLocators.TAB_ALL_VACANCIES)
         self.sort_btn = Button.by_xpath(page, *FilterVacanciesLocators.SORT)
         self.up_icon = Icon.by_xpath(page, *FilterVacanciesLocators.ICON_SORTING_UP)
         self.down_icon = Icon.by_xpath(page, *FilterVacanciesLocators.ICON_SORTING_DOWN)
-        self.filter_menu_btn = Button.by_xpath(
-            page, *FilterVacanciesLocators.FILTER_BTN
-        )
+        self.filter_menu_btn = Button.by_xpath(page, *FilterVacanciesLocators.FILTER_BTN)
         self.filter_menu = VacancyFiltersMenuComponent(page)
 
     @property
@@ -44,9 +41,7 @@ class FilterVacanciesComponent(BaseComponent):
 
     def _get_filters_tabs(self) -> list[Tab]:
         xpath, name = FilterVacanciesLocators.TAB
-        tab_elements = self.page.locator(
-            FilterVacanciesLocators.ALL_TABS.selector
-        ).all()
+        tab_elements = self.page.locator(FilterVacanciesLocators.ALL_TABS.selector).all()
         # tab_elements = tabs.all()
 
         result = []
@@ -56,7 +51,7 @@ class FilterVacanciesComponent(BaseComponent):
                 result.append(
                     Tab.by_xpath(
                         self.page,  # xpath.format(index=i), name.format(title=tab_text)
-                        *FilterVacanciesLocators.TAB.format(index=i, title=tab_text)
+                        *FilterVacanciesLocators.TAB.format(index=i, title=tab_text),
                     )
                 )
         return result

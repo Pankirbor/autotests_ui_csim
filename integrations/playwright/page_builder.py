@@ -1,10 +1,10 @@
 import typing
 
 import allure
-from playwright.sync_api import Playwright, Page
+from playwright.sync_api import Page, Playwright
 from playwright_stealth import Stealth
 
-from config import settings, Browser
+from config import Browser, settings
 from integrations.playwright.mocks import mock_static_resources
 
 
@@ -14,8 +14,7 @@ def playwright_page_builder(
     test_name: str,
     state: str | None = None,
 ) -> typing.Iterator[Page]:
-    """
-    Генератор для создания и настройки страницы Playwright в указанном браузере.
+    """Генератор для создания и настройки страницы Playwright в указанном браузере.
 
     Функция запускает браузер, заданный через `browser_type`, создает новый контекст с
     указанием начального состояния (state), записью видео и трассировкой выполнения.
@@ -42,9 +41,7 @@ def playwright_page_builder(
         base_url=settings.get_ui_base_url(),
         bypass_csp=True,
     )
-    context.tracing.start(
-        name=test_name, screenshots=True, snapshots=True, sources=True
-    )
+    context.tracing.start(name=test_name, screenshots=True, snapshots=True, sources=True)
     stealth.apply_stealth_sync(context)
     page = context.new_page()
     mock_static_resources(page)

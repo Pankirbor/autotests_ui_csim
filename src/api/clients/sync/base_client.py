@@ -1,7 +1,7 @@
 from typing import Any
 
 import allure
-from httpx import Client, Response, QueryParams, URL
+from httpx import URL, Client, QueryParams, Response
 
 
 class ApiClient:
@@ -43,6 +43,7 @@ class ApiClient:
             json: Any | None: Данные в формате JSON.
             data: RequestData | None: Форматированные данные формы (например, application/x-www-form-urlencoded).
             files: RequestFile | None: Файлы для загрузки на сервер.
+
         Returns:
             Response: Ответ сервера в виде объекта Response.
         """

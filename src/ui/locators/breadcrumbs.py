@@ -2,9 +2,7 @@ from src.ui.locators.base import UILocator
 
 
 class BreadcrumbsLocators:
-    """
-    Локаторы для элементов хлебных крошек
-    """
+    """Локаторы для элементов хлебных крошек."""
 
     CONTAINER = UILocator(
         selector="//div[contains(@class, 'q-breadcrumbs')]",

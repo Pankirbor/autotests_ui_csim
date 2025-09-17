@@ -2,9 +2,7 @@ from src.ui.locators.base import UILocator
 
 
 class VacancyResponseFormLocators:
-    """
-    Локаторы для формы отклика на вакансию.
-    """
+    """Локаторы для формы отклика на вакансию."""
 
     FULL_NAME_INPUT = UILocator(
         selector="//input[@aria-label='Представьтесь, пожалуйста']",

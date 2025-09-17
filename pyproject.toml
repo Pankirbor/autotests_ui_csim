@@ -1,0 +1,44 @@
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "D", "UP"]
+ignore = [
+    "D203",  # 1 blank line required before class docstring (конфликтует с D211)
+    "D213",  # Multi-line docstring summary should start at the second line (предпочитаем D212)
+    "D401",  # First line of docstring should be in imperative mood (не всегда уместно)
+    "D100",
+]
+
+
+fixable = ["ALL"]
+unfixable = []
+
+[tool.ruff.format]
+
+quote-style = "double"
+indent-style = "space"
+line-ending = "auto"
+docstring-code-format = true
+docstring-code-line-length = "dynamic"
+
+[tool.ruff.lint.isort]
+
+known-first-party = ["src", "tests", "config"]
+section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]
+order-by-type = true
+force-sort-within-sections = true
+case-sensitive = false
+
+[tool.ruff.lint.pydocstyle]
+
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+
+"__init__.py" = ["D100", "D104"]
+"setup.py" = ["D100"]
+"scripts/*" = ["D103"]
+"tests/**/*" = ["D100", "D101", "D102", "D103", "D104", "D105", "D106", "D107"]
+"migrations/**/*" = ["D100", "D101", "D102", "D103", "D104", "D105", "D106", "D107"]
+"src/ui/locators/**/*" = ["E501", "D100"]

@@ -1,8 +1,8 @@
 import re
+
 from src.ui.components.base_component import BaseComponent
 from src.ui.components.navigation.search_component import SearchComponent
 from src.ui.elements.icon import Icon
-from src.ui.elements.link import Link
 from src.ui.elements.tab import Tab
 from src.ui.locators import NavBarLocators
 from src.ui.routes import AppRoute
@@ -33,8 +33,6 @@ class NavbarComponent(BaseComponent):
             component.check_visible()
 
     def click_about_tab(self) -> None:
-        """
-        Кликает по табу "О Нас" и проверяет, что пользователь перешел на главную страницу.
-        """
+        """Кликает по табу "О Нас" и проверяет, что пользователь перешел на главную страницу."""
         self.about_tab.check_visible().click()
         self.check_current_url(re.compile(rf".*{AppRoute.ABOUT}"))

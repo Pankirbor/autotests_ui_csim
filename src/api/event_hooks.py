@@ -4,13 +4,11 @@ from httpx import Request, Response
 from utils.http_curl import make_curl_request
 from utils.logger import get_logger
 
-
 logger = get_logger("HTTP_CLIENT")
 
 
 def curl_event_hook(request: Request) -> None:
-    """
-    Записывает cURL команду в Allure.
+    """Записывает cURL команду в Allure.
 
     Args:
         request (Request): Запрос, который будет выполнен.
@@ -21,8 +19,7 @@ def curl_event_hook(request: Request) -> None:
 
 
 def log_request_event_hook(request: Request) -> None:
-    """
-    Логирует запрос.
+    """Логирует запрос.
 
     Args:
         request (Request): Запрос, который будет выполнен.
@@ -31,8 +28,7 @@ def log_request_event_hook(request: Request) -> None:
 
 
 def log_response_event_hook(response: Response) -> None:
-    """
-    Логирует ответ.
+    """Логирует ответ.
 
     Args:
         response (Response): Ответ сервера.

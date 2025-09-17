@@ -2,9 +2,7 @@ from src.ui.locators.base import UILocator
 
 
 class VacancyFiltersMenuLocators:
-    """
-    Локаторы для выпадающего меню фильтров вакансий.
-    """
+    """Локаторы для выпадающего меню фильтров вакансий."""
 
     CONTAINER = UILocator(
         selector="//div[contains(@class,'q-menu')]",

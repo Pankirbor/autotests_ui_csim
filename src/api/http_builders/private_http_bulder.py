@@ -9,8 +9,7 @@ from config import settings
 
 
 def get_public_http_client() -> Client:
-    """
-    Функция создаёт экземпляр httpx.Client с базовыми настройками.
+    """Функция создаёт экземпляр httpx.Client с базовыми настройками.
 
     Returns:
         Готовый к использованию объект httpx.Client.
@@ -26,8 +25,7 @@ def get_public_http_client() -> Client:
 
 
 def get_public_async_http_client() -> AsyncClient:
-    """
-    Функция создаёт экземпляр httpx.AsyncClient с базовыми настройками.
+    """Функция создаёт экземпляр httpx.AsyncClient с базовыми настройками.
 
     Returns:
         Готовый к использованию объект httpx.AsyncClient.

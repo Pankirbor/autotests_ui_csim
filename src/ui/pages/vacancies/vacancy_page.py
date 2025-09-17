@@ -1,17 +1,16 @@
 import allure
 from playwright.sync_api import Page
 
-from src.ui.elements.container import Container
-from src.ui.elements.text import Text
-from src.ui.pages.base_page import BasePage
-from src.ui.components.header_component import HeaderComponent
 from src.ui.components.footer_component import FooterComponent
-from src.ui.components.navigation.navbar_component import NavbarComponent
 from src.ui.components.navigation.breadcrambs_component import BreadcrumbsComponent
+from src.ui.components.navigation.navbar_component import NavbarComponent
 from src.ui.components.vacancies.vacancy_response_form_component import (
     VacancyResponseFormComponent,
 )
+from src.ui.elements.container import Container
+from src.ui.elements.text import Text
 from src.ui.locators import VacancyItemLocators
+from src.ui.pages.base_page import BasePage
 
 
 class VacancyDetailPage(BasePage):
@@ -24,9 +23,7 @@ class VacancyDetailPage(BasePage):
         self.footer = FooterComponent(page)
         self.container = Container.by_xpath(page, *VacancyItemLocators.CONTAINER)
         self.vacancy_name = Text.by_xpath(page, *VacancyItemLocators.VACANCY_NAME)
-        self.requirements_heading = Text.by_xpath(
-            page, *VacancyItemLocators.REQUIREMENTS_TITLE
-        )
+        self.requirements_heading = Text.by_xpath(page, *VacancyItemLocators.REQUIREMENTS_TITLE)
         self.expectations_heading = Text.by_xpath(page, *VacancyItemLocators.PLUS_TITLE)
         self.vacancy_response_form = VacancyResponseFormComponent(page)
 

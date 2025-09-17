@@ -1,8 +1,7 @@
-from typing import Iterator
+from collections.abc import Iterator
 
+from playwright.sync_api import Page, Playwright
 import pytest
-
-from playwright.sync_api import Playwright, Page
 
 from config import settings
 from integrations.playwright.page_builder import playwright_page_builder
@@ -13,8 +12,7 @@ def chromium_page(
     request: pytest.FixtureRequest,
     playwright: Playwright,
 ) -> Iterator[Page]:
-    """
-    Фикстура для создания страницы Chromium без предварительно загруженного состояния.
+    """Фикстура для создания страницы Chromium без предварительно загруженного состояния.
 
     Эта фикстура использует `playwright_page_builder` для настройки и запуска страницы
     в браузере Chromium. Имя теста автоматически извлекается из `request.node.name`.
@@ -40,8 +38,7 @@ def chromium_page(
 
 @pytest.fixture(scope="session")
 def initialize_browser_state(playwright: Playwright) -> None:
-    """
-    Фикстура для инициализации браузера и сохранения состояния после регистрации.
+    """Фикстура для инициализации браузера и сохранения состояния после регистрации.
 
     Эта фикстура запускается один раз за сессию тестирования. Она открывает браузер,
     сохраняет состояние контекста в файл `browser-state.json`,
@@ -65,8 +62,7 @@ def chromium_page_with_state(
     initialize_browser_state,
     playwright: Playwright,
 ) -> Iterator[Page]:
-    """
-    Фикстура для создания страницы Chromium с предварительно загруженным состоянием браузера.
+    """Фикстура для создания страницы Chromium с предварительно загруженным состоянием браузера.
 
     Эта фикстура использует `playwright_page_builder` для настройки и запуска страницы
     в браузере Chromium. Используется состояние браузера из файла `browser-state.json`,

@@ -1,4 +1,4 @@
 from .epic import AllureEpic
 from .features import AllureFeature
-from .stories import AllureStoryUi, AllureStoryApi
-from .tags import AllureTagUi, AllureTagApi
+from .stories import AllureStoryApi, AllureStoryUi
+from .tags import AllureTagApi, AllureTagUi

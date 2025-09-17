@@ -2,13 +2,12 @@ from pathlib import Path
 import platform
 from pprint import pformat
 import sys
+
 from config import settings
 
 
 def create_allure_environment():
-    """
-    Функция записывает в файл environment.properties
-    """
+    """Функция записывает в файл environment.properties"""
     # properties_data = list(settings.model_dump().items())
     # properties_data.extend(
     #     [
@@ -37,7 +36,5 @@ def create_allure_environment():
 
     properties_content = "\n".join(env_lines)
 
-    properties_path: Path = (
-        settings.reporting.allure_ui_results_dir / "environment.properties"
-    )
+    properties_path: Path = settings.reporting.allure_ui_results_dir / "environment.properties"
     properties_path.write_text(properties_content, encoding="utf-8")

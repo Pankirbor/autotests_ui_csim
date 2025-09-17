@@ -1,4 +1,5 @@
 from typing import Self
+
 import allure
 from playwright.sync_api import expect
 from ui_coverage_tool import ActionType
@@ -10,8 +11,7 @@ logger = get_logger(__name__.upper())
 
 
 class Checkbox(BaseElement):
-    """
-    Класс, представляющий чекбокс на веб-странице.
+    """Класс, представляющий чекбокс на веб-странице.
 
     Расширяет BaseElement и предоставляет методы для взаимодействия с чекбоксами:
     установка/снятие галочки, проверка состояния, проверка атрибутов.
@@ -28,8 +28,7 @@ class Checkbox(BaseElement):
     """
 
     def is_checked(self, nth: int = 0, **kwargs) -> Self:
-        """
-        Проверяет, что чекбокс отмечен (галочка установлена).
+        """Проверяет, что чекбокс отмечен (галочка установлена).
 
         Args:
             nth (int): Индекс элемента, если на странице несколько одинаковых чекбоксов.
@@ -46,8 +45,7 @@ class Checkbox(BaseElement):
         return self
 
     def is_not_checked(self, nth: int = 0, **kwargs) -> Self:
-        """
-        Проверяет, что чекбокс не отмечен (галочка снята).
+        """Проверяет, что чекбокс не отмечен (галочка снята).
 
         Args:
             nth (int): Индекс элемента, если на странице несколько одинаковых чекбоксов.
@@ -64,8 +62,7 @@ class Checkbox(BaseElement):
         return self
 
     def check(self, nth: int = 0, **kwargs) -> Self:
-        """
-        Устанавливает галочку в чекбоксе.
+        """Устанавливает галочку в чекбоксе.
 
         Если чекбокс уже отмечен — ничего не делает (Playwright сам проверяет состояние).
 
@@ -85,8 +82,7 @@ class Checkbox(BaseElement):
         return self
 
     def uncheck(self, nth: int = 0, **kwargs) -> Self:
-        """
-        Снимает галочку с чекбокса.
+        """Снимает галочку с чекбокса.
 
         Если чекбокс уже не отмечен — ничего не делает.
 
@@ -105,8 +101,7 @@ class Checkbox(BaseElement):
         return self
 
     def get_label_text(self, nth: int = 0, **kwargs) -> str:
-        """
-        Возвращает текст метки, связанной с чекбоксом.
+        """Возвращает текст метки, связанной с чекбоксом.
 
         Предполагается, что метка находится рядом или внутри (зависит от реализации).
         В твоём случае — ищет .q-checkbox__label внутри текущего элемента.
@@ -126,8 +121,7 @@ class Checkbox(BaseElement):
             return text
 
     def has_aria_checked(self, expected_value: str, nth: int = 0, **kwargs) -> Self:
-        """
-        Проверяет значение ARIA-атрибута aria-checked (полезно для кастомных чекбоксов).
+        """Проверяет значение ARIA-атрибута aria-checked (полезно для кастомных чекбоксов).
 
         Args:
             expected_value (str): Ожидаемое значение ('true', 'false', 'mixed').
@@ -137,7 +131,9 @@ class Checkbox(BaseElement):
         Returns:
             Self: Экземпляр текущего объекта для цепочки вызовов.
         """
-        step = f"Проверка ARIA-атрибута aria-checked='{expected_value}' у {self.type_of} '{self.name}'"
+        step = (
+            f"Проверка ARIA-атрибута aria-checked='{expected_value}' у {self.type_of} '{self.name}'"
+        )
         with allure.step(step):
             logger.info(step)
             expect(self.get_locator(nth, **kwargs)).to_have_attribute(
@@ -146,8 +142,7 @@ class Checkbox(BaseElement):
         return self
 
     def hover(self, nth: int = 0, **kwargs) -> Self:
-        """
-        Наводит курсор на чекбокс (может изменить стиль или показать тултип).
+        """Наводит курсор на чекбокс (может изменить стиль или показать тултип).
 
         Args:
             nth (int): Индекс элемента, если на странице несколько одинаковых чекбоксов.
@@ -163,8 +158,7 @@ class Checkbox(BaseElement):
         return self
 
     def focus(self, nth: int = 0, **kwargs) -> Self:
-        """
-        Фокусирует чекбокс (например, для проверки стилей :focus).
+        """Фокусирует чекбокс (например, для проверки стилей :focus).
 
         Args:
             nth (int): Индекс элемента, если на странице несколько одинаковых чекбоксов.

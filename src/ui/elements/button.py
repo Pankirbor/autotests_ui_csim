@@ -1,22 +1,21 @@
 from typing import Self
-import allure
 
+import allure
 from playwright.sync_api import expect
 from ui_coverage_tool import ActionType
 
 from src.ui.elements.base_element import BaseElement
 from src.utils.logger import get_logger
 
-
 logger = get_logger(__name__.upper())
 
 
 class Button(BaseElement):
-    """
-    Класс, представляющий кнопку на веб-странице.
+    """Класс, представляющий кнопку на веб-странице.
 
-    Этот класс наследуется от BaseElement и добавляет специфичные методы для проверки состояния кнопки:
-    включено (enabled) или выключено (disabled).
+    Этот класс наследуется от BaseElement и добавляет специфичные методы
+    для проверки состояния кнопки:
+     - включено (enabled) или выключено (disabled).
 
     Методы:
         check_enabled: Проверяет, что кнопка доступна для взаимодействия.
@@ -24,8 +23,7 @@ class Button(BaseElement):
     """
 
     def check_enabled(self, nth: int = 0, **kwargs) -> Self:
-        """
-        Проверяет, что кнопка включена (доступна для нажатия).
+        """Проверяет, что кнопка включена (доступна для нажатия).
 
         Аргументы:
             nth (int): Индекс элемента, если на странице несколько одинаковых кнопок.
@@ -41,8 +39,7 @@ class Button(BaseElement):
         return self
 
     def check_disabled(self, nth: int = 0, **kwargs) -> Self:
-        """
-        Проверяет, что кнопка выключена (недоступна для нажатия).
+        """Проверяет, что кнопка выключена (недоступна для нажатия).
 
         Аргументы:
             nth (int): Индекс элемента, если на странице несколько одинаковых кнопок.

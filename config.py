@@ -1,13 +1,13 @@
 from enum import Enum
-from typing import Any, Self, Optional, List
-from pydantic import BaseModel, EmailStr, DirectoryPath, HttpUrl, FilePath, Field
-from pydantic_settings import BaseSettings, SettingsConfigDict
 from pathlib import Path
+from typing import Any, List, Optional, Self
+
+from pydantic import BaseModel, DirectoryPath, EmailStr, Field, FilePath, HttpUrl
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Browser(str, Enum):
-    """
-    Перечисление, представляющее поддерживаемые браузеры.
+    """Перечисление, представляющее поддерживаемые браузеры.
 
     Каждый элемент перечисления представлен в виде строки, что позволяет использовать
     значения напрямую при выборе браузера для запуска тестов или других действий.
@@ -24,9 +24,7 @@ class Browser(str, Enum):
 
 
 class Environment(str, Enum):
-    """
-    Перечисление для окружений.
-    """
+    """Перечисление для окружений."""
 
     LOCAL = "local"
     DEV = "dev"
@@ -35,8 +33,7 @@ class Environment(str, Enum):
 
 
 class TestUser(BaseModel):
-    """
-    Модель данных, представляющая тестового пользователя.
+    """Модель данных, представляющая тестового пользователя.
 
     Используется для валидации и хранения информации о пользователе,
     необходимой для тестирования. Включает обязательные поля: имя пользователя,
@@ -54,9 +51,7 @@ class TestUser(BaseModel):
 
 
 class HTTPClientConfig(BaseModel):
-    """
-    Класс для хранения настроек HTTP-клиента.
-    """
+    """Класс для хранения настроек HTTP-клиента."""
 
     base_url: HttpUrl
     timeout: float = Field(default=30.0)
@@ -68,18 +63,14 @@ class HTTPClientConfig(BaseModel):
 
 
 class TestData(BaseModel):
-    """
-    Класс для хранения доступа к тестовым данным.
-    """
+    """Класс для хранения доступа к тестовым данным."""
 
     image_jpeg_file: FilePath
     test_users_file: Optional[FilePath] = None
 
 
 class UISettings(BaseModel):
-    """
-    Настройки для UI тестирования.
-    """
+    """Настройки для UI тестирования."""
 
     app_url: HttpUrl
     headless: bool = Field(default=True)
@@ -95,9 +86,7 @@ class UISettings(BaseModel):
 
 
 class APISettings(BaseModel):
-    """
-    Настройки для API тестирования.
-    """
+    """Настройки для API тестирования."""
 
     http_client: HTTPClientConfig
     internal_host: HttpUrl
@@ -105,9 +94,7 @@ class APISettings(BaseModel):
 
 
 class ReportingSettings(BaseModel):
-    """
-    Настройки для отчетности.
-    """
+    """Настройки для отчетности."""
 
     allure_api_results_dir: DirectoryPath
     allure_ui_results_dir: DirectoryPath
@@ -116,9 +103,7 @@ class ReportingSettings(BaseModel):
 
 
 class FrameworkSettings(BaseSettings):
-    """
-    Единый класс настроек для всего тестового фреймворка.
-    """
+    """Единый класс настроек для всего тестового фреймворка."""
 
     model_config = SettingsConfigDict(
         env_file=".env.example",
@@ -149,8 +134,7 @@ class FrameworkSettings(BaseSettings):
 
     @classmethod
     def initialize(cls) -> Self:
-        """
-        Инициализирует настройки и создает необходимые директории.
+        """Инициализирует настройки и создает необходимые директории.
 
         Returns:
             Self: Экземпляр класса настроек.
@@ -174,8 +158,7 @@ class FrameworkSettings(BaseSettings):
         return cls()
 
     def get_ui_base_url(self) -> str:
-        """
-        Возвращает базовый URL для UI.
+        """Возвращает базовый URL для UI.
 
         Returns:
             str: Базовый URL для UI.
@@ -183,8 +166,7 @@ class FrameworkSettings(BaseSettings):
         return f"{self.ui.app_url}"
 
     def get_api_base_url(self) -> str:
-        """
-        Возвращает полный базовый URL для API.
+        """Возвращает полный базовый URL для API.
 
         Returns:
             str: Полный базовый URL для API.
@@ -192,8 +174,7 @@ class FrameworkSettings(BaseSettings):
         return f"{self.api.base_url}{self.api.api_version}"
 
     def get_env_properties(self) -> dict[str, Any]:
-        """
-        Возвращает свойства окружения для Allure.
+        """Возвращает свойства окружения для Allure.
 
         Returns:
             dict: Словарь с настройками окружения.

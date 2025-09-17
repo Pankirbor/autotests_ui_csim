@@ -3,8 +3,8 @@ from playwright.sync_api import Page, expect
 
 from src.ui.components.base_component import BaseComponent
 from src.ui.elements.container import Container
-from src.ui.elements.text import Text
 from src.ui.elements.link import Link
+from src.ui.elements.text import Text
 from src.ui.locators import BreadcrumbsLocators
 from src.utils.logger import get_logger
 
@@ -56,20 +56,19 @@ class BreadcrumbsComponent(BaseComponent):
         """Проверяет текущую страницу"""
         self.current_page.check_visible()
         current_page_text = self.current_page.get_locator().inner_text().strip().lower()
-        step = f"Проверка текста названия текущей страницы {current_page_text} c {page_name.lower()}"
+        step = (
+            f"Проверка текста названия текущей страницы {current_page_text} c {page_name.lower()}"
+        )
         with allure.step(step):
             logger.info(step)
-            assert (
-                current_page_text == page_name.lower()
-            ), f"Название текущей страницы ({current_page_text}) не соответсвует ожидаемому: {page_name}"
+            assert current_page_text == page_name.lower(), (
+                f"Название текущей страницы ({current_page_text}) не соответсвует ожидаемому: {page_name}"
+            )
         return self
 
-    @allure.step(
-        "Проверка, что текущая страница в хлебных крошках не является кликабельной"
-    )
+    @allure.step("Проверка, что текущая страница в хлебных крошках не является кликабельной")
     def should_current_page_not_be_clickable(self):
-        """
-        Проверяет, что элемент текущей страницы:
+        """Проверяет, что элемент текущей страницы:
         - не является ссылкой (<a>)
         - не имеет атрибута href
         - не кликабелен (ожидаем, что click() вызовет исключение)
@@ -77,12 +76,12 @@ class BreadcrumbsComponent(BaseComponent):
         current_locator = self.current_page.get_locator()
         href_value = current_locator.get_attribute("href")
         logger.info("Проверка, атрибут 'href' елемента текущей хлебной крошки")
-        assert (
-            href_value is None
-        ), f"Текущая страница имеет атрибут 'href' со значением: {href_value}"
+        assert href_value is None, (
+            f"Текущая страница имеет атрибут 'href' со значением: {href_value}"
+        )
         tag_name = current_locator.evaluate("el => el.tagName.toLowerCase()")
 
         logger.info("Проверка, что элемент текущей хлебной крошки не является ссылкой")
-        assert (
-            tag_name != "a"
-        ), f"Текущая страница является ссылкой (<a>), что недопустимо. Тег: <{tag_name}>"
+        assert tag_name != "a", (
+            f"Текущая страница является ссылкой (<a>), что недопустимо. Тег: <{tag_name}>"
+        )

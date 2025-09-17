@@ -1,15 +1,15 @@
 import allure
 from playwright.sync_api import Page
 
-from src.ui.components.navigation.breadcrambs_component import BreadcrumbsComponent
-from src.ui.locators import VacanciesListLocators
-from src.ui.pages.base_page import BasePage
-from src.ui.components.navigation.navbar_component import NavbarComponent
 from src.ui.components.empty_view_component import EmptyViewComponent
 from src.ui.components.filters.filter_component import FilterVacanciesComponent
 from src.ui.components.footer_component import FooterComponent
 from src.ui.components.header_component import HeaderComponent
+from src.ui.components.navigation.breadcrambs_component import BreadcrumbsComponent
+from src.ui.components.navigation.navbar_component import NavbarComponent
 from src.ui.components.vacancies.vacancies_list_component import VacanciesListComponent
+from src.ui.locators import VacanciesListLocators
+from src.ui.pages.base_page import BasePage
 from src.utils.logger import get_logger
 
 logger = get_logger(__name__.upper())
@@ -29,8 +29,7 @@ class VacanciesPage(BasePage):
 
     @allure.step("Проверка сброса фильтров в меню кнопки 'Фильтр'")
     def verify_filter_reset_functionality(self, checkboxes_to_choose: list[str]):
-        """
-        Проверяет, что выбранные фильтры корректно сбрасываются при нажатии кнопки "Сбросить".
+        """Проверяет, что выбранные фильтры корректно сбрасываются при нажатии кнопки "Сбросить".
 
         Args:
             checkboxes_to_choose (list[str]): Список меток чекбоксов для выбора (например, ["От 1 года до 3 лет"]).
@@ -51,8 +50,7 @@ class VacanciesPage(BasePage):
 
     @allure.step("Проверка применения фильтров в меню кнопки 'Фильтр'")
     def apply_specified_filters_and_verify(self, checkboxes_to_choose: list[str]):
-        """
-        Применяет указанные фильтры и проверяет, что они отображаются в меню фильтров.
+        """Применяет указанные фильтры и проверяет, что они отображаются в меню фильтров.
 
         Args:
             checkboxes_to_choose (list[str]): Список меток чекбоксов для выбора (например, ["От 1 года до 3 лет"]).
@@ -77,14 +75,9 @@ class VacanciesPage(BasePage):
             VacanciesListLocators.VACANCY_CARDS[0], initial_count_of_vacancies
         )
 
-    @allure.step(
-        "Проверка фильтрации вакансий при переключении по всем вкладкам категорий"
-    )
+    @allure.step("Проверка фильтрации вакансий при переключении по всем вкладкам категорий")
     def verify_filtering_by_all_category_tabs(self):
-        """
-        Проверяет фильтрацию вакансий при переключении по всем вкладкам категорий.
-
-        """
+        """Проверяет фильтрацию вакансий при переключении по всем вкладкам категорий."""
         initial_count = self.vacancies_list.get_vacancies_count()
 
         for tab in self.filter_bar.tabs:

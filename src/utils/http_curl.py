@@ -2,8 +2,7 @@ from httpx import Request, RequestNotRead
 
 
 def make_curl_request(request: Request) -> str:
-    """
-    Функция преобразует httpx.Request в curl-запрос.
+    """Функция преобразует httpx.Request в curl-запрос.
 
     Args:
         request (Request): Объект httpx.Request.

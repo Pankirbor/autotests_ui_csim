@@ -1,21 +1,33 @@
+"""Базовый класс для UI-элементов веб-интерфейса.
+
+Предоставляет унифицированный интерфейс для взаимодействия с элементами интерфейса сайта,
+включая поиск по data-testid и XPath, проверку видимости, текста, классов, а также интеграцию с:
+- Allure для отчётов
+- UI Coverage Tool для измерения покрытия интерфейса
+- Кастомным логгером и обработкой ошибок
+
+Класс `BaseElement` служит основой для всех элементов интерфейса (кнопок, полей, заголовков и т.д.),
+обеспечивая:
+- Единый способ локации элементов
+- Автоматическое логирование действий
+- Трекинг покрытия UI для анализа качества тестирования
+"""
+
 from typing import Self
 
 import allure
-
-from playwright.sync_api import Page, Locator, expect
+from playwright.sync_api import Locator, Page, expect
 from ui_coverage_tool import ActionType, SelectorType
 
-from src.ui.elements.ui_coverage import tracker
 from src.core.exceptions import LocatorNotFoundError
+from src.ui.elements.ui_coverage import tracker
 from src.utils.logger import get_logger
-
 
 logger = get_logger(__name__.upper())
 
 
 class BaseElement:
-    """
-    Базовый класс для элементов пользовательского интерфейса.
+    """Базовый класс для элементов пользовательского интерфейса.
 
     Этот класс предоставляет общие методы для взаимодействия с элементами на веб-странице:
     получение локатора, клик, проверка видимости и текстового содержимого.
@@ -35,13 +47,13 @@ class BaseElement:
     def __init__(
         self, page: Page, locator_path: str, name: str, use_xpath: bool = False
     ) -> None:
-        """
-        Инициализирует базовый элемент.
+        """Инициализирует базовый элемент.
 
         Args:
             page (Page): Экземпляр страницы браузера.
             locator_path (str): Путь к локатору элемента.
             name (str): Название элемента.
+            use_xpath (bool): Флаг использования XPath для поиска элемента.
         """
         self.page = page
         self.locator_path = locator_path
@@ -50,8 +62,7 @@ class BaseElement:
 
     @classmethod
     def by_test_id(cls, page: Page, test_id: str, name: str) -> Self:
-        """
-        Создает элемент для поиска по data-testid.
+        """Создает элемент для поиска по data-testid.
 
         Args:
             page (Page): Экземпляр страницы браузера.
@@ -65,8 +76,7 @@ class BaseElement:
 
     @classmethod
     def by_xpath(cls, page: Page, xpath: str, name: str) -> Self:
-        """
-        Создает элемент для поиска по XPath.
+        """Создает элемент для поиска по XPath.
 
         Args:
             page (Page): Экземпляр страницы браузера.
@@ -80,8 +90,7 @@ class BaseElement:
 
     @property
     def type_of(self) -> str:
-        """
-        Возвращает тип элемента в нижнем регистре.
+        """Возвращает тип элемента в нижнем регистре.
 
         Returns:
             str: Тип элемента в нижнем регистре.
@@ -89,8 +98,7 @@ class BaseElement:
         return self.__class__.__name__
 
     def get_locator(self, nth: int = 0, **kwargs) -> Locator:
-        """
-        Возвращает локатор элемента, используя переданные параметры для форматирования пути.
+        """Возвращает локатор элемента, используя переданные параметры для форматирования пути.
 
         Args:
             nth (int): Индекс элемента, если на странице несколько одинаковых элементов.
@@ -126,8 +134,8 @@ class BaseElement:
                 raise LocatorNotFoundError(error_msg) from e
 
     def get_raw_locator(self, nth: int = 0, **kwargs) -> str:
-        """
-        Возвращает строковый путь локатора элемента.
+        """Возвращает строковый путь локатора элемента.
+
         Если в локаторе есть переменные, они заменяются на значения из kwargs.
 
         Args:
@@ -145,8 +153,7 @@ class BaseElement:
         return f"//*[@data-testid='{formatted_selector}'][{nth + 1}]"
 
     def track_coverage(self, action_type: ActionType, nth: int = 0, **kwargs) -> None:
-        """
-        Отправляет информацию о выполнении действия в трекер.
+        """Отправляет информацию о выполнении действия в трекер.
 
         Args:
             action_type (ActionType): Тип действия (клик, ввод, проверка).
@@ -160,8 +167,7 @@ class BaseElement:
         )
 
     def click(self, nth: int = 0, **kwargs) -> None:
-        """
-        Выполняет клик по элементу.
+        """Выполняет клик по элементу.
 
         Args:
             nth (int): Индекс элемента, если на странице несколько одинаковых элементов.
@@ -175,8 +181,7 @@ class BaseElement:
         self.track_coverage(ActionType.CLICK, nth, **kwargs)
 
     def check_visible(self, nth: int = 0, **kwargs) -> Self:
-        """
-        Проверяет, что элемент отображается на странице.
+        """Проверяет, что элемент отображается на странице.
 
         Returns:
             Self: Экземпляр текущего объекта для цепочки вызовов.
@@ -190,11 +195,12 @@ class BaseElement:
         return self
 
     def check_contain_text(self, text: str, nth: int = 0, **kwargs) -> None:
-        """
-        Проверяет, что элемент содержит указанный текст.
+        """Проверяет, что элемент содержит указанный текст.
 
         Args:
             text (str): Ожидаемый текст в элементе.
+            nth (int): Индекс элемента, если на странице несколько одинаковых элементов.
+            **kwargs: Дополнительные параметры для форматирования локатора.
         """
         step = f"Проверка, что {self.type_of} '{self.name}' имеет текст '{text}'"
         with allure.step(step):
@@ -204,11 +210,12 @@ class BaseElement:
         self.track_coverage(ActionType.TEXT, nth, **kwargs)
 
     def check_contains_class(self, class_name: str, nth: int = 0, **kwargs) -> None:
-        """
-        Проверяет, что элемент содержит указанный класс.
+        """Проверяет, что элемент содержит указанный класс.
 
         Args:
             class_name (str): Имя класса, который должен присутствовать в элементе.
+            nth (int): Индекс элемента, если на странице несколько одинаковых элементов.
+            **kwargs: Дополнительные параметры для форматирования локатора.
         """
         step = (
             f"Проверка, что {self.type_of} '{self.name}' содкржит класс '{class_name}'"

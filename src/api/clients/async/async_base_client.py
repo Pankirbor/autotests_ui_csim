@@ -1,15 +1,14 @@
 from typing import Any
 
 import allure
-from httpx import AsyncClient, Response, QueryParams, URL
+from httpx import URL, AsyncClient, QueryParams, Response
 
 
 class AsyncApiClient:
     """Асинхронный клиент для взаимодействия с внешним API."""
 
     def __init__(self, client: AsyncClient):
-        """
-        Инициализирует экземпляр класса AsyncApiClient.
+        """Инициализирует экземпляр класса AsyncApiClient.
 
         Args:
             client (AsyncClient): Асинхронный клиент HTTP.
@@ -18,8 +17,7 @@ class AsyncApiClient:
 
     @allure.step("Отправляем GET-запрос на {url}")
     async def get(self, url: URL | str, params: QueryParams | None = None) -> Response:
-        """
-        Асинхронно отправляет HTTP GET-запрос на указанный URL.
+        """Асинхронно отправляет HTTP GET-запрос на указанный URL.
 
         Args:
             url (URL | str): Адрес, по которому выполняется запрос.
@@ -38,8 +36,7 @@ class AsyncApiClient:
         data: Any | None = None,
         files: Any | None = None,
     ) -> Response:
-        """
-        Асинхронно отправляет HTTP POST-запрос на указанный URL.
+        """Асинхронно отправляет HTTP POST-запрос на указанный URL.
 
         Args:
             url (URL | str): Адрес, по которому выполняется запрос.
@@ -54,8 +51,7 @@ class AsyncApiClient:
 
     @allure.step("Отправляем PATCH-запрос на {url}")
     async def patch(self, url: URL | str, json: Any | None = None) -> Response:
-        """
-        Асинхронно отправляет HTTP PATCH-запрос на указанный URL.
+        """Асинхронно отправляет HTTP PATCH-запрос на указанный URL.
 
         Args:
             url (URL | str): Адрес, по которому выполняется запрос.
@@ -64,13 +60,11 @@ class AsyncApiClient:
         Returns:
             Response: Ответ сервера в виде объекта Response.
         """
-
         return await self.client.patch(url=url, json=json)
 
     @allure.step("Отправляем DELETE-запрос на {url}")
     async def delete(self, url: URL | str) -> Response:
-        """
-        Асинхронно отправляет HTTP DELETE-запрос на указанный URL.
+        """Асинхронно отправляет HTTP DELETE-запрос на указанный URL.
 
         Args:
             url (URL | str): Адрес, по которому выполняется запрос.
@@ -78,5 +72,4 @@ class AsyncApiClient:
         Returns:
             Response: Ответ сервера в виде объекта Response.
         """
-
         return await self.client.delete(url=url)

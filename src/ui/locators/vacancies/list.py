@@ -2,6 +2,8 @@ from src.ui.locators.base import UILocator
 
 
 class VacanciesListLocators:
+    """Локаторы для списка вакансий."""
+
     CONTAINER = UILocator(
         selector="//article[@class='post']//div[@class='row']",
         description="Блок со списком вакансий",

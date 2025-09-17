@@ -2,8 +2,7 @@ from pprint import pprint
 
 
 def print_dict(data: dict, title: str = "", message: str = "") -> None:
-    """
-    Красивый вывод словаря с заголовком и сообщением.
+    """Красивый вывод словаря с заголовком и сообщением.
 
     Args:
         data: Словарь для вывода.
