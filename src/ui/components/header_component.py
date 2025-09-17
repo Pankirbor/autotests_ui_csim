@@ -6,7 +6,15 @@ from src.ui.locators import HeaderPageLocators
 
 
 class HeaderComponent(BaseComponent):
+    """Класс представления компонента заголовка страницы.
+
+    Attributes:
+        title (Text): заголовок страницы
+        subtitle (Text): подзаголовок страницы
+    """
+
     def __init__(self, page: Page, location: str):
+        """Инициализация компонента заголовка страницы."""
         super().__init__(page)
 
         self.title = Text.by_xpath(
@@ -19,5 +27,7 @@ class HeaderComponent(BaseComponent):
         )
 
     def check_visible(self):
+        """Проверяет, что компонент видим."""
+        super().check_visible()
         self.title.check_visible()
         self.subtitle.check_visible()

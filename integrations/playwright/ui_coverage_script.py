@@ -2,7 +2,7 @@ from playwright.sync_api import Page, Request, Route
 
 
 def add_coverage_script(page: Page):
-    """Динамически добавляет скрипт UI Coverage в каждую страницу"""
+    """Динамически добавляет скрипт UI Coverage в html."""
 
     def inject_coverage_script(route: Route, request: Request):
         if not request.resource_type == "document":

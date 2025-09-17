@@ -16,7 +16,14 @@ logger = get_logger(__name__.upper())
 
 
 class VacanciesPage(BasePage):
+    """Страница списка вакансий."""
+
     def __init__(self, page: Page) -> None:
+        """Инициализирует страницу вакансии.
+
+        Args:
+            page (Page): Экземпляр страницы браузера.
+        """
         super().__init__(page)
         self.nav_bar = NavbarComponent(page)
         self.header = HeaderComponent(page, location="Вакансии")
@@ -32,7 +39,7 @@ class VacanciesPage(BasePage):
         """Проверяет, что выбранные фильтры корректно сбрасываются при нажатии кнопки "Сбросить".
 
         Args:
-            checkboxes_to_choose (list[str]): Список меток чекбоксов для выбора (например, ["От 1 года до 3 лет"]).
+            checkboxes_to_choose (list[str]): Список меток чекбоксов для выбора.
 
         """
         filter_menu = self.filter_bar.filter_menu
@@ -53,7 +60,7 @@ class VacanciesPage(BasePage):
         """Применяет указанные фильтры и проверяет, что они отображаются в меню фильтров.
 
         Args:
-            checkboxes_to_choose (list[str]): Список меток чекбоксов для выбора (например, ["От 1 года до 3 лет"]).
+            checkboxes_to_choose (list[str]): Список меток чекбоксов для выбора.
         """
         initial_count_of_vacancies = self.vacancies_list.get_vacancies_count()
 

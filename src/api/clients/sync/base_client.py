@@ -41,7 +41,7 @@ class ApiClient:
         Args:
             url (URL | str): Адрес, по которому выполняется запрос.
             json: Any | None: Данные в формате JSON.
-            data: RequestData | None: Форматированные данные формы (например, application/x-www-form-urlencoded).
+            data: RequestData | None: Форматированные данные формы.
             files: RequestFile | None: Файлы для загрузки на сервер.
 
         Returns:

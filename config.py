@@ -1,6 +1,6 @@
 from enum import Enum
 from pathlib import Path
-from typing import Any, List, Optional, Self
+from typing import Any, Optional, Self
 
 from pydantic import BaseModel, DirectoryPath, EmailStr, Field, FilePath, HttpUrl
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -59,6 +59,7 @@ class HTTPClientConfig(BaseModel):
 
     @property
     def url_as_string(self) -> str:
+        """Возвращает базовый URL в виде строки."""
         return f"{self.base_url}"
 
 
@@ -74,7 +75,7 @@ class UISettings(BaseModel):
 
     app_url: HttpUrl
     headless: bool = Field(default=True)
-    browsers: List[Browser] = Field(default=[Browser.CHROMIUM])
+    browsers: list[Browser] = Field(default=[Browser.CHROMIUM])
     default_browser: Browser = Field(default=Browser.CHROMIUM)
     viewport_width: int = Field(default=1920)
     viewport_height: int = Field(default=1080)

@@ -2,11 +2,18 @@ from faker import Faker
 
 
 class Fake:
+    """Класс для генерации случайных данных.
+
+    Attributes:
+        faker (Faker): Объект для генерации случайных данных.
+    """
+
     def __init__(self, faker: Faker):
+        """Инициализирует объект Fake."""
         self.faker = faker
 
     def text(self) -> str:
-        """Генерирует случайный текст
+        """Генерирует случайный текст.
 
         Returns:
             str: Сгенерированный текст

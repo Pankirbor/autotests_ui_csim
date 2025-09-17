@@ -9,7 +9,20 @@ from src.ui.routes import AppRoute
 
 
 class NavbarComponent(BaseComponent):
+    """Класс представления навбара на веб-странице.
+
+    Attributes:
+        logo (Icon): иконка логотипа
+        about_tab (Tab): таб "О Нас"
+        materials_tab (Tab): таб "Материалы"
+        news_tab (Tab): таб "Новости"
+        vacancies_tab (Tab): таб "Вакансии"
+        contacts_tab (Tab): таб "Контакты"
+        search (SearchComponent): компонент поиска
+    """
+
     def __init__(self, page):
+        """Инициализирует экземпляр класса."""
         super().__init__(page)
 
         self.logo = Icon.by_xpath(page, *NavBarLocators.LOGO)
@@ -21,6 +34,8 @@ class NavbarComponent(BaseComponent):
         self.search = SearchComponent(page)
 
     def check_visible(self):
+        """Проверяет, что все элементы навбара отображаются на странице."""
+        super().check_visible()
         for component in [
             self.logo,
             self.about_tab,

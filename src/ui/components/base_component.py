@@ -37,7 +37,7 @@ class BaseComponent:
         Args:
             url (Pattern[str]): Регулярное выражение или строка ожидаемого URL.
         """
-        step = f"Checking that current url matches pattern '{url.pattern}'"
+        step = f"Проверка соответствия текущего URL-адреса шаблону '{url.pattern}'"
         with allure.step(step):
             logger.info(step)
             expect(self.page).to_have_url(url)
@@ -58,7 +58,7 @@ class BaseComponent:
 
         Args:
             locator (Locator): Локатор поля ввода.
-            value (str): Ожидаемое значение в поле ввода.
+            text (str): Ожидаемое значение в поле ввода.
         """
         expect(locator).to_be_visible()
         if text:

@@ -14,16 +14,40 @@ logger = get_logger(__name__.upper())
 
 
 class VacancyResponseFormComponent(BaseComponent):
+    """Компонент формы отклика на вакансию.
+
+    Attributes:
+        page (Page): Экземпляр страницы Playwright.
+        name_input (Input): Поле ввода имени.
+        email_input (Input): Поле ввода email.
+        phone_input (Input): Поле ввода телефона.
+        resume_link_input (Input): Поле ввода ссылки на резюме.
+        submit_button (Button): Кнопка отправки формы.
+        fill_name_error_message (Text): Текст ошибки под полем 'Имя'.
+        fill_email_error_message (Text): Текст ошибки под полем 'Email'.
+        fill_phone_error_message (Text): Текст ошибки под полем 'Телефон'.
+        fill_resume_link_error_message (Text): Текст ошибки под полем 'Ссылка на резюме'.
+    """
+
     def __init__(self, page: Page):
+        """Инициализирует компонент формы отклика на вакансию."""
         super().__init__(page)
 
-        self.name_input = Input.by_xpath(page, *VacancyResponseFormLocators.FULL_NAME_INPUT)
-        self.email_input = Input.by_xpath(page, *VacancyResponseFormLocators.EMAIL_INPUT)
-        self.phone_input = Input.by_xpath(page, *VacancyResponseFormLocators.PHONE_INPUT)
+        self.name_input = Input.by_xpath(
+            page, *VacancyResponseFormLocators.FULL_NAME_INPUT
+        )
+        self.email_input = Input.by_xpath(
+            page, *VacancyResponseFormLocators.EMAIL_INPUT
+        )
+        self.phone_input = Input.by_xpath(
+            page, *VacancyResponseFormLocators.PHONE_INPUT
+        )
         self.resume_link_input = Input.by_xpath(
             page, *VacancyResponseFormLocators.RESUME_LINK_INPUT
         )
-        self.submit_button = Button.by_xpath(page, *VacancyResponseFormLocators.SUBMIT_BUTTON)
+        self.submit_button = Button.by_xpath(
+            page, *VacancyResponseFormLocators.SUBMIT_BUTTON
+        )
         self.fill_name_error_message = Text.by_xpath(
             page, *VacancyResponseFormLocators.FULL_NAME_ERROR
         )
@@ -38,10 +62,12 @@ class VacancyResponseFormComponent(BaseComponent):
         )
 
     def fill_phone(self, value: str) -> Self:
+        """Заполняет поле номера телефона."""
         self.phone_input.fill(value)
         return self
 
     def fill_email(self, value: str) -> Self:
+        """Заполняет поле email."""
         self.email_input.fill(value)
         return self
 
@@ -51,6 +77,7 @@ class VacancyResponseFormComponent(BaseComponent):
         return self
 
     def submit(self) -> None:
+        """Отправляет форму отклика на вакансию."""
         step = "Отправка формы отклика на вакансию"
         with allure.step(step):
             logger.info(step)
@@ -73,7 +100,9 @@ class VacancyResponseFormComponent(BaseComponent):
         self.email_input.check_have_value("")
         self.resume_link_input.check_have_value("")
 
-    def fill_form(self, full_name: str, phone: str, email: str, resume_link: str = "") -> Self:
+    def fill_form(
+        self, full_name: str, phone: str, email: str, resume_link: str = ""
+    ) -> Self:
         """Заполняет форму отклика на вакансию.
 
         Args:
@@ -101,34 +130,49 @@ class VacancyResponseFormComponent(BaseComponent):
         with allure.step(step):
             logger.info(step)
             expect(
-                self.page.frame_locator(VacancyResponseFormLocators.SMART_CAPTCHA_IFRAME)
+                self.page.frame_locator(
+                    VacancyResponseFormLocators.SMART_CAPTCHA_IFRAME
+                )
             ).to_be_visible(timeout=timeout)
 
     def check_full_name_error_message(self, expected_text: str) -> None:
         """Проверяет текст ошибки под полем 'Имя'."""
-        step = f"Проверка сообщения об ошибке под полем '{self.full_name_input.name}': '{expected_text}'"
+        step = (
+            f"Проверка сообщения об ошибке под полем '{self.full_name_input.name}'"
+            f": '{expected_text}'"
+        )
         with allure.step(step):
             logger.info(step)
-            self.check_full_name_error_message.check_visible().check_have_text(expected_text)
+            self.check_full_name_error_message.check_visible().check_have_text(
+                expected_text
+            )
 
     def check_email_error_message(self, expected_text: str) -> None:
+        """Проверяет текст ошибки под полем 'Email'."""
         step = (
-            f"Проверка сообщения об ошибке под полем '{self.email_input.name}': '{expected_text}'"
+            f"Проверка сообщения об ошибке под полем '{self.email_input.name}'"
+            f": '{expected_text}'"
         )
         with allure.step(step):
             logger.info(step)
             self.fill_email_error_message.check_visible().check_have_text(expected_text)
 
     def check_phone_error_message(self, expected_text: str) -> None:
+        """Проверяет текст ошибки под полем 'Телефон'."""
         step = (
-            f"Проверка сообщения об ошибке под полем '{self.phone_input.name}': '{expected_text}'"
+            f"Проверка сообщения об ошибке под полем '{self.phone_input.name}'"
+            f": '{expected_text}'"
         )
         with allure.step(step):
             logger.info(step)
             self.fill_phone_error_message.check_visible().check_have_text(expected_text)
 
     def check_resume_link_error_message(self, expected_text: str) -> None:
-        step = f"Проверка сообщения об ошибке под полем '{self.resume_link_input.name}': '{expected_text}'"
+        """Проверяет текст ошибки под полем 'Ссылка на резюме'."""
+        step = (
+            f"Проверка сообщения об ошибке под полем '{self.resume_link_input.name}'"
+            f": '{expected_text}'"
+        )
         with allure.step(step):
             logger.info(step)
             self.resume_link_input.check_visible().check_contain_text(expected_text)

@@ -1,4 +1,4 @@
-from .epic import AllureEpic
-from .features import AllureFeature
-from .stories import AllureStoryApi, AllureStoryUi
-from .tags import AllureTagApi, AllureTagUi
+from .epic import AllureEpic  # noqa
+from .features import AllureFeature  # noqa
+from .stories import AllureStoryApi, AllureStoryUi  # noqa
+from .tags import AllureTagApi, AllureTagUi  # noqa

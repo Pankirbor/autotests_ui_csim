@@ -16,8 +16,17 @@ logger = get_logger(__name__.upper())
 class VacancyFiltersMenuComponent(BaseComponent):
     """Компонент меню фильтров вакансий.
 
-    Предоставляет методы для взаимодействия с чекбоксами фильтров, кнопками "Сбросить" и "Применить",
+    Предоставляет методы для взаимодействия с чекбоксами фильтров,
+    кнопками "Сбросить" и "Применить",
     а также для проверки состояния и содержимого меню.
+
+    Atributes:
+        page (Page): Экземпляр страницы Playwright.
+        container (Container): Контейнер меню фильтров.
+        experience_checkboxes (list[Checkbox]): Список чекбоксов для группы "Опыт работы".
+        employment_checkboxes (list[Checkbox]): Список чекбоксов для группы "Занятость".
+        schedule_checkboxes (list[Checkbox]): Список чекбоксов для группы "График работы".
+        all_checkboxes_by_label (dict[str, Checkbox]): Словарь всех чекбоксов.
     """
 
     def __init__(self, page: Page):
@@ -137,7 +146,9 @@ class VacancyFiltersMenuComponent(BaseComponent):
     @allure.step("Проверка отображения меню фильтров")
     def check_visible(self, nth: int = 0, **kwargs):
         """Проверяет, что меню фильтров отображается."""
-        self.container.get_locator(nth, **kwargs).wait_for(state="visible", timeout=10000)
+        self.container.get_locator(nth, **kwargs).wait_for(
+            state="visible", timeout=10000
+        )
         self.container.check_visible()
         self.check_expected_checkboxes()
         return self
@@ -149,6 +160,7 @@ class VacancyFiltersMenuComponent(BaseComponent):
 
     @allure.step("Проверка отображения чекбоксов меню фильтров")
     def check_expected_checkboxes(self):
+        """Проверяет, что все чекбоксы меню фильтров отображаются."""
         checkboxes = [
             *self.employment_checkboxes,
             *self.experience_checkboxes,
@@ -168,6 +180,15 @@ class VacancyFiltersMenuComponent(BaseComponent):
 
     @allure.step("Выбор фильтров по лейблам {filters}")
     def select_filters(self, filters: list[str]) -> Self:
+        """Выбирает указанные фильтры.
+
+        Args:
+            filters (list[str]): Список меток чекбоксов
+            (например, ["Полная", "От 1 года до 3 лет"]).
+
+        Returns:
+            Self: Экземпляр текущего объекта для цепочки вызовов.
+        """
         for label in filters:
             checkbox = self.get_checkbox_by_label(label)
             checkbox.check()
@@ -179,7 +200,8 @@ class VacancyFiltersMenuComponent(BaseComponent):
         """Проверяет, что указанные чекбоксы отмечены.
 
         Args:
-            filters (list[str]): Список меток чекбоксов (например, ["Полная", "От 1 года до 3 лет"]).
+            filters (list[str]): Список меток чекбоксов
+            (например, ["Полная", "От 1 года до 3 лет"]).
 
         Returns:
             Self: Экземпляр текущего объекта для цепочки вызовов.

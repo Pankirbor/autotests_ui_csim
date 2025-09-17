@@ -87,6 +87,7 @@ jobs:
 
       # 📊 9. Генерация coverage-отчёта
       - name: 📊 Generate Coverage report
+        if: always()
         run: |
           echo "📊 Generating UI Coverage report..."
           ui-coverage-tool save-report

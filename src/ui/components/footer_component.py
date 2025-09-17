@@ -22,40 +22,45 @@ class FooterComponent(BaseComponent):
     """
 
     def __init__(self, page: Page):
+        """Инициализация компонента футера."""
         super().__init__(page)
 
         self.info = Text.by_xpath(page, *FooterLocators.INFO)
-        self.user_agreement_link = Link.by_xpath(page, *FooterLocators.USER_AGREEMENT_LINK)
-        self.privacy_policy_link = Link.by_xpath(page, *FooterLocators.PRIVACY_POLICY_LINK)
+        self.user_agreement_link = Link.by_xpath(
+            page, *FooterLocators.USER_AGREEMENT_LINK
+        )
+        self.privacy_policy_link = Link.by_xpath(
+            page, *FooterLocators.PRIVACY_POLICY_LINK
+        )
         self.main_page_link = Link.by_xpath(page, *FooterLocators.MAIN_PAGE_LINK)
         self.footer_icon = Icon.by_xpath(page, *FooterLocators.ICON)
 
     def should_contain_copyright(self, years="2018 - 2025") -> Self:
-        """Проверяет наличие копирайта"""
+        """Проверяет наличие копирайта."""
         self.info.check_contain_text(f"© {years}")
         return self
 
     def should_contain_inn(self, inn="9709037529") -> Self:
-        """Проверяет наличие ИНН"""
+        """Проверяет наличие ИНН."""
         self.info.check_contain_text(f"ИНН: {inn}")
         return self
 
     def should_have_all_links(self) -> Self:
-        """Проверяет наличие всех ссылок"""
+        """Проверяет наличие всех ссылок."""
         self.user_agreement_link.check_visible()
         self.privacy_policy_link.check_visible()
         self.main_page_link.check_visible()
         return self
 
     def should_have_icon(self) -> Self:
-        """Проверяет наличие иконки"""
+        """Проверяет наличие иконки."""
         self.footer_icon.check_visible()
         self.footer_icon.check_visible()
         return self
 
     @allure.step("Проверка наличия всех элементов в футере")
     def check_visible(self) -> Self:
-        """Проверяет, что все элементы футера видимы"""
+        """Проверяет, что все элементы футера видимы."""
         (
             self.should_contain_copyright()
             .should_contain_inn()
@@ -67,6 +72,6 @@ class FooterComponent(BaseComponent):
 
     @allure.step("Проверка перехода на главную страницу")
     def navigate_to_main_page(self):
-        """Проверяет переход на главную страницу"""
+        """Проверяет переход на главную страницу."""
         self.main_page_link.check_visible().click()
         self.check_current_url("/")

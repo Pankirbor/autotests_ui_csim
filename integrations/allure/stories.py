@@ -2,6 +2,8 @@ from enum import Enum
 
 
 class AllureStoryApi(str, Enum):
+    """Enum, представляющий истории Allure для API-тестов."""
+
     LOGIN = "Login"
 
     GET_ENTITY = "Get entity"
@@ -13,7 +15,11 @@ class AllureStoryApi(str, Enum):
 
 
 class AllureStoryUi(str, Enum):
-    PAGE_LOADS_CORRECTLY = "Страница загружается корректно и отображает все ключевые элементы"
+    """Enum, представляющий истории Allure для UI-тестов."""
+
+    PAGE_LOADS_CORRECTLY = (
+        "Страница загружается корректно и отображает все ключевые элементы"
+    )
     # Глобальная Навигация (шапка)
     CLICK_HEADER_LOGO = "Клик по логотипу в шапке ведет на главную"
     NAVIGATE_TO_PAGES = "Переход на страницы  через навигацию"
@@ -26,9 +32,13 @@ class AllureStoryUi(str, Enum):
     SELECT_CATEGORY_FROM_DROPDOWN = "Выбор категории из выпадающего списка (селекта)"
     # Страница Вакансий: Расширенные фильтры
     OPEN_ADVANCED_FILTERS = "Открытие панели расширенных фильтров"
-    APPLY_EXPERIENCE_FILTER = "Применение фильтра по опыту работы (например, 'От 3 до 6 лет')"
+    APPLY_EXPERIENCE_FILTER = (
+        "Применение фильтра по опыту работы (например, 'От 3 до 6 лет')"
+    )
     APPLY_EMPLOYMENT_FILTER = "Применение фильтра по занятости (например, 'Полная')"
-    APPLY_SCHEDULE_FILTER = "Применение фильтра по графику работы (например, 'Удаленная работа')"
+    APPLY_SCHEDULE_FILTER = (
+        "Применение фильтра по графику работы (например, 'Удаленная работа')"
+    )
     EXTENDED_FILTER_FUNCTIONALITY = "Проверка функциональности расширенных фильтров"
     # Страница Вакансий: Сортировка
     CLICK_SORT_BUTTON = "Клик по кнопке сортировки 'Сначала новые'"
