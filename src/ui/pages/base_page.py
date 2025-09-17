@@ -2,6 +2,7 @@ from re import Pattern
 
 import allure
 from playwright.sync_api import Page, expect
+import pytest
 
 from src.ui.locators.cookies import CookiesLocators
 from src.utils.logger import get_logger
@@ -54,6 +55,7 @@ class BasePage:
         with allure.step(step):
             logger.info(step)
             self.page.goto(url, wait_until="networkidle", timeout=50000)
+            self._check_for_captcha_page()
             self.accept_cookies_if_present()
 
     def reload(self) -> None:
@@ -73,3 +75,32 @@ class BasePage:
         with allure.step(step):
             logger.info(step)
             expect(self.page).to_have_url(expected_url)
+
+    def _check_for_captcha_page(self) -> None:
+        """
+        Проверяет, открылась ли страница защиты от ботов (CAPTCHA).
+
+        Если обнаружена — пропускает тест с понятным сообщением и прикрепляет скриншот кAllure.
+        """
+        # Получаем содержимое страницы
+        page_content = self.page.content()
+
+        # Ищем ключевые фразы
+        captcha_patterns = [
+            "Checking your browser before accessing cism-ms.ru",
+            "Sorry, we could not verify your browser automatically",
+            "Complete the manual check to continue",
+        ]
+
+        if any(pattern in page_content for pattern in captcha_patterns):
+            logger.warning("⚠️ Обнаружена CAPTCHA-страница")
+            screenshot = self.page.screenshot()
+            allure.attach(
+                screenshot,
+                name="CAPTCHA PageDetected",
+                attachment_type=allure.attachment_type.PNG,
+            )
+            pytest.skip(
+                "Тест пропущен: обнаружена страница защиты от ботов. "
+                "Сайт блокирует автоматизированные запросы с IP GitHub Actions. "
+            )

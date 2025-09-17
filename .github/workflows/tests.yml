@@ -63,8 +63,14 @@ jobs:
           python -m pip install --upgrade pip
           echo "📦 Installing requirements..."
           pip install -r requirements.txt
-          echo "🤖 Installing Playwright browsers..."
-          playwright install --with-deps
+
+          if [ ! -d ~/.cache/ms-playwright/chromium-* ]; then
+            echo "🤖 Installing Playwright browsers..."
+            playwright install --with-deps
+          else
+            echo "✅ Playwright browsers already cached — skipping install"
+          fi
+
           echo -e "\033[32m✅ Dependencies installed\033[0m"
 
       # 7. Запуск тестов с генерацией Allure-результатов
