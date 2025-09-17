@@ -40,6 +40,7 @@ def playwright_page_builder(
         storage_state=state,
         record_video_dir=settings.ui.videos_path,
         base_url=settings.get_ui_base_url(),
+        bypass_csp=True,
     )
     context.tracing.start(
         name=test_name, screenshots=True, snapshots=True, sources=True

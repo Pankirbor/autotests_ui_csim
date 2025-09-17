@@ -38,7 +38,7 @@ class Input(BaseElement):
         Возвращает:
             Self: Экземпляр текущего объекта для цепочки вызовов.
         """
-        step = f"Fill {self.type_of} '{self.name}' to value '{value}'"
+        step = f"Заполняем {self.type_of} '{self.name}' значением: '{value}'"
         with allure.step(step):
             logger.info(step)
             self.get_locator(nth, **kwargs).fill(value)
@@ -55,7 +55,7 @@ class Input(BaseElement):
             nth (int): Индекс элемента, если на странице несколько одинаковых полей.
             **kwargs: Дополнительные параметры для форматирования локатора.
         """
-        step = f"Checking that {self.type_of} '{self.name}' has a value '{value}'"
+        step = f"Проверка, что {self.type_of} '{self.name}' имеет значение '{value}'"
         with allure.step(step):
             locator = self.get_locator(nth, **kwargs)
             logger.info(step)
@@ -74,7 +74,7 @@ class Input(BaseElement):
         Возвращает:
             Self: Экземпляр текущего объекта для цепочки вызовов.
         """
-        step = f"Clearing a {self.type_of} '{self.name}' of values"
+        step = f"Очищение {self.type_of} '{self.name}' от содержимого"
         with allure.step(step):
             locator = self.get_locator(nth, **kwargs)
             logger.info(step)
@@ -105,7 +105,7 @@ class Input(BaseElement):
         Возвращает:
             Self: Экземпляр текущего объекта для цепочки вызовов.
         """
-        step = f"Fill {self.type_of} '{self.name}' to value {text} with delayed typing"
+        step = f"Заполнение {self.type_of} '{self.name}' значением {text} с задержкой {delay}"
         with allure.step(step):
             locator = self.get_locator(nth, **kwargs)
             logger.info(step)

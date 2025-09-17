@@ -31,7 +31,7 @@ class Button(BaseElement):
             nth (int): Индекс элемента, если на странице несколько одинаковых кнопок.
             **kwargs: Дополнительные параметры для форматирования локатора.
         """
-        step = f"Checking that {self.type_of} '{self.name}' is enabled"
+        step = f"Проверка, что  {self.type_of} '{self.name}' доступна для нажатия"
         with allure.step(step):
             locator = self.get_locator(nth, **kwargs)
             logger.info(step)
@@ -48,7 +48,7 @@ class Button(BaseElement):
             nth (int): Индекс элемента, если на странице несколько одинаковых кнопок.
             **kwargs: Дополнительные параметры для форматирования локатора.
         """
-        step = f"Checking that {self.type_of} '{self.name}' is disabled"
+        step = f"Проверка, что {self.type_of} '{self.name}' недоступна для нажатия"
         with allure.step(step):
             locator = self.get_locator(nth, **kwargs)
             logger.info(step)

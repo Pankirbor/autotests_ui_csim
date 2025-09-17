@@ -100,7 +100,7 @@ class BaseElement:
             Locator: Локатор элемента на странице.
         """
         formatted_selector = self.locator_path.format(**kwargs)
-        step = f"Getting locator with '{formatted_selector}' at index' {nth}'"
+        step = f"Получение локатора '{formatted_selector}' с индексом' {nth}'"
 
         with allure.step(step):
             try:
@@ -167,7 +167,7 @@ class BaseElement:
             nth (int): Индекс элемента, если на странице несколько одинаковых элементов.
             **kwargs: Дополнительные параметры для форматирования локатора.
         """
-        step = f"Clicking {self.type_of} '{self.name}'"
+        step = f"Клик по {self.type_of} '{self.name}'"
         with allure.step(step):
             logger.info(step)
             self.get_locator(nth, **kwargs).click()
@@ -181,7 +181,7 @@ class BaseElement:
         Returns:
             Self: Экземпляр текущего объекта для цепочки вызовов.
         """
-        step = f"Checking that {self.type_of} '{self.name}' is visible"
+        step = f"Проверка, что {self.type_of} '{self.name}' видим"
         with allure.step(step):
             logger.info(step)
             expect(self.get_locator(nth, **kwargs)).to_be_visible()
@@ -196,7 +196,7 @@ class BaseElement:
         Args:
             text (str): Ожидаемый текст в элементе.
         """
-        step = f"Checking that {self.type_of} '{self.name}' has text '{text}'"
+        step = f"Проверка, что {self.type_of} '{self.name}' имеет текст '{text}'"
         with allure.step(step):
             logger.info(step)
             expect(self.get_locator(nth, **kwargs)).to_contain_text(text)

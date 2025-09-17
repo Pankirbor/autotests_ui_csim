@@ -4,6 +4,7 @@ import pytest
 
 from allure_commons.types import Severity
 
+from integrations.playwright.ui_coverage_script import inject_coverage_after_load
 from src.ui.pages.vacancies.vacancies_page import VacanciesPage
 from integrations.allure import AllureEpic, AllureFeature, AllureStoryUi, AllureTagUi
 from src.ui.pages.vacancies.vacancy_page import VacancyDetailPage

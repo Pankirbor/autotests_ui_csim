@@ -9,8 +9,10 @@ def add_coverage_script(page: Page):
             route.continue_()
             return
 
-        response = request.response()
-        if not response:
+        response = route.fetch()
+
+        content_type = response.headers.get("content-type", "")
+        if "text/html" not in content_type:
             route.continue_()
             return
 

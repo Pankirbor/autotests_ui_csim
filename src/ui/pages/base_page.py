@@ -57,7 +57,7 @@ class BasePage:
         Args:
             url (str): Адрес страницы, на которую нужно перейти.
         """
-        step = f"Opening the url: '{url}'"
+        step = f"Переход на страницу: '{url}'"
         with allure.step(step):
             logger.info(step)
             self.page.goto(url, wait_until="networkidle", timeout=50000)
@@ -79,7 +79,7 @@ class BasePage:
         """
         Перезагружает текущую страницу и ждет загрузки контента DOM.
         """
-        step = f"Reload page with url: '{self.page.url}'"
+        step = f"Обновление страницы: '{self.page.url}'"
         with allure.step(step):
             logger.info(step)
             self.page.reload(wait_until="domcontentloaded")
