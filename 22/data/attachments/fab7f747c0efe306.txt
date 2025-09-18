@@ -1,0 +1,3 @@
+INFO     SRC.UI.PAGES.BASE_PAGE:base_page.py:58 Переход на страницу: 'AppRoute.VACANCIES'
+WARNING  SRC.UI.PAGES.BASE_PAGE:base_page.py:91 ⚠️ Обнаружена CAPTCHA-страница на URL: https://cism-ms.ru/vakansii
+WARNING  SRC.UI.PAGES.BASE_PAGE:base_page.py:94 📄 Заголовок страницы: DDOS-GUARD
