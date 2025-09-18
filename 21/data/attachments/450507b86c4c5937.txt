@@ -1,0 +1,6 @@
+INFO     SRC.UI.PAGES.BASE_PAGE:base_page.py:61 Переход на страницу: 'AppRoute.VACANCIES'
+WARNING  SRC.UI.PAGES.BASE_PAGE:base_page.py:67 ⚠️ Обнаружена CAPTCHA-страница на URL: https://cism-ms.ru/vakansii
+WARNING  SRC.UI.PAGES.BASE_PAGE:base_page.py:68 📄 Заголовок страницы: DDOS-GUARD
+WARNING  SRC.UI.PAGES.BASE_PAGE:base_page.py:69 Ошибка TimeoutError: Locator.inner_html: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("//header").first
