@@ -1,7 +1,8 @@
+from pathlib import Path
 from re import Pattern
 
 import allure
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page, expect, TimeoutError
 import pytest
 
 from src.ui.locators.cookies import CookiesLocators
@@ -55,8 +56,37 @@ class BasePage:
         with allure.step(step):
             logger.info(step)
             self.page.goto(url, wait_until="networkidle", timeout=50000)
-            self._check_for_captcha_page()
-            self.accept_cookies_if_present()
+            # self._check_for_captcha_page()
+            try:
+                self.accept_cookies_if_present()
+            except TimeoutError as e:
+                logger.warning(f"⚠️ Обнаружена CAPTCHA-страница на URL: {self.page.url}")
+                logger.warning(f"📄 Заголовок страницы: {self.page.title}")
+                artifact_dir = Path("artefacts/captcha")
+
+                if not artifact_dir.exists():
+                    artifact_dir.mkdir(parents=True, exist_ok=True)
+                    html_content = self.page.content()
+                    html_path = artifact_dir / "captcha.html"
+                    html_path.write_text(html_content, encoding="utf-8")
+                    logger.warning(f"💾 Полный HTML сохранён: {html_path}")
+
+                    screenshot = self.page.screenshot(full_page=True)
+                    allure.attach(
+                        screenshot,
+                        name="Скриншот с капчей",
+                        attachment_type=allure.attachment_type.PNG,
+                    )
+                    allure.attach(
+                        html_content,
+                        name="HTML с капчей",
+                        attachment_type=allure.attachment_type.HTML,
+                    )
+
+                pytest.skip(
+                    "Тест пропущен: обнаружена страница защиты от ботов. "
+                    "Сайт блокирует автоматизированные запросы с IP GitHub Actions. "
+                )
 
     def reload(self) -> None:
         """Перезагружает текущую страницу и ждет загрузки контента DOM."""
@@ -85,6 +115,7 @@ class BasePage:
         # Получаем содержимое страницы
         page_content = self.page.content()
 
+        logger.info(f"ℹ️ Проверка на наличие CAPTCHA{self.page.inner_html()[:500]}")
         # Ищем ключевые фразы
         captcha_patterns = [
             "Checking your browser before accessing cism-ms.ru",

@@ -64,6 +64,9 @@ jobs:
           echo "📦 Installing requirements..."
           pip install -r requirements.txt
 
+          echo -e "\033[34m📊 Cache stats:\033[0m"
+          pip cache info
+
           if [ ! -d ~/.cache/ms-playwright/chromium-* ]; then
             echo "🤖 Installing Playwright browsers..."
             playwright install --with-deps
@@ -123,6 +126,15 @@ jobs:
         with:
           name: allure-results
           path: ${{ env.ALLURE_RESULTS_DIR }}
+
+      # 📤 13. Архивация данных о CAPTCHA
+      - name: 📤 Upload CAPTCHA artifacts on skip/failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: captcha-artifacts
+          path: artifact/captcha/
+          retention-days: 7
 
   # 📊 Публикация Allure-отчёта на GitHub Pages
   publish-report:
