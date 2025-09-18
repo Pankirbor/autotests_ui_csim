@@ -37,7 +37,7 @@ class BasePage:
     def accept_cookies_if_present(self) -> None:
         """Принимает куки, если диалог виден."""
 
-        logger.warning(f"{self.page.locator("//body").inner_html()[:1000]}")
+        logger.warning(f"{self.page.locator('//body').inner_html()[:1000]}")
         cookies_dialog = self.page.locator(CookiesLocators.CONTAINER.selector)
         accept_button = self.page.locator(CookiesLocators.ACCEPT_BUTTON.selector)
 
