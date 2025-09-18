@@ -1,0 +1,1 @@
+INFO     SRC.UI.PAGES.BASE_PAGE:base_page.py:56 Переход на страницу: 'AppRoute.VACANCIES'
