@@ -61,8 +61,9 @@ class BasePage:
                 self.accept_cookies_if_present()
             except Exception as e:
                 logger.warning(f"⚠️ Обнаружена CAPTCHA-страница на URL: {self.page.url}")
-                logger.warning(f"📄 Заголовок страницы: {self.page.title}")
-                logger.warning(e)
+                logger.warning(f"📄 Заголовок страницы: {self.page.title()}")
+                logger.warning(f"Ошибка {type(e).__name__}: {e}")
+                logger.warning(f"{self.page.inner_html()[:500]}")
                 artifact_dir = Path("artifacts/captcha")
 
                 html_files = list(artifact_dir.glob("*.html"))
