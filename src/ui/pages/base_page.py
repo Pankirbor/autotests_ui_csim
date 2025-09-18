@@ -61,38 +61,14 @@ class BasePage:
                 self.accept_cookies_if_present()
             except PlaywrightTimeoutError as e:
                 page_title = self.page.title()
-                # logger.warning(f"Ошибка {type(e).__name__}: {e}")
-                # header = self.page.locator("//header").first
-                # logger.warning(f"HEADER HTML: {header.inner_html()}")
-                # artifact_dir = Path("artifacts/captcha")
-
-                # html_files = list(artifact_dir.glob("*.html"))
-                # should_save = len(html_files) == 0
-
-                # if should_save:
-                #     artifact_dir.mkdir(parents=True, exist_ok=True)
-                #     html_content = self.page.content()
-                #     html_path = artifact_dir / "captcha.html"
-                #     html_path.write_text(html_content, encoding="utf-8")
-                #     logger.warning(f"💾 Полный HTML сохранён: {html_path}")
-
-                #     screenshot = self.page.screenshot(full_page=True)
-                #     allure.attach(
-                #         screenshot,
-                #         name="Скриншот с капчей",
-                #         attachment_type=allure.attachment_type.PNG,
-                #     )
-                #     allure.attach(
-                #         html_content,
-                #         name="HTML с капчей",
-                #         attachment_type=allure.attachment_type.HTML,
-                #     )
                 if page_title.strip() == "DDOS-GUARD":
                     logger.warning(
                         f"⚠️ Обнаружена CAPTCHA-страница на URL: {self.page.url}"
                     )
                     logger.warning(f"📄 Заголовок страницы: {page_title}")
                     pytest.skip("Тест пропущен: обнаружена страница защиты от ботов. ")
+                else:
+                    raise e
 
     def reload(self) -> None:
         """Перезагружает текущую страницу и ждет загрузки контента DOM."""
@@ -111,33 +87,3 @@ class BasePage:
         with allure.step(step):
             logger.info(step)
             expect(self.page).to_have_url(expected_url)
-
-    def _check_for_captcha_page(self) -> None:
-        """
-        Проверяет, открылась ли страница защиты от ботов (CAPTCHA).
-
-        Если обнаружена — пропускает тест с понятным сообщением и прикрепляет скриншот кAllure.
-        """
-        # Получаем содержимое страницы
-        page_content = self.page.content()
-
-        logger.info(f"ℹ️ Проверка на наличие CAPTCHA{self.page.inner_html()[:500]}")
-        # Ищем ключевые фразы
-        captcha_patterns = [
-            "Checking your browser before accessing cism-ms.ru",
-            "Sorry, we could not verify your browser automatically",
-            "Complete the manual check to continue",
-        ]
-
-        if any(pattern in page_content for pattern in captcha_patterns):
-            logger.warning("⚠️ Обнаружена CAPTCHA-страница")
-            screenshot = self.page.screenshot()
-            allure.attach(
-                screenshot,
-                name="CAPTCHA PageDetected",
-                attachment_type=allure.attachment_type.PNG,
-            )
-            pytest.skip(
-                "Тест пропущен: обнаружена страница защиты от ботов. "
-                "Сайт блокирует автоматизированные запросы с IP GitHub Actions. "
-            )
