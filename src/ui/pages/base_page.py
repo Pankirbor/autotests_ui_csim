@@ -59,12 +59,16 @@ class BasePage:
             # self._check_for_captcha_page()
             try:
                 self.accept_cookies_if_present()
-            except TimeoutError as e:
+            except Exception as e:
                 logger.warning(f"⚠️ Обнаружена CAPTCHA-страница на URL: {self.page.url}")
                 logger.warning(f"📄 Заголовок страницы: {self.page.title}")
-                artifact_dir = Path("artefacts/captcha")
+                logger.warning(e)
+                artifact_dir = Path("artifacts/captcha")
 
-                if not artifact_dir.exists():
+                html_files = list(artifact_dir.glob("*.html"))
+                should_save = len(html_files) == 0
+
+                if should_save:
                     artifact_dir.mkdir(parents=True, exist_ok=True)
                     html_content = self.page.content()
                     html_path = artifact_dir / "captcha.html"

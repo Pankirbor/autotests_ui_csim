@@ -133,7 +133,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: captcha-artifacts
-          path: artifact/captcha/
+          path: artifacts/captcha
           retention-days: 7
 
   # 📊 Публикация Allure-отчёта на GitHub Pages
