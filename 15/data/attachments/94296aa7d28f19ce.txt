@@ -1,0 +1,4 @@
+INFO     SRC.UI.PAGES.BASE_PAGE:base_page.py:57 Переход на страницу: 'AppRoute.VACANCIES'
+WARNING  SRC.UI.PAGES.BASE_PAGE:base_page.py:63 ⚠️ Обнаружена CAPTCHA-страница на URL: https://cism-ms.ru/vakansii
+WARNING  SRC.UI.PAGES.BASE_PAGE:base_page.py:64 📄 Заголовок страницы: <bound method Page.title of <Page url='https://cism-ms.ru/vakansii'>>
+WARNING  SRC.UI.PAGES.BASE_PAGE:base_page.py:72 💾 Полный HTML сохранён: artefacts/captcha/captcha.html
