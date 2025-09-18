@@ -36,6 +36,8 @@ class BasePage:
 
     def accept_cookies_if_present(self) -> None:
         """Принимает куки, если диалог виден."""
+
+        logger.warning(f"{self.page.locator("//body").inner_html()[:1000]}")
         cookies_dialog = self.page.locator(CookiesLocators.CONTAINER.selector)
         accept_button = self.page.locator(CookiesLocators.ACCEPT_BUTTON.selector)
 
@@ -63,7 +65,7 @@ class BasePage:
                 logger.warning(f"⚠️ Обнаружена CAPTCHA-страница на URL: {self.page.url}")
                 logger.warning(f"📄 Заголовок страницы: {self.page.title()}")
                 logger.warning(f"Ошибка {type(e).__name__}: {e}")
-                logger.warning(f"{self.page.inner_html()[:500]}")
+                logger.warning(f"{self.page.locator("//body").inner_html()[:500]}")
                 artifact_dir = Path("artifacts/captcha")
 
                 html_files = list(artifact_dir.glob("*.html"))
