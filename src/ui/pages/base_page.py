@@ -65,7 +65,7 @@ class BasePage:
                 logger.warning(f"⚠️ Обнаружена CAPTCHA-страница на URL: {self.page.url}")
                 logger.warning(f"📄 Заголовок страницы: {self.page.title()}")
                 logger.warning(f"Ошибка {type(e).__name__}: {e}")
-                logger.warning(f"{self.page.locator("//body").inner_html()[:500]}")
+                logger.warning(f"{self.page.locator('//body').inner_html()[:500]}")
                 artifact_dir = Path("artifacts/captcha")
 
                 html_files = list(artifact_dir.glob("*.html"))
