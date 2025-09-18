@@ -2,7 +2,7 @@ from pathlib import Path
 from re import Pattern
 
 import allure
-from playwright.sync_api import Page, expect, TimeoutError
+from playwright.sync_api import Page, expect, TimeoutError as PlaywrightTimeoutError
 import pytest
 
 from src.ui.locators.cookies import CookiesLocators
@@ -37,9 +37,6 @@ class BasePage:
     def accept_cookies_if_present(self) -> None:
         """Принимает куки, если диалог виден."""
 
-        header = self.page.locator("//header").first
-        logger.warning(f"HEADER HTML BEFORE ACCEPT COOKIES: {header.inner_html()}")
-
         cookies_dialog = self.page.locator(CookiesLocators.CONTAINER.selector)
         accept_button = self.page.locator(CookiesLocators.ACCEPT_BUTTON.selector)
 
@@ -60,43 +57,42 @@ class BasePage:
         with allure.step(step):
             logger.info(step)
             self.page.goto(url, wait_until="networkidle", timeout=50000)
-            # self._check_for_captcha_page()
             try:
                 self.accept_cookies_if_present()
-            except Exception as e:
-                logger.warning(f"⚠️ Обнаружена CAPTCHA-страница на URL: {self.page.url}")
-                logger.warning(f"📄 Заголовок страницы: {self.page.title()}")
-                logger.warning(f"Ошибка {type(e).__name__}: {e}")
-                header = self.page.locator("//header").first
-                logger.warning(f"HEADER HTML: {header.inner_html()}")
-                artifact_dir = Path("artifacts/captcha")
+            except PlaywrightTimeoutError as e:
+                page_title = self.page.title()
+                # logger.warning(f"Ошибка {type(e).__name__}: {e}")
+                # header = self.page.locator("//header").first
+                # logger.warning(f"HEADER HTML: {header.inner_html()}")
+                # artifact_dir = Path("artifacts/captcha")
 
-                html_files = list(artifact_dir.glob("*.html"))
-                should_save = len(html_files) == 0
+                # html_files = list(artifact_dir.glob("*.html"))
+                # should_save = len(html_files) == 0
 
-                if should_save:
-                    artifact_dir.mkdir(parents=True, exist_ok=True)
-                    html_content = self.page.content()
-                    html_path = artifact_dir / "captcha.html"
-                    html_path.write_text(html_content, encoding="utf-8")
-                    logger.warning(f"💾 Полный HTML сохранён: {html_path}")
+                # if should_save:
+                #     artifact_dir.mkdir(parents=True, exist_ok=True)
+                #     html_content = self.page.content()
+                #     html_path = artifact_dir / "captcha.html"
+                #     html_path.write_text(html_content, encoding="utf-8")
+                #     logger.warning(f"💾 Полный HTML сохранён: {html_path}")
 
-                    screenshot = self.page.screenshot(full_page=True)
-                    allure.attach(
-                        screenshot,
-                        name="Скриншот с капчей",
-                        attachment_type=allure.attachment_type.PNG,
+                #     screenshot = self.page.screenshot(full_page=True)
+                #     allure.attach(
+                #         screenshot,
+                #         name="Скриншот с капчей",
+                #         attachment_type=allure.attachment_type.PNG,
+                #     )
+                #     allure.attach(
+                #         html_content,
+                #         name="HTML с капчей",
+                #         attachment_type=allure.attachment_type.HTML,
+                #     )
+                if page_title.strip() == "DDOS-GUARD":
+                    logger.warning(
+                        f"⚠️ Обнаружена CAPTCHA-страница на URL: {self.page.url}"
                     )
-                    allure.attach(
-                        html_content,
-                        name="HTML с капчей",
-                        attachment_type=allure.attachment_type.HTML,
-                    )
-
-                pytest.skip(
-                    "Тест пропущен: обнаружена страница защиты от ботов. "
-                    "Сайт блокирует автоматизированные запросы с IP GitHub Actions. "
-                )
+                    logger.warning(f"📄 Заголовок страницы: {page_title}")
+                    pytest.skip("Тест пропущен: обнаружена страница защиты от ботов. ")
 
     def reload(self) -> None:
         """Перезагружает текущую страницу и ждет загрузки контента DOM."""
