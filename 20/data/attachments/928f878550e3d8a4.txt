@@ -1,0 +1,15 @@
+INFO     SRC.UI.PAGES.BASE_PAGE:base_page.py:59 Переход на страницу: 'AppRoute.VACANCIES'
+WARNING  SRC.UI.PAGES.BASE_PAGE:base_page.py:40 <div id="__nuxt"><!--[--><div class="nuxt-loading-indicator" style="position: fixed; top: 0px; right: 0px; left: 0px; pointer-events: none; width: auto; height: 3px; opacity: 0; background: repeating-linear-gradient(to right, rgb(0, 220, 130) 0%, rgb(52, 205, 254) 50%, rgb(0, 71, 225) 100%); transform: scaleX(0); transform-origin: left center 0px; transition: transform 0.1s, height 0.4s, opacity 0.4s; z-index: 999999;"></div><div class="q-layout q-layout--standard layout-default" style="min-height: 720px;" tabindex="-1" data-v-29e22372=""><!----><!----><!--[--><header class="q-header q-layout__section--marginal fixed-top bg-primary text-white" style="" data-v-13dc206a=""><div class="container" data-v-13dc206a=""><div class="q-toolbar row no-wrap items-center" role="toolbar" data-v-13dc206a=""><a href="/" class="" data-v-13dc206a=""><div class="q-avatar q-avatar--square logo" style="" data-v-13dc206a=""><div class="q-avatar__content row flex-center overflow-hidden" style=""><img src="/i
+INFO     SRC.UI.PAGES.BASE_PAGE:base_page.py:48 Куки приняты
+INFO     SRC.UI.ELEMENTS.TAB:tab.py:32 Проверка: таб 'Вкладка 'Вакансии' в навбаре' активен (имеет класс 'q-tab--active').
+INFO     SRC.UI.COMPONENTS.NAVIGATION.BREADCRAMBS_COMPONENT:breadcrambs_component.py:97 Проверка, атрибут 'href' елемента текущей хлебной крошки
+INFO     SRC.UI.COMPONENTS.NAVIGATION.BREADCRAMBS_COMPONENT:breadcrambs_component.py:103 Проверка, что элемент текущей хлебной крошки не является ссылкой
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Container 'Контейнер хлебных крошек' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Link 'Ссылка на главную' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:207 Проверка, что Link 'Ссылка на главную' имеет текст 'Главная'
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Text 'Текущая страница' видим
+INFO     SRC.UI.COMPONENTS.NAVIGATION.BREADCRAMBS_COMPONENT:breadcrambs_component.py:77 Проверка текста названия текущей страницы Все вакансии c Все вакансии
+INFO     SRC.UI.ELEMENTS.LINK:link.py:26 Проверка, что Link 'Ссылка на главную' активна
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:178 Клик по Link 'Ссылка на главную'
+INFO     SRC.UI.PAGES.BASE_PAGE:base_page.py:113 Checking that current url matches pattern '.*/'
+INFO     SRC.UI.ELEMENTS.TAB:tab.py:32 Проверка: таб 'Вкладка 'О нас' в навбаре' активен (имеет класс 'q-tab--active').

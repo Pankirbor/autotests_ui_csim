@@ -1,0 +1,22 @@
+INFO     SRC.UI.PAGES.BASE_PAGE:base_page.py:59 Переход на страницу: 'AppRoute.VACANCIES'
+WARNING  SRC.UI.PAGES.BASE_PAGE:base_page.py:40 <div id="__nuxt"><!--[--><div class="nuxt-loading-indicator" style="position: fixed; top: 0px; right: 0px; left: 0px; pointer-events: none; width: auto; height: 3px; opacity: 0; background: repeating-linear-gradient(to right, rgb(0, 220, 130) 0%, rgb(52, 205, 254) 50%, rgb(0, 71, 225) 100%); transform: scaleX(0); transform-origin: left center 0px; transition: transform 0.1s, height 0.4s, opacity 0.4s; z-index: 999999;"></div><div class="q-layout q-layout--standard layout-default" style="min-height: 720px;" tabindex="-1" data-v-29e22372=""><!----><!----><!--[--><header class="q-header q-layout__section--marginal fixed-top bg-primary text-white" style="" data-v-13dc206a=""><div class="container" data-v-13dc206a=""><div class="q-toolbar row no-wrap items-center" role="toolbar" data-v-13dc206a=""><a href="/" class="" data-v-13dc206a=""><div class="q-avatar q-avatar--square logo" style="" data-v-13dc206a=""><div class="q-avatar__content row flex-center overflow-hidden" style=""><img src="/i
+INFO     SRC.UI.PAGES.BASE_PAGE:base_page.py:48 Куки приняты
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Container 'Блок со списком вакансий' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:178 Клик по Tab 'Вкладка Административные'
+INFO     SRC.UI.ELEMENTS.TAB:tab.py:32 Проверка: таб 'Вкладка Административные' активен (имеет класс 'q-tab--active').
+INFO     SRC.UI.ELEMENTS.CONTAINER:container.py:44 Проверка: в контейнере Блок со списком вакансий количество элементов не должно превышать 17, актуальное количество элементов: 0
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:178 Клик по Tab 'Вкладка Разработка'
+INFO     SRC.UI.ELEMENTS.TAB:tab.py:32 Проверка: таб 'Вкладка Разработка' активен (имеет класс 'q-tab--active').
+INFO     SRC.UI.ELEMENTS.CONTAINER:container.py:44 Проверка: в контейнере Блок со списком вакансий количество элементов не должно превышать 17, актуальное количество элементов: 7
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:178 Клик по Tab 'Вкладка Методология'
+INFO     SRC.UI.ELEMENTS.TAB:tab.py:32 Проверка: таб 'Вкладка Методология' активен (имеет класс 'q-tab--active').
+INFO     SRC.UI.ELEMENTS.CONTAINER:container.py:44 Проверка: в контейнере Блок со списком вакансий количество элементов не должно превышать 17, актуальное количество элементов: 0
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:178 Клик по Tab 'Вкладка Менеджмент'
+INFO     SRC.UI.ELEMENTS.TAB:tab.py:32 Проверка: таб 'Вкладка Менеджмент' активен (имеет класс 'q-tab--active').
+INFO     SRC.UI.ELEMENTS.CONTAINER:container.py:44 Проверка: в контейнере Блок со списком вакансий количество элементов не должно превышать 17, актуальное количество элементов: 1
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:178 Клик по Tab 'Вкладка Аналитика'
+INFO     SRC.UI.ELEMENTS.TAB:tab.py:32 Проверка: таб 'Вкладка Аналитика' активен (имеет класс 'q-tab--active').
+INFO     SRC.UI.ELEMENTS.CONTAINER:container.py:44 Проверка: в контейнере Блок со списком вакансий количество элементов не должно превышать 17, актуальное количество элементов: 7
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:178 Клик по Tab 'Вкладка IT'
+INFO     SRC.UI.ELEMENTS.TAB:tab.py:32 Проверка: таб 'Вкладка IT' активен (имеет класс 'q-tab--active').
+INFO     SRC.UI.ELEMENTS.CONTAINER:container.py:44 Проверка: в контейнере Блок со списком вакансий количество элементов не должно превышать 17, актуальное количество элементов: 2
