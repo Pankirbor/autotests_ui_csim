@@ -11,9 +11,11 @@ from src.ui.routes import AppRoute
 
 
 @pytest.mark.UI
-@allure.epic(AllureEpic.VACANCIES)
+@allure.epic(AllureEpic.CSIM)
 @allure.feature(AllureFeature.VACANCY_LIST)
 class TestVacancyList:
+    """Тесты для страницы вакансий."""
+
     @allure.title("Проверка, что страница вакансий загружается корректно")
     @allure.story(AllureStoryUi.PAGE_LOADS_CORRECTLY)
     @allure.severity(Severity.CRITICAL)
@@ -131,7 +133,7 @@ class TestVacancyList:
 
 
 @pytest.mark.UI
-@allure.epic(AllureEpic.VACANCIES)
+@allure.epic(AllureEpic.CSIM)
 @allure.feature(AllureFeature.CATEGORY_FILTERS)
 @allure.severity(Severity.NORMAL)
 @allure.tag(AllureTagUi.UI, AllureTagUi.POSITIVE)
