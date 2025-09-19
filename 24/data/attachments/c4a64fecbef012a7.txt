@@ -1,0 +1,102 @@
+INFO     SRC.UI.PAGES.BASE_PAGE:base_page.py:57 Переход на страницу: 'AppRoute.VACANCIES'
+INFO     SRC.UI.PAGES.BASE_PAGE:base_page.py:46 Куки приняты
+INFO     SRC.UI.COMPONENTS.VACANCIES.VACANCY_FILTERS_MENU_COMPONENT:vacancy_filters_menu_component.py:158 Проверка, что меню фильтров не отображается
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:178 Клик по Button 'Кнопка 'Фильтр''
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Container 'Контейнер выпадающего меню фильтров' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Checkbox 'Чекбокс из группы Занятость: Полная' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:207 Проверка, что Checkbox 'Чекбокс из группы Занятость: Полная' имеет текст 'Полная'
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Checkbox 'Чекбокс из группы Занятость: Частичная' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:207 Проверка, что Checkbox 'Чекбокс из группы Занятость: Частичная' имеет текст 'Частичная'
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Checkbox 'Чекбокс из группы Опыт работы: Нет опыта' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:207 Проверка, что Checkbox 'Чекбокс из группы Опыт работы: Нет опыта' имеет текст 'Нет опыта'
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Checkbox 'Чекбокс из группы Опыт работы: От 1 года до 3 лет' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:207 Проверка, что Checkbox 'Чекбокс из группы Опыт работы: От 1 года до 3 лет' имеет текст 'От 1 года до 3 лет'
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Checkbox 'Чекбокс из группы Опыт работы: От 3 до 6 лет' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:207 Проверка, что Checkbox 'Чекбокс из группы Опыт работы: От 3 до 6 лет' имеет текст 'От 3 до 6 лет'
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Checkbox 'Чекбокс из группы Опыт работы: Более 6 лет' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:207 Проверка, что Checkbox 'Чекбокс из группы Опыт работы: Более 6 лет' имеет текст 'Более 6 лет'
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Checkbox 'Чекбокс из группы График работы: Полный день' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:207 Проверка, что Checkbox 'Чекбокс из группы График работы: Полный день' имеет текст 'Полный день'
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Checkbox 'Чекбокс из группы График работы: Удаленная работа' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:207 Проверка, что Checkbox 'Чекбокс из группы График работы: Удаленная работа' имеет текст 'Удаленная работа'
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Checkbox 'Чекбокс из группы График работы: Гибкий график' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:207 Проверка, что Checkbox 'Чекбокс из группы График работы: Гибкий график' имеет текст 'Гибкий график'
+INFO     SRC.UI.ELEMENTS.CHECKBOX:checkbox.py:118 Получение текста метки для Checkbox 'Чекбокс из группы Занятость: Полная'
+INFO     SRC.UI.ELEMENTS.CHECKBOX:checkbox.py:120 Текст метки: 'Полная'
+INFO     SRC.UI.ELEMENTS.CHECKBOX:checkbox.py:118 Получение текста метки для Checkbox 'Чекбокс из группы Занятость: Частичная'
+INFO     SRC.UI.ELEMENTS.CHECKBOX:checkbox.py:120 Текст метки: 'Частичная'
+INFO     SRC.UI.ELEMENTS.CHECKBOX:checkbox.py:118 Получение текста метки для Checkbox 'Чекбокс из группы Опыт работы: Нет опыта'
+INFO     SRC.UI.ELEMENTS.CHECKBOX:checkbox.py:120 Текст метки: 'Нет опыта'
+INFO     SRC.UI.ELEMENTS.CHECKBOX:checkbox.py:118 Получение текста метки для Checkbox 'Чекбокс из группы Опыт работы: От 1 года до 3 лет'
+INFO     SRC.UI.ELEMENTS.CHECKBOX:checkbox.py:120 Текст метки: 'От 1 года до 3 лет'
+INFO     SRC.UI.ELEMENTS.CHECKBOX:checkbox.py:118 Получение текста метки для Checkbox 'Чекбокс из группы Опыт работы: От 3 до 6 лет'
+INFO     SRC.UI.ELEMENTS.CHECKBOX:checkbox.py:120 Текст метки: 'От 3 до 6 лет'
+INFO     SRC.UI.ELEMENTS.CHECKBOX:checkbox.py:118 Получение текста метки для Checkbox 'Чекбокс из группы Опыт работы: Более 6 лет'
+INFO     SRC.UI.ELEMENTS.CHECKBOX:checkbox.py:120 Текст метки: 'Более 6 лет'
+INFO     SRC.UI.ELEMENTS.CHECKBOX:checkbox.py:118 Получение текста метки для Checkbox 'Чекбокс из группы График работы: Полный день'
+INFO     SRC.UI.ELEMENTS.CHECKBOX:checkbox.py:120 Текст метки: 'Полный день'
+INFO     SRC.UI.ELEMENTS.CHECKBOX:checkbox.py:118 Получение текста метки для Checkbox 'Чекбокс из группы График работы: Удаленная работа'
+INFO     SRC.UI.ELEMENTS.CHECKBOX:checkbox.py:120 Текст метки: 'Удаленная работа'
+INFO     SRC.UI.ELEMENTS.CHECKBOX:checkbox.py:118 Получение текста метки для Checkbox 'Чекбокс из группы График работы: Гибкий график'
+INFO     SRC.UI.ELEMENTS.CHECKBOX:checkbox.py:120 Текст метки: 'Гибкий график'
+INFO     SRC.UI.ELEMENTS.CHECKBOX:checkbox.py:78 Выбор Checkbox 'Чекбокс из группы Опыт работы: От 1 года до 3 лет'
+INFO     SRC.UI.ELEMENTS.CHECKBOX:checkbox.py:78 Выбор Checkbox 'Чекбокс из группы График работы: Удаленная работа'
+INFO     SRC.UI.ELEMENTS.CHECKBOX:checkbox.py:42 Проверка, что Checkbox 'Чекбокс из группы Опыт работы: От 1 года до 3 лет' выбран
+INFO     SRC.UI.ELEMENTS.CHECKBOX:checkbox.py:42 Проверка, что Checkbox 'Чекбокс из группы График работы: Удаленная работа' выбран
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:178 Клик по Button 'Кнопка 'Сбросить' в меню фильтров'
+INFO     SRC.UI.COMPONENTS.VACANCIES.VACANCY_FILTERS_MENU_COMPONENT:vacancy_filters_menu_component.py:158 Проверка, что меню фильтров не отображается
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:178 Клик по Button 'Кнопка 'Фильтр''
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Container 'Контейнер выпадающего меню фильтров' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Checkbox 'Чекбокс из группы Занятость: Полная' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:207 Проверка, что Checkbox 'Чекбокс из группы Занятость: Полная' имеет текст 'Полная'
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Checkbox 'Чекбокс из группы Занятость: Частичная' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:207 Проверка, что Checkbox 'Чекбокс из группы Занятость: Частичная' имеет текст 'Частичная'
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Checkbox 'Чекбокс из группы Опыт работы: Нет опыта' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:207 Проверка, что Checkbox 'Чекбокс из группы Опыт работы: Нет опыта' имеет текст 'Нет опыта'
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Checkbox 'Чекбокс из группы Опыт работы: От 1 года до 3 лет' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:207 Проверка, что Checkbox 'Чекбокс из группы Опыт работы: От 1 года до 3 лет' имеет текст 'От 1 года до 3 лет'
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Checkbox 'Чекбокс из группы Опыт работы: От 3 до 6 лет' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:207 Проверка, что Checkbox 'Чекбокс из группы Опыт работы: От 3 до 6 лет' имеет текст 'От 3 до 6 лет'
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Checkbox 'Чекбокс из группы Опыт работы: Более 6 лет' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:207 Проверка, что Checkbox 'Чекбокс из группы Опыт работы: Более 6 лет' имеет текст 'Более 6 лет'
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Checkbox 'Чекбокс из группы График работы: Полный день' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:207 Проверка, что Checkbox 'Чекбокс из группы График работы: Полный день' имеет текст 'Полный день'
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Checkbox 'Чекбокс из группы График работы: Удаленная работа' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:207 Проверка, что Checkbox 'Чекбокс из группы График работы: Удаленная работа' имеет текст 'Удаленная работа'
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Checkbox 'Чекбокс из группы График работы: Гибкий график' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:207 Проверка, что Checkbox 'Чекбокс из группы График работы: Гибкий график' имеет текст 'Гибкий график'
+INFO     SRC.UI.ELEMENTS.CHECKBOX:checkbox.py:59 Проверка, что Checkbox 'Чекбокс из группы Занятость: Полная' не выбран
+INFO     SRC.UI.ELEMENTS.CHECKBOX:checkbox.py:59 Проверка, что Checkbox 'Чекбокс из группы Занятость: Частичная' не выбран
+INFO     SRC.UI.ELEMENTS.CHECKBOX:checkbox.py:59 Проверка, что Checkbox 'Чекбокс из группы Опыт работы: Нет опыта' не выбран
+INFO     SRC.UI.ELEMENTS.CHECKBOX:checkbox.py:59 Проверка, что Checkbox 'Чекбокс из группы Опыт работы: От 1 года до 3 лет' не выбран
+INFO     SRC.UI.ELEMENTS.CHECKBOX:checkbox.py:59 Проверка, что Checkbox 'Чекбокс из группы Опыт работы: От 3 до 6 лет' не выбран
+INFO     SRC.UI.ELEMENTS.CHECKBOX:checkbox.py:59 Проверка, что Checkbox 'Чекбокс из группы Опыт работы: Более 6 лет' не выбран
+INFO     SRC.UI.ELEMENTS.CHECKBOX:checkbox.py:59 Проверка, что Checkbox 'Чекбокс из группы График работы: Полный день' не выбран
+INFO     SRC.UI.ELEMENTS.CHECKBOX:checkbox.py:59 Проверка, что Checkbox 'Чекбокс из группы График работы: Удаленная работа' не выбран
+INFO     SRC.UI.ELEMENTS.CHECKBOX:checkbox.py:59 Проверка, что Checkbox 'Чекбокс из группы График работы: Гибкий график' не выбран
+INFO     SRC.UI.COMPONENTS.VACANCIES.VACANCY_FILTERS_MENU_COMPONENT:vacancy_filters_menu_component.py:158 Проверка, что меню фильтров не отображается
+WARNING  SRC.UI.PAGES.VACANCIES.VACANCIES_PAGE:vacancies_page.py:72 Меню фильтров уже открыто.
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Container 'Контейнер выпадающего меню фильтров' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Checkbox 'Чекбокс из группы Занятость: Полная' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:207 Проверка, что Checkbox 'Чекбокс из группы Занятость: Полная' имеет текст 'Полная'
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Checkbox 'Чекбокс из группы Занятость: Частичная' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:207 Проверка, что Checkbox 'Чекбокс из группы Занятость: Частичная' имеет текст 'Частичная'
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Checkbox 'Чекбокс из группы Опыт работы: Нет опыта' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:207 Проверка, что Checkbox 'Чекбокс из группы Опыт работы: Нет опыта' имеет текст 'Нет опыта'
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Checkbox 'Чекбокс из группы Опыт работы: От 1 года до 3 лет' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:207 Проверка, что Checkbox 'Чекбокс из группы Опыт работы: От 1 года до 3 лет' имеет текст 'От 1 года до 3 лет'
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Checkbox 'Чекбокс из группы Опыт работы: От 3 до 6 лет' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:207 Проверка, что Checkbox 'Чекбокс из группы Опыт работы: От 3 до 6 лет' имеет текст 'От 3 до 6 лет'
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Checkbox 'Чекбокс из группы Опыт работы: Более 6 лет' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:207 Проверка, что Checkbox 'Чекбокс из группы Опыт работы: Более 6 лет' имеет текст 'Более 6 лет'
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Checkbox 'Чекбокс из группы График работы: Полный день' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:207 Проверка, что Checkbox 'Чекбокс из группы График работы: Полный день' имеет текст 'Полный день'
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Checkbox 'Чекбокс из группы График работы: Удаленная работа' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:207 Проверка, что Checkbox 'Чекбокс из группы График работы: Удаленная работа' имеет текст 'Удаленная работа'
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Checkbox 'Чекбокс из группы График работы: Гибкий график' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:207 Проверка, что Checkbox 'Чекбокс из группы График работы: Гибкий график' имеет текст 'Гибкий график'
+INFO     SRC.UI.ELEMENTS.CHECKBOX:checkbox.py:78 Выбор Checkbox 'Чекбокс из группы Опыт работы: От 1 года до 3 лет'
+INFO     SRC.UI.ELEMENTS.CHECKBOX:checkbox.py:42 Проверка, что Checkbox 'Чекбокс из группы Опыт работы: От 1 года до 3 лет' выбран
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:178 Клик по Button 'Кнопка 'Применить' в меню фильтров'
+INFO     SRC.UI.COMPONENTS.VACANCIES.VACANCY_FILTERS_MENU_COMPONENT:vacancy_filters_menu_component.py:158 Проверка, что меню фильтров не отображается
+INFO     SRC.UI.ELEMENTS.CONTAINER:container.py:44 Проверка: в контейнере Блок со списком вакансий количество элементов не должно превышать 17, актуальное количество элементов: 10
