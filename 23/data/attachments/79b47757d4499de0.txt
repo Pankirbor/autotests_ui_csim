@@ -1,0 +1,5 @@
+INFO     SRC.UI.PAGES.BASE_PAGE:base_page.py:57 Переход на страницу: 'AppRoute.VACANCIES'
+INFO     SRC.UI.PAGES.BASE_PAGE:base_page.py:46 Куки приняты
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:207 Проверка, что Button 'Кнопка сортировки' имеет текст 'Сначала новые'
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Container 'Блок со списком вакансий' видим
+INFO     SRC.UI.COMPONENTS.VACANCIES.VACANCIES_LIST_COMPONENT:vacancies_list_component.py:141 Проверяем, что вакансии отсортированы по дате публикации: 'desc'
