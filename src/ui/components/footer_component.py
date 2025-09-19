@@ -1,3 +1,4 @@
+import re
 from typing import Self
 
 import allure
@@ -74,4 +75,16 @@ class FooterComponent(BaseComponent):
     def navigate_to_main_page(self):
         """Проверяет переход на главную страницу."""
         self.main_page_link.check_visible().click()
-        self.check_current_url("/")
+        self.check_current_url(re.compile("/"))
+
+    @allure.step("Проверка скачивания файла политики конфиденциальности")
+    def check_download_privacy_policy(
+        self, file_name: str = "Политика конфиденциальности.pdf"
+    ):
+        self.privacy_policy_link.check_download_file(file_name)
+
+    @allure.step("Проверка скачивания файла пользовательского соглашения")
+    def check_download_user_agreement(
+        self, file_name: str = "Пользовательское_соглашение.pdf"
+    ):
+        self.user_agreement_link.check_download_file(file_name)
