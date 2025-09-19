@@ -97,8 +97,8 @@ class APISettings(BaseModel):
 class ReportingSettings(BaseModel):
     """Настройки для отчетности."""
 
-    allure_api_results_dir: DirectoryPath
-    allure_ui_results_dir: DirectoryPath
+    # allure_api_results_dir: DirectoryPath
+    allure_results_dir: DirectoryPath
     video_recording: bool = Field(default=False)
     trace_recording: bool = Field(default=False)
 
@@ -144,8 +144,8 @@ class FrameworkSettings(BaseSettings):
         base_dirs = [
             "./videos",
             "./tracing",
-            "./allure-api-results",
-            "./allure-ui-results",
+            # "./allure-api-results",
+            "./allure-results",
             "./logs",
         ]
 
@@ -172,7 +172,7 @@ class FrameworkSettings(BaseSettings):
         Returns:
             str: Полный базовый URL для API.
         """
-        return f"{self.api.base_url}{self.api.api_version}"
+        return f"{self.api.http_client.base_url}{self.api.api_version}"
 
     def get_env_properties(self) -> dict[str, Any]:
         """Возвращает свойства окружения для Allure.
