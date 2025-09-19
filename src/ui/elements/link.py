@@ -1,7 +1,7 @@
 from typing import Self
 
 import allure
-from playwright.sync_api import expect, Download
+from playwright.sync_api import Download, expect
 from ui_coverage_tool import ActionType
 
 from src.ui.elements.base_element import BaseElement

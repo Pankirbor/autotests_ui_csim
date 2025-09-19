@@ -1,8 +1,8 @@
-from pathlib import Path
 from re import Pattern
 
 import allure
-from playwright.sync_api import Page, expect, TimeoutError as PlaywrightTimeoutError
+from playwright.sync_api import Page, expect
+from playwright.sync_api import TimeoutError as PlaywrightTimeoutError
 import pytest
 
 from src.ui.locators.cookies import CookiesLocators
@@ -36,7 +36,6 @@ class BasePage:
 
     def accept_cookies_if_present(self) -> None:
         """Принимает куки, если диалог виден."""
-
         cookies_dialog = self.page.locator(CookiesLocators.CONTAINER.selector)
         accept_button = self.page.locator(CookiesLocators.ACCEPT_BUTTON.selector)
 

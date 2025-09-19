@@ -81,10 +81,12 @@ class FooterComponent(BaseComponent):
     def check_download_privacy_policy(
         self, file_name: str = "Политика конфиденциальности.pdf"
     ):
+        """Проверяет скачивание файла политики конфиденциальности."""
         self.privacy_policy_link.check_download_file(file_name)
 
     @allure.step("Проверка скачивания файла пользовательского соглашения")
     def check_download_user_agreement(
         self, file_name: str = "Пользовательское_соглашение.pdf"
     ):
+        """Проверяет скачивание файла пользовательского соглашения."""
         self.user_agreement_link.check_download_file(file_name)
