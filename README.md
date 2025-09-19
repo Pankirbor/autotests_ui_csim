@@ -41,8 +41,20 @@
 ### 📦 Артефакты последнего запуска (скриншоты, видео, HTML)
 [![Artifacts](https://img.shields.io/badge/Download-Artifacts-orange?logo=github)](https://github.com/Pankirbor/autotests_ui_csim/actions)
 
-> Зайдите в последний workflow → Artifacts → скачайте `allure-ui-results`, `coverage-report`
+> [Зайдите в последний workflow → Artifacts → скачайте `allure-results`, `coverage-report`](https://github.com/Pankirbor/autotests_ui_csim/actions)
 
+### Playwright Tracing
+Интеграция с Playwright Trace Viewer для детальной отладки:
+
+1. **Как найти в [отчёте](https://pankirbor.github.io/autotests_ui_csim/)**:
+   - В блоке `Tear down` каждого теста
+   - Фикстура браузера
+   - Иконка 📁 с подписью `trace.zip`
+
+2. **Открытие результатов через веб-интерфейс**:
+   - Скачать файл из предыдущего шага
+   - Перейти на сайт [Trace Viewer](https://trace.playwright.dev)
+   - Нажмите кнопку `Select file(s)` и выберите скаченный файл `trace.zip` или просто перетащите его в окно браузера.
 ---
 
 ## ⚙️ Запуск локально
@@ -57,12 +69,13 @@
    venv\Scripts\activate     # Windows
    pip install -r requirements.txt
    playwright install --with-deps
-   pytest -m UI --alluredir=./allure-ui-results
+   pytest -m UI --alluredir=./allure-results
 
 ## 🧪 Запуск в CI
 >Проект настроен на автоматический запуск в **GitHub Actions** при `push` в `main` или **открытии PR**.
 
 >Тесты запускаются в **Chromium и Firefox**, генерируется **Allure-отчёт** и публикуется на **GitHub Pages**.
+
 
 ## 🤝 Цель проекта
 *Этот репозиторий — демонстрация подхода к автоматизации UI-тестов.*
@@ -72,3 +85,6 @@
 - Настройку логирования и отладки
 - Использование **Page Object Model**
 - Работу с **Playwright и Pytest**
+
+## 📬 Контакты
+- Автор: [Pankirbor](https://github.com/Pankirbor)

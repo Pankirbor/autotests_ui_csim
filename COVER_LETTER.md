@@ -50,7 +50,7 @@
 ## 📎 Где посмотреть результаты
 
 - ▶️ **Allure-отчёт**: [https://pankirbor.github.io/autotests_ui_csim/](https://pankirbor.github.io/autotests_ui_csim/)
-- 📦 **Артефакты (видео, скриншоты, HTML)**: вкладка "Actions" → последний запуск → Artifacts
+- 📦 [**Артефакты (allure-results, coverage)**]((https://github.com/Pankirbor/autotests_ui_csim/actions)): вкладка "Actions" → последний запуск → Artifacts
 - 💻 **Код проекта**: [в этом репозитории](https://github.com/Pankirbor/autotests_ui_csim) — структура, настройки, тесты
 
 ---
