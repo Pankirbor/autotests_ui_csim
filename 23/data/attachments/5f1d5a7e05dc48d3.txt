@@ -1,0 +1,25 @@
+INFO     SRC.UI.PAGES.BASE_PAGE:base_page.py:57 Переход на страницу: 'AppRoute.VACANCIES'
+INFO     SRC.UI.PAGES.BASE_PAGE:base_page.py:46 Куки приняты
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:178 Клик по Button 'Кнопка сортировки'
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:207 Проверка, что Button 'Кнопка сортировки' имеет текст 'Сначала старые'
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Container 'Блок со списком вакансий' видим
+INFO     SRC.UI.COMPONENTS.VACANCIES.VACANCIES_LIST_COMPONENT:vacancies_list_component.py:141 Проверяем, что вакансии отсортированы по дате публикации: 'asc'
+ERROR    SRC.UI.COMPONENTS.VACANCIES.VACANCIES_LIST_COMPONENT:vacancies_list_component.py:160 Вакансии не отсортированы в порядке 'asc'.
+Текущий порядок:
+1) PHP разработчик (Middle+) - 19.09.2025
+2) Инженер данных - 19.09.2025
+3) Cистемный аналитик DWH - 18.09.2025
+4) Системный администратор - 19.09.2025
+5) ML разработчик - 19.09.2025
+6) Аналитик OSINT (г. Екатеринбург) - 19.09.2025
+7) Аналитик OSINT (г. Санкт-Петербург) - 19.09.2025
+8) Аналитик OSINT (г. Новосибирск) - 19.09.2025
+9) Аналитик OSINT (г. Нижний Новгород) - 19.09.2025
+10) Аналитик OSINT (г. Владивосток) - 19.09.2025
+11) Руководитель IT-проектов - 19.09.2025
+12) Системный администратор Linux - 19.09.2025
+13) Специалист по мониторингу и медиааналитике - 19.09.2025
+14) Тестировщик ПО - 19.09.2025
+15) Бизнес-системный аналитик - 19.09.2025
+16) AQA инженер (Python) - 19.09.2025
+17) Frontend разработчик (Vue.js) - 19.09.2025

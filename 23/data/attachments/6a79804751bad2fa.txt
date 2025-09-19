@@ -1,0 +1,20 @@
+INFO     SRC.UI.PAGES.BASE_PAGE:base_page.py:57 Переход на страницу: 'AppRoute.VACANCIES'
+INFO     SRC.UI.PAGES.BASE_PAGE:base_page.py:46 Куки приняты
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:207 Проверка, что Text 'Блок информации в футере' имеет текст '© 2018 - 2025'
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:207 Проверка, что Text 'Блок информации в футере' имеет текст 'ИНН: 9709037529'
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Link 'Ссылка на Пользовательское соглашение' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Link 'Ссылка на Политику конфиденциальности' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Link 'Ссылка на главную страницу' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Icon 'Логотип в футере' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Icon 'Логотип в футере' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:178 Клик по Link 'Ссылка на Политику конфиденциальности'
+INFO     SRC.UI.ELEMENTS.LINK:link.py:60 Файл 'Политика конфиденциальности.pdf' загружен
+INFO     SRC.UI.ELEMENTS.LINK:link.py:66 Проверяем соответствие имени файла ожидаемому 'Политика конфиденциальности.pdf'
+INFO     SRC.UI.ELEMENTS.LINK:link.py:73 Проверяем, что файл 'Политика конфиденциальности.pdf' не пустой
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:178 Клик по Link 'Ссылка на Пользовательское соглашение'
+INFO     SRC.UI.ELEMENTS.LINK:link.py:60 Файл 'Пользовательское_соглашение.pdf' загружен
+INFO     SRC.UI.ELEMENTS.LINK:link.py:66 Проверяем соответствие имени файла ожидаемому 'Пользовательское_соглашение.pdf'
+INFO     SRC.UI.ELEMENTS.LINK:link.py:73 Проверяем, что файл 'Пользовательское_соглашение.pdf' не пустой
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:191 Проверка, что Link 'Ссылка на главную страницу' видим
+INFO     SRC.UI.ELEMENTS.BASE_ELEMENT:base_element.py:178 Клик по Link 'Ссылка на главную страницу'
+INFO     SRC.UI.COMPONENTS.BASE_COMPONENT:base_component.py:42 Проверка соответствия текущего URL-адреса шаблону '/'
